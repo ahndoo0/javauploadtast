@@ -9,7 +9,7 @@ public class ja02_16_비교논리결합 {
         
         System.out.println((x==y) && (x!=y));
         //x는y와 같다 false 그리고 x는y와같지않다 true
-        //답은 true
+        //답은 false
         System.out.println((x>y) || (x<y));
         //x가y보다크다false 또는 y가 x보다크다true
         //답은 true
