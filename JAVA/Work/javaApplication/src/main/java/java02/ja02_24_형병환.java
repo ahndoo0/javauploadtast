@@ -18,7 +18,7 @@ public class ja02_24_형병환 {
         int e=(false?1:0)+(true?1:0);
         System.out.println(e);
        
-        // 형변환은 정수 실수 문자 만 가능!
+        // 형변환은 정수 실수 문자 만 가능!(나머지것들은 구글로 찾아서 변환)
         
     }
 }
