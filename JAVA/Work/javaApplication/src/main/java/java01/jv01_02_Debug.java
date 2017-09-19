@@ -4,8 +4,8 @@ public class jv01_02_Debug {
    
     public static void main(String[] args) {
     
-    int x = 100;
-    x++;
+    int x = 100, y = 100; 
+    x++; 
     x++;
     
     System.out.println(x);

@@ -14,7 +14,7 @@ public class ex03_01_LargeSmall {
         if (n>=100){
             System.out.println("Large");
         }
-        else {
+        else  {
             System.out.println("Small");
         }
     }
