@@ -9,15 +9,13 @@ public class ja04_13_for실습예제 {
     
         for(int i=1; i<=9; i=i+1 ){
             sum= 2*i;
-            System.out.print("2" + "*" + i+"="+sum);
+            System.out.print("2*" + i+"="+sum);
             if(i!=9){
                 System.out.print(", ");
             }
             else{
                 System.out.print(". ");
             }
-        }
-        
-    }
-    
+        }   
+    }   
 }
