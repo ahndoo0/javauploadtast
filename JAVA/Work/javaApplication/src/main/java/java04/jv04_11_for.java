@@ -13,7 +13,6 @@ public class jv04_11_for {
             sum = sum +i;
             System.out.println("1부터"+ i + "까지의합:" +sum);
         }
-        
     }
     
 }
