@@ -10,12 +10,15 @@ public class ex06_03_사칙연산메서드 {
         System.out.print("Second num: ");
         int y=keboard.nextInt();
         
-        int add =Add(x, y);
-        System.out.println("add: "+add);
+        int add =Add (x, y);
+        System.out.println ("add: "+add);
+        
         int minus= Minus (x,y);
         System.out.println("Minus: "+minus);
+        
         int mul = Mul(x,y);
         System.out.println("mul: "+mul);
+        
         double div= Div(x,y);
         System.out.println("div: "+div);
                 
@@ -40,7 +43,7 @@ public class ex06_03_사칙연산메서드 {
     }
     
     public static double Div (double x, double y){
-       
+        
         double j= x/y;
         return j;
         
