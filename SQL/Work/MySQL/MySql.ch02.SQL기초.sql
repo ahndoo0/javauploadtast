@@ -5,7 +5,7 @@
 -- 문자: 왼쪽 정렬
 
 
--- SQL 에서 NULL 이란?
+-- SQL 에서 NULL 이란?emp
 
        
 
@@ -22,16 +22,16 @@
 
 
 -- DEPT 테이블에서 모든 컬럼의 데이터를 조회하시오.
-
+select * from dept ;
 
 -- DEPT 테이블에서  deptno, dname 컬럼의 데이터만 출력하시오.
-
+select deptno, dname from dept  ;
 
 -- EMP 테이블에서 JOB, ENAME 컬럼만 출력하시오.
-
+select job , ename from emp ;
 
 -- EMP 테이블에서 모든 컬럼의 데이터만 출력하시오.
-
+select *from emp;
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -39,11 +39,11 @@
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- AS로 컬럼에 별칭 부여하기. job 컬럼에는 직책을 , enname 컬럼에 이름이라는 별칭을 붙여 출력하시오.
-
+select job as 직책 ,ename as 이름 from emp;
 -- AS없이 컬럼에 별칭 부여하기. job 컬럼에는 직책을 , enname 컬럼에 이름이라는 별칭을 붙여 출력하시오.
-
+select job 직책 ,ename 이름 from emp;
 -- '' 로 별칭 부여하기. job 컬럼에는  "aa//aa"를 , enname 컬럼에는 "nick -+name" 이라는 별칭을 붙여 출력하시오.
-
+select job 'aa//aa' , ename 'nick-+name' from emp;
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -51,7 +51,9 @@
 -- @@@@@@@@@@@@@@@@@@@@@@@@
   
 -- emp 테이블에서 이름과 mgr 값을 출력하시오. 
+select ename,mgr from emp;
 -- 단, mgr이 null 이면 0으로 바꾸어 출력하시오.
+select ename,ifnull(mgr,0) from emp;
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -59,11 +61,13 @@
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- 중복되는 ename 을 제거하고 ename 만 출력하시오. 18개
-
+select ename from emp;
+select distinct ename from emp;
 
 
 -- emp 테이블의 deptno 값이 중복되는 것을 제거하여 출력하시오. 17개
-
+select deptno from emp;
+select distinct deptno from emp;
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 컬럼 연결,  문자열 연결  
@@ -72,13 +76,13 @@
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- 김사랑 조회하기
-
+select ename , job from emp where ename = '김사랑';
 -- '김사랑의 직급은 직원입니다' 출력하기
 -- concat(ename, '의 직급은 ', job, '입니다')
-
+select concat (ename, '의 직급은' , job, '입니다.')from emp where ename = '김사랑';
 
 -- '김사랑의 직급은 직원입니다' 출력하는 컬럼이름을 '직급'으로 출력하시오
-
+select concat (ename, '의 직급은' , job , '입니다.') '직급' from emp where ename = '김사랑';
 -- ########################
 -- where 사용법
 -- 
@@ -87,26 +91,37 @@
 --  where 조건
 -- ########################
 
+select * from emp where 1 = 1;
+
+select * from emp where 1 = 2;
+
+select * from emp where ename = ename ;
+
+select * from emp where ename = deptno ;
+
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 산술연산자를 이용한 조건 검색
 -- =, > , >=, <, <=, !=
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
+
 -- emp 테이블에서 sal이 500보다 크거나 같은 경우만 출력하시오
+select * from emp where sal >= 500;
   
 -- emp 테이블에서 deptno 가 10 인경우만 출력하시오.
- 
+ select * from emp where deptno = 10;
  
 -- 부정연산( != )
 -- deptno 가 10 이 아닌 사람만 출력하시오.
- 
+ select * from emp where deptno != 10;
  
 -- 문제1.
 -- ename 이 '이문세'인 경우만 출력
+select * from emp where ename = '이문세';
 
 -- 문제2.
 -- ename 이 '이문세'가 아닌 경우만 출력
-
+select *from emp where ename != '이문세';
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 논리연산자를 이용한 조건 검색 
@@ -114,14 +129,16 @@
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- deptno 가 10 인 사람만 출력하시오
+select * from emp where deptno = 10 ;
 
 -- job이 과장인 사람만 출력하시오
-
+select * from emp where job = '과장';
 
 -- deptno 가 10  이고(and) job이 과장인 사람만 출력하시오. 교집합
-
+select * from emp where deptno =10 and job= '과장';
 
 -- deptno 가 10  이거나(or) job이 과장인 사람만 출력하시오. 합집합
+select * from emp where deptno =10 or job= '과장';
 
 
 
@@ -129,12 +146,12 @@
 -- 문제. 산술연사자를 이용해서 
 -- sal 값이 400보다 크거나 같고 그리고(and) 
 -- sal 값이 500보다 작거나 같은 직원을 출력하시오. 5개
-
+select * from emp where sal >=400 and sal<=500 ;
 
 -- 문제. 산술연사자를 이용해서 
 -- sal 값이 400보다 작거나 같고 또는(or) 
 -- sal 값이 500보다 크거나 같은 직원을 출력하시오. 16개
-
+select * from emp where sal <=400 or sal >= 500 ;
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -146,21 +163,23 @@
 -- sal 값이 500보다 작거나 같은 직원을 출력하시오
 
 -- 방법1. 산술 연산자를 이용하는 방법5개
+select * from emp where sal >= 400 and sal <=500 ;
 
 -- 방법2. between A and B 를 이용하는 방법
-
+select * from emp where sal between 400 and 500 ;
 
 
 -- 문제. 입사일(hiredate)이 2005/01/01 이전인 사람들만 출력하시오
-
+select * from emp where hiredate < '2005/01/01' ;
 
 
 -- 문제. 입사일(hiredate)이 2005/01/01 부터  
 -- 2012/12/31 까지 입사한 사람들만 출력하시오
 -- 방법1. 비교 연산자를 이용하는 경우
 
+select * from emp where hiredate >= '2005/01/01' and hiredate <= '2012/12/13' ;
 -- 방법2. between A and B 를 이용해서 
-
+select * from emp where hiredate between '2005/01/01' and '2012/12/13';
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
