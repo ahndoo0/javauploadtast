@@ -1,4 +1,4 @@
-package jvav07;
+package java07;
 
 public class jv07_01_배열의선언과생성 {
     public static void main (String[] args){

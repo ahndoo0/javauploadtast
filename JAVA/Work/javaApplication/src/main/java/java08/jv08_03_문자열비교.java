@@ -25,7 +25,7 @@ public class jv08_03_문자열비교 {
         }
         else{
             System.out.println("s1==s2 : not same");
-        }
+        } // 문자열을 비교할때에는 equals로 비교 하여야한다.
         
     }
     

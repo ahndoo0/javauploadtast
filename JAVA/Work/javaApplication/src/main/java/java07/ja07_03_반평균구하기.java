@@ -1,4 +1,4 @@
-package jvav07;
+package java07;
 
 import java.util.Scanner;
 

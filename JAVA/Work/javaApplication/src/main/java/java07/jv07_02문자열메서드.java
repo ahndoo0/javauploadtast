@@ -1,4 +1,4 @@
-package jvav07;
+package java07;
 
 public class jv07_02문자열메서드 {
     public static void main (String[] args){

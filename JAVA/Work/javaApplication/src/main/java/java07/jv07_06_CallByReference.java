@@ -1,4 +1,4 @@
-package jvav07;
+package java07;
 
 public class jv07_06_CallByReference {
     public static void main (String[] args){

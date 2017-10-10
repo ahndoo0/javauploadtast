@@ -1,4 +1,4 @@
-package jvav07;
+package java07;
 
 public class jv07_02_ArrayExam {
     public static void main (String[] args){
