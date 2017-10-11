@@ -188,31 +188,31 @@ select * from emp where hiredate between '2005/01/01' and '2012/12/13';
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- 이름(ename)이 '이'로 시작하는 직원을 출력하시오. 4개
-
+select * from emp where ename like'이%';
 -- 이름(ename)이 '이'로 끝나는 직원을 출력하시오. 0개
-
+select *from emp where ename like '%이';
 -- 이름(ename)에 '이'가 들어가 있는 직원을 출력하시오. 4개
-
+select *from emp where ename like '%이%';
 
 -- 문제. 이름(ename)에 '성'자가 들어가는 직원을 출력하시오. 3개
-
+select *from emp where ename like '%성%';
 -- 문제. 이름(ename)에 '성'자가 들어가지 않는 직원을 출력하시오. 15개
+select *from emp where ename not like '%성%';
 
 
+-- 와일드 카드 "_"를 사용하여 ename이 "성" 자가 들어가있는 사람을 출력 하시오.
+select *from emp where ename like '_성_';
 
--- 와일드 카드 "_"를 사용하여 "안성기" 출력
-
-
--- 와일드 카드 "_"를 사용하여 "감우성", "조인성" 출력하시오.
-
+-- 와일드 카드 "_"를 사용하여 ename이 "성"자로 끝나는 사람을 출력하시오.
+select *from emp where ename like '%성';
 
 -- 문제
--- LIKE 'a%'	: 
--- LIKE '%a'	: 
--- LIKE '%or%'	: 
--- LIKE '_r%'	: 1r, 1ra, 2rr
+-- LIKE 'a%'	 : 
+-- LIKE '%a'	 : 
+-- LIKE '%or%'	 : 
+-- LIKE '_r%'	 : 1r, 1ra, 2rr
 -- LIKE 'a_%_%' : 
--- LIKE 'a%o'	: 
+-- LIKE 'a%o'	 : 
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -222,18 +222,18 @@ select * from emp where hiredate between '2005/01/01' and '2012/12/13';
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- or 연산으로
--- comm이 80 이거나 100 이거나 200인 사람만 출력하시오. 2개
-
+-- comm이 80 이거나 100 이거나 200인 사람만 출력하시오. 3개
+select * from emp where comm=80 or comm=100 or comm=200;
 -- in 연산으로 
 -- comm이 80 이거나 100 이거나 200인 사람만 출력하시오. 2개
-
+select *from emp where comm in (80,100,200);
 
 -- comm이 80 이 아니고 그리고 100 이 아니고 그리고 200 이 아닌 사람만 출력하시오. 1개
-
+select *from emp where comm!=80 and comm!=100 and comm!=200;
 
 -- not in 연산으로 
 -- comm이 80 이 아니고 그리고 100 이 아니고 그리고 200 이 아닌 사람만 출력하시오. 1개
-
+select *from emp where comm not in (80,100,200);
 
 
 
@@ -244,9 +244,9 @@ select * from emp where hiredate between '2005/01/01' and '2012/12/13';
 -- is null
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- comm 값이  null 인 경우의 출력하시오. 14개
-
+select *from emp where comm is null;
 -- comm 값이  null 이 아닌 경우만 출력하시오
-
+select *from emp where comm is not null;
 
 
 -- ########################
@@ -260,20 +260,20 @@ select * from emp where hiredate between '2005/01/01' and '2012/12/13';
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- sal 컬럼을 오름값순으로 정렬하시오
-
+select * from emp order by sal asc;
 -- 이름(ename)을 오름차순으로 출력하시오
-
+select * from emp order by ename asc;
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 내림차순 정렬 : DESC : descending 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- sal 컬럼을 내림값순으로 출력하시오
-
+select * from emp order by sal desc;
 
 -- 이름(ename)이 '이병헌'인 직원을 찾아서 
 -- sal 값을 기준으로 오름차순 정렬하시오.
-
+select * from emp where ename ='이병헌' order by sal asc;
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -282,12 +282,12 @@ select * from emp where hiredate between '2005/01/01' and '2012/12/13';
 
 -- 이름(ename)은 오름차순으로 정렬하고 
 -- 입사일(hiredate)은 내림차순으로 정렬하시오     
-
+select *from emp order by ename asc, hiredate desc;
 
 
 -- 문제. 급여(sal)를 많이 받는 순으로 출력하되 급여가 같으면
 --       이름(ename)의 철자가 빠른 순으로 출력하시오.
-
+select *from emp  order by sal desc, ename asc;
 
 
 
@@ -299,28 +299,32 @@ select * from emp where hiredate between '2005/01/01' and '2012/12/13';
 -- ########################
 
 -- GROUP_STAR 데이터 조회. 14개
-
+select * from group_star;
 -- SINGLE_STAR 데이터 조회.7개
-
+select * from single_star;
 
 
 -- 중복이 제거된 합집합(union)을 구하시오 : GROUP_STAR , SINGLE_STAR.
-                                                                 
+select * from group_star union select *from single_star;                                                               
 -- 중복이 포함된 합집합을 구하시오 : GROUP_STAR , SINGLE_STAR.  
-                                    
+select *from group_star union all select* from single_star;                                    
 -- 교집합 구하기. 공통 부문만 출력 : GROUP_STAR , SINGLE_STAR.  
 -- inner join 또는 equip join 사용 
-
+select *from group_star inner join single_star 
+                        on group_star.NAME =single_star.NICKNAME;
 
 -- 차집합 구하기 : GROUP_STAR - SINGLE_STAR : 10개 출력
 -- left join 사용
+select *from group_star left join single_star 
+                        on group_star.NAME=single_star.NICKNAME
+                        where single_star.NICKNAME is null;
 
 
 -- 차집합 구하기 : SINGLE_STAR - GROUP_STAR : 3개 출력
 -- left join 사용
-
-
-
+select *from single_star  left join group_star
+                        on single_star.NICKNAME=group_star.NAME
+                        where group_star.NAME is null;
 
 
 
