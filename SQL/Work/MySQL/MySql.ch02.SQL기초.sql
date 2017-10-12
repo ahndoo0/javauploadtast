@@ -5,7 +5,7 @@
 -- 문자: 왼쪽 정렬
 
 
--- SQL 에서 NULL 이란?emp
+-- SQL 에서 NULL 이란?
 
        
 
@@ -15,74 +15,104 @@
 -- 
 -- select *
 --   from 테이블명;
---
+-- 
 -- select 컬럼1, 컬럼2, 컬럼3
 --   from 테이블명;
 -- ########################
 
 
 -- DEPT 테이블에서 모든 컬럼의 데이터를 조회하시오.
-select * from dept ;
+select * from  dept ;
 
 -- DEPT 테이블에서  deptno, dname 컬럼의 데이터만 출력하시오.
-select deptno, dname from dept  ;
+select deptno, dname from dept;
+
 
 -- EMP 테이블에서 JOB, ENAME 컬럼만 출력하시오.
-select job , ename from emp ;
+select job, ename from  emp ;
+
 
 -- EMP 테이블에서 모든 컬럼의 데이터만 출력하시오.
-select *from emp;
+select * from emp ;
+
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 컬럼에 별칭(별명) 주기
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
--- AS로 컬럼에 별칭 부여하기. job 컬럼에는 직책을 , enname 컬럼에 이름이라는 별칭을 붙여 출력하시오.
-select job as 직책 ,ename as 이름 from emp;
--- AS없이 컬럼에 별칭 부여하기. job 컬럼에는 직책을 , enname 컬럼에 이름이라는 별칭을 붙여 출력하시오.
-select job 직책 ,ename 이름 from emp;
--- '' 로 별칭 부여하기. job 컬럼에는  "aa//aa"를 , enname 컬럼에는 "nick -+name" 이라는 별칭을 붙여 출력하시오.
-select job 'aa//aa' , ename 'nick-+name' from emp;
+-- AS로 컬럼에 별칭 부여하기. 
+-- emp 테이블에서 job 컬럼에는 직책을 , ename 컬럼에 이름이라는 별칭을 붙여 출력하시오.
+select job as 직책 , ename as 이름  from emp ;
+
+-- AS없이 컬럼에 별칭 부여하기. 
+-- emp 테이블에서 job 컬럼에는 직책을 , ename 컬럼에 이름이라는 별칭을 붙여 출력하시오.
+select job  직책 , ename  이름  from emp ;
+
+-- 작은따옴표('' )로 별칭 부여하기. 
+-- emp 테이블에서 job 컬럼에는  "aa//aa"를 , ename 컬럼에는 "nick -+name" 이라는 별칭을 붙여 출력하시오.
+select job "aa//aa", ename "nick -+name"  from emp ;
+
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
--- null 처리를 위해서는 ifnull() 함수를 사용해야 한다
+-- null 처리를 위해서는
+-- MySQL에서는  ifnull() 함수를 사용해야 한다
+-- Oracle 에서는 nvl() 함수를 사용해야 한다.
 -- @@@@@@@@@@@@@@@@@@@@@@@@
-  
--- emp 테이블에서 이름과 mgr 값을 출력하시오. 
-select ename,mgr from emp;
+select ifnull(1, 0);
+select ifnull( null, 0);
+ 
+-- emp 테이블에서 ename과 mgr 값을 출력하시오. 
 -- 단, mgr이 null 이면 0으로 바꾸어 출력하시오.
-select ename,ifnull(mgr,0) from emp;
+select ename, ifnull(mgr, 0) from emp; 
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 중복 제거 - DISTINCT
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
--- 중복되는 ename 을 제거하고 ename 만 출력하시오. 18개
-select ename from emp;
-select distinct ename from emp;
+-- emp 테이블에서 ename 만 출력하되 중복되는 ename 을 제거하시오. 이병헌이 2명.
+select          ename from emp order by ename ;
+select distinct ename from emp order by ename ;
 
 
--- emp 테이블의 deptno 값이 중복되는 것을 제거하여 출력하시오. 17개
-select deptno from emp;
-select distinct deptno from emp;
+-- emp 테이블에서 deptno 값이 중복되는 것을 제거하여 출력하시오. 5개
+select          deptno from emp order by deptno ;
+select distinct deptno from emp order by deptno ;
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 컬럼 연결,  문자열 연결  
+-- MySQL 인 경우는 concat을 사용
 --  concat( 컬럼1  , 컬럼2  ) 
 --  concat( 컬럼1  , 컬럼2 , 컬럼3, 컬럼4   ) 
+-- 
+-- Oracle 인 경우 는  || 를 사용.
+--   컬럼  || 컬럼2   
+--   컬럼1 || 컬럼2 || 컬럼3 || 컬럼4    
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
--- 김사랑 조회하기
-select ename , job from emp where ename = '김사랑';
--- '김사랑의 직급은 직원입니다' 출력하기
--- concat(ename, '의 직급은 ', job, '입니다')
-select concat (ename, '의 직급은' , job, '입니다.')from emp where ename = '김사랑';
+-- 'A and B' 를 출력하시오.
+select 'A and B' ;
 
--- '김사랑의 직급은 직원입니다' 출력하는 컬럼이름을 '직급'으로 출력하시오
-select concat (ename, '의 직급은' , job , '입니다.') '직급' from emp where ename = '김사랑';
+-- concat 을 이용하여 'A and B' 를 출력하시오.
+select concat( 'A', ' and ', 'B'  ) ;
+
+
+-- emp 테이블에서 김사랑 조회하기
+select ename, job from emp where ename = '김사랑' ;
+
+-- '김사랑의 직급은 사원입니다' 출력하기. 
+-- MySQL  인 경우: concat(ename, '의 직급은 ', job, '입니다')
+-- Oracle 인 경우: ename || '의 직급은 ' || job || '입니다'
+select concat( ename, '의  직급은 ', job, '입니다') from emp where ename = '김사랑' ;
+
+
+-- '김사랑의 직급은 사원입니다' 출력하는 컬럼 이름을 '직급'으로 출력하시오
+select concat( ename, '의  직급은 ', job, '입니다') 직급 from emp where ename = '김사랑' ;
+
+
+
 -- ########################
 -- where 사용법
 -- 
@@ -104,54 +134,54 @@ select * from emp where ename = deptno ;
 -- =, > , >=, <, <=, !=
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
-
 -- emp 테이블에서 sal이 500보다 크거나 같은 경우만 출력하시오
-select * from emp where sal >= 500;
+select * from emp where sal >= 500   ;
   
--- emp 테이블에서 deptno 가 10 인경우만 출력하시오.
- select * from emp where deptno = 10;
+-- emp 테이블에서 deptno 가 10 인 경우만 출력하시오.
+select * from emp where deptno = 10 ;
+ 
  
 -- 부정연산( != )
 -- deptno 가 10 이 아닌 사람만 출력하시오.
- select * from emp where deptno != 10;
+select * from emp where deptno != 10 ;
+ 
  
 -- 문제1.
 -- ename 이 '이문세'인 경우만 출력
-select * from emp where ename = '이문세';
 
 -- 문제2.
 -- ename 이 '이문세'가 아닌 경우만 출력
-select *from emp where ename != '이문세';
+
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 논리연산자를 이용한 조건 검색 
 -- and, or, not( !=, <> )
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
--- deptno 가 10 인 사람만 출력하시오
+-- emp 테이블에서 deptno 가 10 인 직원만 출력하시오
 select * from emp where deptno = 10 ;
 
--- job이 과장인 사람만 출력하시오
-select * from emp where job = '과장';
+-- emp 테이블에서 job이 과장인 직원만 출력하시오
+select * from emp where job = '과장' ;
 
--- deptno 가 10  이고(and) job이 과장인 사람만 출력하시오. 교집합
-select * from emp where deptno =10 and job= '과장';
+-- emp 테이블에서 deptno 가 10  이고(and) job이 과장인 사람만 출력하시오.
+select * from emp where deptno=10  and  job='과장';
 
--- deptno 가 10  이거나(or) job이 과장인 사람만 출력하시오. 합집합
-select * from emp where deptno =10 or job= '과장';
-
-
+-- emp 테이블에서 deptno 가 10  이거나(or) job이 과장인 사람만 출력하시오.
+select * from emp where deptno=10 or job='과장';
 
 
--- 문제. 산술연사자를 이용해서 
+
+
+-- 문제 1. 산술연사자를 이용해서 
 -- sal 값이 400보다 크거나 같고 그리고(and) 
 -- sal 값이 500보다 작거나 같은 직원을 출력하시오. 5개
-select * from emp where sal >=400 and sal<=500 ;
 
--- 문제. 산술연사자를 이용해서 
+
+-- 문제 2. 산술연사자를 이용해서 
 -- sal 값이 400보다 작거나 같고 또는(or) 
 -- sal 값이 500보다 크거나 같은 직원을 출력하시오. 16개
-select * from emp where sal <=400 or sal >= 500 ;
+
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -163,23 +193,24 @@ select * from emp where sal <=400 or sal >= 500 ;
 -- sal 값이 500보다 작거나 같은 직원을 출력하시오
 
 -- 방법1. 산술 연산자를 이용하는 방법5개
-select * from emp where sal >= 400 and sal <=500 ;
+select * from emp where  400<=sal and sal <=500 ;
 
 -- 방법2. between A and B 를 이용하는 방법
-select * from emp where sal between 400 and 500 ;
+select * from emp where sal between 400 and 500
 
 
 -- 문제. 입사일(hiredate)이 2005/01/01 이전인 사람들만 출력하시오
-select * from emp where hiredate < '2005/01/01' ;
+select * from emp where hiredate < '2005-01-01';
 
 
--- 문제. 입사일(hiredate)이 2005/01/01 부터  
--- 2012/12/31 까지 입사한 사람들만 출력하시오
--- 방법1. 비교 연산자를 이용하는 경우
 
-select * from emp where hiredate >= '2005/01/01' and hiredate <= '2012/12/13' ;
--- 방법2. between A and B 를 이용해서 
-select * from emp where hiredate between '2005/01/01' and '2012/12/13';
+-- 문제. 입사일(hiredate)이 2005/01/01 부터 2012/12/31 까지 입사한 사람들만 출력하시오
+-- 방법1. 비교 연산자를 이용하는 경우. 10개
+select * from emp where '2005-01-01' <= hiredate and hiredate <= '2012-12-31'  ;
+
+-- 방법2. between A and B 를 이용해서. 10개
+select * from emp where hiredate between '2005-01-01' and '2012-12-31'  ;
+
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -188,23 +219,29 @@ select * from emp where hiredate between '2005/01/01' and '2012/12/13';
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- 이름(ename)이 '이'로 시작하는 직원을 출력하시오. 4개
-select * from emp where ename like'이%';
+select *  from emp  where ename like '이%' ;
+
 -- 이름(ename)이 '이'로 끝나는 직원을 출력하시오. 0개
-select *from emp where ename like '%이';
+select * from emp where ename like '%이' ;
+
 -- 이름(ename)에 '이'가 들어가 있는 직원을 출력하시오. 4개
-select *from emp where ename like '%이%';
+select * from emp where ename like '%이%' ;
+
 
 -- 문제. 이름(ename)에 '성'자가 들어가는 직원을 출력하시오. 3개
-select *from emp where ename like '%성%';
+select * from emp where ename like '%성%'  ;
+
 -- 문제. 이름(ename)에 '성'자가 들어가지 않는 직원을 출력하시오. 15개
-select *from emp where ename not like '%성%';
+select * from emp where ename not like '%성%'  ;
 
 
--- 와일드 카드 "_"를 사용하여 ename이 "성" 자가 들어가있는 사람을 출력 하시오.
-select *from emp where ename like '_성_';
+-- 와일드 카드 "_"를 사용하여 ename 가운데 글자에 "성"자가 들어 있는 사람을 출력하시오.
+select * from emp where ename like '_성_';
 
--- 와일드 카드 "_"를 사용하여 ename이 "성"자로 끝나는 사람을 출력하시오.
-select *from emp where ename like '%성';
+
+-- 와일드 카드 "%"를 사용하여 ename이 "성"자로 끝나는 사람을 출력하시오.
+select * from emp where ename like '%성'  ;
+
 
 -- 문제
 -- LIKE 'a%'	 : 
@@ -212,7 +249,7 @@ select *from emp where ename like '%성';
 -- LIKE '%or%'	 : 
 -- LIKE '_r%'	 : 1r, 1ra, 2rr
 -- LIKE 'a_%_%' : 
--- LIKE 'a%o'	 : 
+-- LIKE 'a%o'	 : ao, a1o, a.....o
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -223,17 +260,22 @@ select *from emp where ename like '%성';
 
 -- or 연산으로
 -- comm이 80 이거나 100 이거나 200인 사람만 출력하시오. 3개
-select * from emp where comm=80 or comm=100 or comm=200;
--- in 연산으로 
--- comm이 80 이거나 100 이거나 200인 사람만 출력하시오. 2개
-select *from emp where comm in (80,100,200);
+select * from emp where comm=80 or comm=100 or comm=200  ;
 
+
+-- in 연산으로 
+-- comm이 80 이거나 100 이거나 200인 사람만 출력하시오. 3개
+select * from emp where comm in ( 80, 100, 200 );
+
+
+-- and 연산으로
 -- comm이 80 이 아니고 그리고 100 이 아니고 그리고 200 이 아닌 사람만 출력하시오. 1개
-select *from emp where comm!=80 and comm!=100 and comm!=200;
+select * from emp where comm!=80 and comm!=100 and comm!=200 ;
+
 
 -- not in 연산으로 
 -- comm이 80 이 아니고 그리고 100 이 아니고 그리고 200 이 아닌 사람만 출력하시오. 1개
-select *from emp where comm not in (80,100,200);
+select * from emp where comm not in ( 80, 100, 200) ;
 
 
 
@@ -243,10 +285,12 @@ select *from emp where comm not in (80,100,200);
 -- like
 -- is null
 -- @@@@@@@@@@@@@@@@@@@@@@@@
--- comm 값이  null 인 경우의 출력하시오. 14개
-select *from emp where comm is null;
--- comm 값이  null 이 아닌 경우만 출력하시오
-select *from emp where comm is not null;
+-- comm 값이  null 인 경우만 출력하시오. 14개
+select * from emp where comm is null  ;  -- is null  <-->  ==
+
+-- comm 값이  null 이 아닌 경우만 출력하시오. 4개
+select * from emp where comm is not null;
+
 
 
 -- ########################
@@ -260,71 +304,103 @@ select *from emp where comm is not null;
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- sal 컬럼을 오름값순으로 정렬하시오
-select * from emp order by sal asc;
+select * from emp order by sal asc  ;
+
 -- 이름(ename)을 오름차순으로 출력하시오
-select * from emp order by ename asc;
+select * from emp order by ename asc  ;
+
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 내림차순 정렬 : DESC : descending 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- sal 컬럼을 내림값순으로 출력하시오
-select * from emp order by sal desc;
+select * from emp order by sal desc ;
+
 
 -- 이름(ename)이 '이병헌'인 직원을 찾아서 
--- sal 값을 기준으로 오름차순 정렬하시오.
-select * from emp where ename ='이병헌' order by sal asc;
+-- sal 값을 기준으로 오름차순으로 출력하시오.
+select * from emp where ename = '이병헌' order by sal asc ;
+
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
--- 중복 정렬: 정렬 조건이 2개 인 경우
+-- 중복 정렬: 정렬 조건이 2개 이상인 경우
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- 이름(ename)은 오름차순으로 정렬하고 
--- 입사일(hiredate)은 내림차순으로 정렬하시오     
-select *from emp order by ename asc, hiredate desc;
+-- 입사일(hiredate)은 내림차순으로 정렬하시오 
+select * from emp order by ename asc, hiredate desc ;    
+
 
 
 -- 문제. 급여(sal)를 많이 받는 순으로 출력하되 급여가 같으면
 --       이름(ename)의 철자가 빠른 순으로 출력하시오.
-select *from emp  order by sal desc, ename asc;
+select * from emp order by sal desc , ename asc ;
 
 
 
 -- ########################
 -- 집합 연산자
--- 합집합: union, union all
--- 교집합: inner join, equip join
--- 차집합: left join, right join
+--  ----------------------------------------------------
+--  |         | MySQL      | Oracle      |  MsSQL      |
+--  ----------------------------------------------------
+--  |합집합   | union      | union       |  union      |
+--  |         | union all  | union all   |  union all  |
+--  ----------------------------------------------------
+--  |교집합   | inner join | inner join  |  inner join |
+--  |         | equip join | equip join  |  equip join |
+--  |         |            | intersect   |             |
+--  ----------------------------------------------------
+--  |차집합   | left join  | left join   |  left join  |
+--  |         | right join | right join  |  right join |
+--  |         |            | minus       |             |
+--  ----------------------------------------------------
 -- ########################
 
 -- GROUP_STAR 데이터 조회. 14개
-select * from group_star;
+select * from group_star ;
+
 -- SINGLE_STAR 데이터 조회.7개
-select * from single_star;
+select * from single_star  ;
 
 
--- 중복이 제거된 합집합(union)을 구하시오 : GROUP_STAR , SINGLE_STAR.
-select * from group_star union select *from single_star;                                                               
--- 중복이 포함된 합집합을 구하시오 : GROUP_STAR , SINGLE_STAR.  
-select *from group_star union all select* from single_star;                                    
--- 교집합 구하기. 공통 부문만 출력 : GROUP_STAR , SINGLE_STAR.  
--- inner join 또는 equip join 사용 
-select *from group_star inner join single_star 
-                        on group_star.NAME =single_star.NICKNAME;
+-- 중복이 제거된 합집합(union)을 구하시오 : GROUP_STAR , SINGLE_STAR. 17개 출력
+select * from group_star 
+union
+select * from single_star   ;
+                                                                 
 
--- 차집합 구하기 : GROUP_STAR - SINGLE_STAR : 10개 출력
--- left join 사용
-select *from group_star left join single_star 
-                        on group_star.NAME=single_star.NICKNAME
-                        where single_star.NICKNAME is null;
+                                                                 
+-- 중복이 포함된 합집합을 구하시오 : GROUP_STAR , SINGLE_STAR.  21개 출력
+select * from group_star 
+union all
+select * from single_star   ;
+
+-- 교집합 구하기. 공통 부문만 출력 : GROUP_STAR , SINGLE_STAR.  4개
+-- mysql 에서는 inner join 또는 equip join 사용 
+-- oracle 에서는 intersect 를 사용.
+select * from GROUP_STAR inner join SINGLE_STAR  
+              on GROUP_STAR.name = SINGLE_STAR.nickname ;
 
 
--- 차집합 구하기 : SINGLE_STAR - GROUP_STAR : 3개 출력
--- left join 사용
-select *from single_star  left join group_star
-                        on single_star.NICKNAME=group_star.NAME
-                        where group_star.NAME is null;
+-- 차집합 구하기 : GROUP_STAR - SINGLE_STAR : 10(=14-4)개 출력
+-- mysql 에서는 left join 사용.
+-- oracle 에서는 minus 를 사용.
+select * from GROUP_STAR left join SINGLE_STAR  
+              on GROUP_STAR.name = SINGLE_STAR.nickname 
+         where SINGLE_STAR.nickname is null ;
+
+
+-- 차집합 구하기 : SINGLE_STAR - GROUP_STAR : 3(=7-4)개 출력
+-- mysql 에서는 left join 사용.
+-- oracle 에서는 minus 를 사용.
+select * from SINGLE_STAR left join  GROUP_STAR
+              on GROUP_STAR.name = SINGLE_STAR.nickname 
+         where GROUP_STAR.name is null ;
+
+
+
 
 
 

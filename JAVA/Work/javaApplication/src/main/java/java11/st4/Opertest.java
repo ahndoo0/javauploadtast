@@ -13,8 +13,7 @@ public class Opertest {
        
         o.setA(x);
         o.setB(y);
-        o.setC(x);
-        o.setD(y);
+       
         o.add();
         o.minus();
         o.mul();

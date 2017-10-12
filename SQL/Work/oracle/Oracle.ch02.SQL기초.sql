@@ -54,6 +54,7 @@ select job "aa//aa" , ename "nick -+name" from emp;
 -- emp 테이블에서 이름과 mgr 값을 출력하시오. 
 select ename,mgr from emp;
 -- 단, mgr이 null 이면 0으로 바꾸어 출력하시오.
+
 select ename, nvl(mgr ,0) from emp;
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -76,7 +77,7 @@ select distinct deptno from emp;
 -- 김사랑 조회하기
 select ename,job from emp where ename ='김사랑';
 -- '김사랑의 직급은 직원입니다' 출력하기
--- concat(ename, '의 직급은 ', job, '입니다')
+-- 오라클 에서는 , 대신 || 로사용한다 .ename|| '의 직급은 '|| job|| '입니다'
 select  ename ||'의직급은 '||job||'입니다'  from emp where ename ='김사랑';
 
 -- '김사랑의 직급은 직원입니다' 출력하는 컬럼이름을 '직급'으로 출력하시오
@@ -173,23 +174,23 @@ select * from emp where  hiredate between '2005.01.01'and'2012.12.31';
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- 이름(ename)이 '이'로 시작하는 직원을 출력하시오. 4개
-
+select *from emp where ename like '이%';
 -- 이름(ename)이 '이'로 끝나는 직원을 출력하시오. 0개
-
+select * from emp where ename like '%이';
 -- 이름(ename)에 '이'가 들어가 있는 직원을 출력하시오. 4개
-
+select *from emp where ename like '%이%';
 
 -- 문제. 이름(ename)에 '성'자가 들어가는 직원을 출력하시오. 3개
-
+select *from emp where ename like '%성%';
 -- 문제. 이름(ename)에 '성'자가 들어가지 않는 직원을 출력하시오. 15개
-
+select *from emp where ename not like  '%성%';
 
 
 -- 와일드 카드 "_"를 사용하여 "안성기" 출력
-
+select *from emp where ename like '안__';
 
 -- 와일드 카드 "_"를 사용하여 "감우성", "조인성" 출력하시오.
-
+select *from emp where ename like '__성';
 
 -- 문제
 -- LIKE 'a%'	: 
@@ -208,17 +209,17 @@ select * from emp where  hiredate between '2005.01.01'and'2012.12.31';
 
 -- or 연산으로
 -- comm이 80 이거나 100 이거나 200인 사람만 출력하시오. 2개
-
+select *from emp where comm=80 or comm=100 or comm=200;
 -- in 연산으로 
 -- comm이 80 이거나 100 이거나 200인 사람만 출력하시오. 2개
-
+select * from emp where comm in(80, 100, 200);
 
 -- comm이 80 이 아니고 그리고 100 이 아니고 그리고 200 이 아닌 사람만 출력하시오. 1개
-
+select * from emp where comm!=80 and comm!=100 and comm!=200;
 
 -- not in 연산으로 
 -- comm이 80 이 아니고 그리고 100 이 아니고 그리고 200 이 아닌 사람만 출력하시오. 1개
-
+select * from emp where comm not in (80, 100, 200);
 
 
 
@@ -229,9 +230,9 @@ select * from emp where  hiredate between '2005.01.01'and'2012.12.31';
 -- is null
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- comm 값이  null 인 경우의 출력하시오. 14개
-
+select * from emp where comm is null;
 -- comm 값이  null 이 아닌 경우만 출력하시오
-
+select* from emp where comm is not null;
 
 
 -- ########################
@@ -245,20 +246,20 @@ select * from emp where  hiredate between '2005.01.01'and'2012.12.31';
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- sal 컬럼을 오름값순으로 정렬하시오
-
+select * from emp order by sal asc;
 -- 이름(ename)을 오름차순으로 출력하시오
-
+select * from emp order by ename asc;
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 내림차순 정렬 : DESC : descending 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- sal 컬럼을 내림값순으로 출력하시오
-
+select *from emp order by sal desc;
 
 -- 이름(ename)이 '이병헌'인 직원을 찾아서 
 -- sal 값을 기준으로 오름차순 정렬하시오.
-
+select *from emp where ename ='이병헌' order by sal  asc;
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
@@ -267,12 +268,12 @@ select * from emp where  hiredate between '2005.01.01'and'2012.12.31';
 
 -- 이름(ename)은 오름차순으로 정렬하고 
 -- 입사일(hiredate)은 내림차순으로 정렬하시오     
-
+select *from emp order by ename asc, hiredate desc;
 
 
 -- 문제. 급여(sal)를 많이 받는 순으로 출력하되 급여가 같으면
 --       이름(ename)의 철자가 빠른 순으로 출력하시오.
-
+select *from emp order by sal desc, ename asc ;
 
 
 
@@ -284,15 +285,16 @@ select * from emp where  hiredate between '2005.01.01'and'2012.12.31';
 -- ########################
 
 -- GROUP_STAR 데이터 조회. 14개
-
+select * from group_star;
 -- SINGLE_STAR 데이터 조회.7개
-
+select * from SINGLE_STAR;
 
 
 -- 중복이 제거된 합집합(union)을 구하시오 : GROUP_STAR , SINGLE_STAR.
-                                                                 
+select *from GROUP_STAR union select *from SINGLE_STAR ;                                                                
 -- 중복이 포함된 합집합을 구하시오 : GROUP_STAR , SINGLE_STAR.  
-                                    
+select *from GROUP_STAR union all select* from SINGLE_STAR;                                    
+
 -- 교집합 구하기. 공통 부문만 출력 : GROUP_STAR , SINGLE_STAR.  
 -- inner join 또는 equip join 사용 
 -- oracle 에서는 intersect 를 사용.
@@ -316,23 +318,23 @@ select * from SINGLE_STAR minus select * from group_star;
 -- 미션 1. READ( SELECT )
 -- ########################
 -- emp테이블에서 직원의 이름과 급여와 입사일만을 출력하시오. 컬럼 3개 출력하기
-
+select ename , sal , hiredate from emp ; 
 -- 컬럼 이름에 별칭을 붙여 출력하시오.
-
+select ename as 이름 from emp; 
 -- 직급이 중복되지 않게 한 번씩만 출력하시오
-
+select distinct job from emp ;
 
 -- ########################
 -- 미션2. SEARCHING( WHERE )
 -- ########################
 -- 급여가 300 이하인 직원의 직원번호, 직원 이름, 급여를 출력하기
-
+select empno,ename,sal from emp where sal<=300 ;
 -- 이름이 “오지호”인 직원의 직원번호, 직원명, 급여를 출력하기
-
+select empno,ename,sal from emp where ename = '오지호';
 -- 급여가 250이거나 300이거나 500인 직원들의 직원 번호와 직원명과 급여를 출력하시오
-
+select empno,ename,sal from emp where sal in(250,300,500);
 -- 급여가 250이거나 300이거나 500도 아닌 직원들을 검색하기
-
+select empno,ename,sal from emp where sal not in(250,300,500);
 
 -- ########################
 -- 미션3. SORTING(ORDER BY)
