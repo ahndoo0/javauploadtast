@@ -51,6 +51,7 @@ select max(sal), min(sal) from emp where deptno =10;
 -- -----------------------------------
 -- c. 부서별 최대, 최소 급여 구하기
 -- -----------------------------------
+select deptno ,max(sal),min(sal) from emp group by deptno order by deptno asc;
 
 -- c.1 union을 이용하는 방법
 -- deptn0 = 10 인 직원중에서 급여(sal)의 최대, 최소를 구하시오
@@ -126,7 +127,7 @@ select deptno , avg(sal) from emp group by deptno having avg(sal)>=500;
 -- deptno=20 만 출력되면 정상. 1개
 -- -----------------------------------
 select deptno , avg(sal) from emp where deptno in (10,20,30) group by deptno having avg(sal)>=500;
-
+select deptno , avg(sal),sum(sal),max(sal),min(sal) from emp where deptno in(10,20,30)group by deptno having avg(sal)>=500; 
 
 -- -----------------------------------
 -- 문제 1: 직급별 급여 총액 구하기
@@ -144,24 +145,28 @@ select deptno , avg(sal) from emp where deptno in (10,20,30) group by deptno hav
 select job, sum(sal) from emp where job !=
 '사원' group by job having sum(sal)>=1000 order by sum(sal) asc; 
 
+
 -- -----------------------------------
 -- 문제 2:  
 -- 가장 최근에 입사한 직원의 입사일과 이름을 구하시오. "추신수 출력"
 -- 2.1 oracle의 rowid나 rownum을 흉내내는 방법
 -- 2.2 limit 를 이용하는 방법
 -- -----------------------------------
-select ename, hiredate from emp where hiredate = ( select max (hiredate)from emp ); 
+select ename, hiredate from emp where hiredate = ( select  max (hiredate)from emp ); 
 select ename, hiredate from emp where hiredate = ( select max(hiredate) from emp );
 -- -----------------------------------
 -- 문제 3:  
 -- 최근에 입사한 직원 10명의 입사일과 이름을 구하시오
--- 3.1 oracle의 rowid나 rownum을 흉내내는 방법
--- 3.2 top이나 limit을 이용하는 방법
+-- 3.1 oracle : rowid나 rownum을 흉내내는 방법
+-- 3.2 mssql  : top을 이용
+-- 3.3 mysql  : limit을 이용
 -- -----------------------------------
-select ename , hiredate from emp order by hiredate desc  0, 10;;
+select rownum, ename , hiredate from emp order by hiredate desc ;
+select rownum, ename , hiredate from emp ;
 
-
-
+select * from 테이블명;
+                             -- 서브커리↓
+select rownum, ename , hiredate from (select rownum, ename , hiredate from emp order by hiredate desc )where rownum <=10;
 
 -- @@@@@@@@@@@@@@
 -- 미션
@@ -179,7 +184,7 @@ select job, count(job) from emp where job ='과장'group by job ;
 --         a. 직원을 제외하는 쿼리문 작성
 --         b. 직원을 제외하고 직급별 급여 총액(sum) 구하기
 --         c. 직원을 제외하고 직급별 급여 총액이 1000 이상인  데이터만 출력.
-select job , sum(sal) from emp group by job having sum(sal)>=1000  ;
+select job , sum(sal) from emp where job !='사원'  group by job having sum(sal)>=1000 order by job asc  ;
 -- 미션 6. 급여 최고액, 급여 최적액의 차액 출력하시오.
 select max(sal)-min(sal) from emp ;
 -- 미션 7. 직급별 직원의 최저 급여 출력하시오.
