@@ -192,9 +192,6 @@ select curdate(), last_day(curdate());
 
 
 
-
-
-
 -- @@@@@@@@@@
 -- 형변환 함수 
 -- SQL데이터 타입:  날짜(date) <--> 뮨자(character) <--> 숫자(number)

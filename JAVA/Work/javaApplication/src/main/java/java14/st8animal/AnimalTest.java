@@ -1,4 +1,4 @@
-package java14.st5animal;
+package java14.st8animal;
 
 public class AnimalTest {
 public static void main(String[] args) {
@@ -15,5 +15,6 @@ public static void main(String[] args) {
     cat.sleep();
     cat.eat();
     cat.play();
+    
 }    
 }
