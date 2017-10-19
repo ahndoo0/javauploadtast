@@ -1,4 +1,4 @@
-package java14st2hasa;
+package java14.st2hasa;
 
 public class Point {
     private int x=0;

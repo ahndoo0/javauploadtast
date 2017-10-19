@@ -11,6 +11,7 @@
 select count(*) from emp;
 
 
+
 -- 모든 직원의 급여총액(sum), 급여평균(avg), 최대급여(max), 최소급여(min) 구하기
 select sum(sal), avg(sal), max(sal), min(sal) from emp;
 

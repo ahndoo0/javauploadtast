@@ -1,4 +1,4 @@
-package java14st1car;
+package java14.st1car;
 
 public class car {
     private int speed ;
