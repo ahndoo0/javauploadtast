@@ -285,7 +285,7 @@ when job='과장'then 1.1
 when job='대리'then 1.15
 when job='사원'then 1.2
 else 1
-end as "인상"
+end as "인상" 
 from emp ;
 -- 미션 6. 입사일을 연도는 2자리(YY), 
 --         월은 숫자로 표시하고 
