@@ -13,5 +13,12 @@ public class ShapeTest2 {
         System.out.println("s"+r.toString());
         s=r;// 클래스 형변환 발생 :Rectangle ------>Shape
         System.out.println("r"+s.toString());
+        
+        s.x =10;
+        s.y=10;
+       // s.wait=100; 불가능
+       // s.height=100;  불가능
+        System.out.println("s"+s.toString());
+        System.out.println("r"+r.toString());
     }
 }
