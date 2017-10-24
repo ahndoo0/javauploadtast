@@ -56,9 +56,18 @@
 -- 데이터 MERGE하기.
 -- a. MERGE 기본 문법
 -- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
+-- 50번 부서의 사원(job) 송중기를 insert나 update하는 merge 문을 작성 하시오.
 
+select * from emp order by empno desc ;
 
-
+merge into emp 
+using dual 
+ on (empno=(select max(empno)+1 from emp))  -- where절
+when matched then
+ update set ename ='송중기' , deptno=21 , job='대리',hiredate = sysdate
+ when not matched then
+ insert (empno, ename, deptno , job)
+ values((select max(empno)+1 from emp) , '송중기',  21, '대리');
 
 
 

@@ -128,9 +128,15 @@ where deptno in (select deptno from dept where dname='경리부');
 -- 데이터 MERGE하기.
 -- a. MERGE 기본 문법
 -- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
+-- 50번 부서의 사원(job) 송중기를 insert나 update하는 merge 문을 작성 하시오.
+select @empno := max(empno) from emp;
+select * from emp where empno=@empno;
+insert into emp ( empno, ename ,deptno ,job)
+         values(@empno , '송중기',  50, '사원')
+on duplicate key
+update  ename = '송중기',deptno=50,job='사원';
 
-
-
+select * from emp where empno=@empno;
 
 
 
@@ -219,4 +225,7 @@ delete from emp where job is null;
 -- 미션 8. emp 테이블에서 경리부에 소속된 사원들만 삭제하시오.
 select * from dept where dname = '경리부'; 
 
-delete from dept where dname = '경리부' ;
+delete from emp where deptno=10 ;
+
+
+select * from emp  where deptno=10;
