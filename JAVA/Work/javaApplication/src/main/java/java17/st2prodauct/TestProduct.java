@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TestProduct {
     static Scanner key    = new Scanner(System.in);
     static int     roomid = 0;
-    
+   
     public static void main(String[] args) {
         // 배열을 만들다
         Product[] pr = new Product[10];
