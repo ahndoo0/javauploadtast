@@ -1,23 +1,24 @@
 
 -- ########################
 -- 조인은 2개 이상의 테이블을 연결할 때
--- 
--- 
+-- inner join
+-- left join
 -- ########################
 
  
  -- emp 테이블에 p 라는 별칭 부여하시오.
+ select *from emp ;
+ select emp.* from emp ;
  
- 
+ select * from emp p;
+ select p.* from emp p;
  -- emp 테이블에 p 라는 별칭 부여하고 ename은 이름으로, job 은 직업으로 출력하시오.
-
+select ename 이름,job 직업 from emp p;
 -- emp 테이블에서 이름(enam)이 '이문세'인 사람을 출력하시오.
-
+select *from emp where ename ='이문세';
 -- dept 테이블에서 deptno 가 10 인 부서를 출력하시오.
-
+select deptno from dept where deptno =10;
 -- 서브쿼리를 이용해서 '이문세'의 데이터와 부서명을 함께 출력하시오.
-
-
 
 -- 서브쿼리를 이용해서 '이문세'의 정보와 부서명 그리고 위치를 출력하시오.
 
@@ -26,7 +27,7 @@
 
 
 -- 조인을 이용해서 '이문세'의 정보와 부서명 그리고 위치를 출력하시오.
-
+select * from emp inner join dept on emp.deptno=dept.deptno where ename ='이문세'; 
 
 
 -- @@@@@@@ 
@@ -34,27 +35,27 @@
 -- emp 와 dept 테이블 inner join 하기
 -- @@@@@@@ 
 
--- 직원 정보외 소속된 부서명을 출력하시오.
-  
+-- 직원 정보와 소속된 부서명을 출력하시오.
+  select emp.* , dept.deptno from emp join dept on emp.deptno =dept.deptno;
 -- 위의 SQL을 수정하시오. 
 -- dept 테이블에 d라는 별칭을, emp 테이블에는 e라는 별칭을 부여하도록 수정하시오.
-
+select * from dept d ,emp e where d.deptno = e.deptno;-- equi join방식 
 -- @@@@@@@ 
 -- equi join 
 -- @@@@@@@ 
   
 -- 위의 SQL에서 테이블에 별칭을 부여하도록 수정하시오. 
 -- dept --> d , emp-->e .
-
+select * from dept d inner join emp e on d.deptno=e.deptno; -- inner join
 
 -- @@@@@@@ 
 -- left join
 -- @@@@@@@ 
 
 -- dept 테이블을 기준으로 emp 테이블의 데이터를 합치시오.
-
+select * from dept left join emp on dept.deptno=emp.deptno;
 -- dept - emp 의 차집합을 구하시오. 3개의 출력
-
+select * from dept left join emp on dept.deptno=emp.deptno where emp.empno is null;
 
 
 -- @@@@@@@ 
@@ -62,6 +63,8 @@
 -- @@@@@@@    
 
 -- emp 테이블을 기준으로 dept 테이블의 데이터를 합치시오.
+select * from emp right join dept on dept.deptno=emp.deptno ;
+
 
 
 
