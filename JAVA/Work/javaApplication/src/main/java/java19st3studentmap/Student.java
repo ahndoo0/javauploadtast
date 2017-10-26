@@ -2,7 +2,7 @@ package java19st3studentmap;
 
 public class Student {
     private int number;
-    private String name;
+    private String name ="삭제된 학생";
    
     
     public int getNumber() {
@@ -19,7 +19,7 @@ public class Student {
     }
     @Override
     public String toString() {
-        return "Student [number=" + number + ", name=" + name + "]";
+        return "학생정보 : 학번=" + number + ", 이름=" + name ;
     }
     public Student() {
         super();
