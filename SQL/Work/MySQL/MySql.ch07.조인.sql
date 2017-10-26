@@ -248,23 +248,73 @@ select p.* from emp e inner join emp p on e.JOB =p.JOB where e.ENAME ='이문세
 -- 8. 부서별로 가장 급여를 많이 받는 사원의 
 --    사원번호, 사원이름, 급여, 부서번호, 부서명를 출력하시오. 8개
 
+select max(sal),deptno from emp group by deptno;
+
+select empno , ename , sal , deptno
+where deptno in( deptno=10 and sal = 520) 
+or( deptno=20 and sal = 1000)
+or( deptno=21 and sal = 1000)
+or( deptno=30 and sal = 500) 
+or( deptno=31 and sal = 250)
+or(deptno = 50 and sal is null);
+
 -- 8.1 서브쿼리 방식
-
-
+select empno , ename , sal , deptno ,(select dname from dept where dept.DEPTNO=emp.DEPTNO) dname from emp 
+ where ( deptno,sal ) in ( select deptno, max(sal) from emp group by deptno ) ;
 -- 8.2 join 방식
-
+select e.EMPNO,e.ENAME,e.SAL,e.DEPTNO,d.DNAME 
+from emp e inner join dept d on e.DEPTNO=d.DEPTNO
+where ( e.deptno,e.sal ) in ( select deptno, max(sal) from emp group by deptno ) ; 
 
 
 
 -- 9. 직급(job) 과장이 속해 있는 부서의 부서번호와 부서명, 위치 
 --    그리고 그 부서에 속한 사원들의 정보를 출력하시오. 9개
 
+select DISTINCT deptno from emp where job='과장';
+select * from dept where deptno in (10,30); 
 
+-- 9.1 서브쿼리 방식 Mysql ,Oracel 에서 안됨
 
--- 10. 과장보다 많은 급여(같은 것은 제외)를 받는 직원들의 이름, 부서명, 직급, 급여를 출력하되
+select dept.* , (select * from emp where emp.DEPTNO=dept.DEPTNO)
+ from dept 
+where deptno in(select DISTINCT deptno from emp where job='과장');
+
+-- 9.2 join방식
+select dept.*, emp.* from dept inner join emp on dept.DEPTNO=emp.DEPTNO 
+where dept.deptno in(select DISTINCT deptno from emp where job='과장');
+
+-- 10. 과장의 최대급여 (같은 것은 제외)를 받는 직원들의 이름, 부서명, 직급, 급여를 출력하되
 --     과장은 출력하지 마시오. 5개 or 7개
 
+select max(sal) from emp where job ='과장';
+select * from emp where sal >500 and job != '과장';
+
+-- 9.1 서브쿼리 방식
+select *,( select dname from dept where dept.DEPTNO=emp.deptno) 
+from emp where sal>(select max(sal) from emp where job ='과장') and job!='과장';
+
+-- 9.2 join방식
+
+select emp.* ,dept.DNAME
+from emp inner join dept on emp.deptno = dept.DEPTNO
+where emp.sal >(select max(sal)from emp a where a.job ='과장')
+and emp.job != '과장';
 
 -- 11. 부서별로 과장보다 많은 급여(같은 것은 제외)를 받는 같은 부서에 근무하는 
 --     직원들의 이름, 부서명, 직급, 급여를 출력하되 과장은 출력하지 마시오. 1개
+
+select deptno,max(sal) from emp where job='과장' group by deptno ;
+
+select * from emp where (deptno = 10 and sal >500) or (deptno =30 and sal>500) and job !='과장';
+
+-- 9.1 서브쿼리 방식. 보류
+
+
+-- 9.2 join방식
+select emp.ename,emp.JOB,dept.DNAME,emp.SAL 
+from emp  inner join dept on emp.DEPTNO = dept.DEPTNO
+					inner join (select deptno , max(sal) sal from emp where job = '과장' group by deptno) c
+where emp.job !='과장'
+and (emp.DEPTNO =c.deptno and emp.sal>c.sal);
 
