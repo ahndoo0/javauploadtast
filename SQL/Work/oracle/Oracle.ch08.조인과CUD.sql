@@ -10,7 +10,6 @@
 -- a. INSERT INTO ~ VALUES
 --    emp 테이블에 경리부 소속의 사원 송중기를 추가하시오.
 
-
 -- b. INSERT INTO ~ SELCET ~ FROM 를 이용한 INSERT 방법 
 --    서브쿼리를 이용해서 emp 테이블에 사원 송중기를 추가
 
