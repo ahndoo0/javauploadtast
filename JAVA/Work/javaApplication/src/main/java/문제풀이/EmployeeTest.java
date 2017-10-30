@@ -18,6 +18,6 @@ public class EmployeeTest extends Employee {
         ep[i]=new Employee(name, address, salary, rrn);
         
         }
-        System.out.println(ep);
+        System.out.println(ep.toString());
     }
 }
