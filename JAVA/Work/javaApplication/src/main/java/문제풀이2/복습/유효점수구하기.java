@@ -18,14 +18,15 @@ public class 유효점수구하기 {
         java.util.Arrays.sort(심사위원수);
         System.out.print("유효점수: ");
         int 합계 = 0;
+        double 평균 =0;
         for(int j =1 ; j<심사위원수.length-1; j++){
             System.out.print(심사위원수[j]+" ");
              합계 +=심사위원수[j];
-                
+                평균=심사위원수.length-2;
        }
           System.out.println();
           System.out.println("합계 :"+합계);
-          System.out.println("평균: "+합계/((double)x-2d));
+          System.out.printf("평균: %.2f", (합계/(double)평균));
             
           
             

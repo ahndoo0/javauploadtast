@@ -20,11 +20,11 @@ public class 반평균구하기 {
         // }
         // System.out.println("합계는: "+sum);
         // System.out.println("평균은: "+sum/x);
-        
-        
-        ArrayList<Integer> 학생수 = new ArrayList<>();
-        System.out.print("학생수를 입력하세요: "); //<------------ArrayList이용
-        int x =0;
+        System.out.print("학생수를 입력하세요: ");
+        int x= key.nextInt();
+        ArrayList<Integer> 학생수 = new ArrayList<>(x);
+                                                            //<------------ArrayList이용
+        System.out.println(학생수.toString());
         
        
     }

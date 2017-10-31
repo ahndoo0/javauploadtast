@@ -79,9 +79,20 @@
 -- | DEPTNO   | int(11)     | YES  |     | NULL    |       |
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
-
+CREATE TABLE `emp02` (
+	`empno` INT(11)  NULL DEFAULT NULL,
+	`ename` VARCHAR(10) NULL DEFAULT NULL,
+	`job` VARCHAR(9) NULL DEFAULT NULL,
+	`mgr` INT(11) NULL DEFAULT NULL,
+	`hiredate` DATE NULL DEFAULT NULL,
+	`sal` DOUBLE(7,2) NULL DEFAULT NULL,
+	`comm` DOUBLE(7,2) NULL DEFAULT NULL,
+	`deptno` INT(11) NULL DEFAULT NULL
+)
 -- emp02 테이블의 모든 컬럼에 null 값으로 insert 하시오.
-
+insert into emp02(empno) values(null);-- 방법 1
+insert into emp02 values();-- 방법 2
+insert into emp02() values();-- 방법 3 
 
 -- #####
 -- emp03 테이블 생성 DDL 문을 작성하시오.
@@ -100,13 +111,28 @@
 -- | DEPTNO   | int(11)     | YES  |     | NULL    |       |
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
+CREATE TABLE `emp03` (
+	`empno` INT(11) NOT NULL,
+	`ename` VARCHAR(10) NOT NULL,
+	`job` VARCHAR(9) NULL DEFAULT NULL,
+	`mgr` INT(11) NULL DEFAULT NULL,
+	`hiredate` DATE NULL DEFAULT NULL,
+	`sal` DOUBLE(7,2) NULL DEFAULT NULL,
+	`comm` DOUBLE(7,2) NULL DEFAULT NULL,
+	`deptno` INT(11) NULL DEFAULT NULL
+)
+
+create table emp03 like emp02;-- 복제
+show columns from emp03; -- 컬럼 조회 (columns)
+alter table emp03 modify column empno int(11) not null; -- not null로바꾸는문(column)
+alter table emp03 modify column ename VARCHAR(10) not null; -- not null로바꾸는문(column)
 
 -- emp03 테이블 데이터 insert 테스트.
 -- 모든 값을 null 채워서 insert 하시오. 불가능. not null 조건 때문에.
+insert into emp03() values(); -- 불가능. not null 조건 때문에.
 
 -- empno에 10, ename에 abcd를 insert 하시오.
-
-
+insert into emp03 (empno,ename) values(10,'abcd');
 
 -- #####
 -- emp04 테이블 생성 DDL 문을 작성하시오.
@@ -126,13 +152,26 @@
 -- | DEPTNO   | int(11)     | YES  |     | NULL    |       |
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
+CREATE TABLE `emp04` (
+	`empno` INT(11) NOT NULL,
+	`ename` VARCHAR(10) NOT NULL,
+	`job` VARCHAR(9) NULL DEFAULT NULL,
+	`mgr` INT(11) NULL DEFAULT NULL,
+	`hiredate` DATE NULL DEFAULT NULL,
+	`sal` DOUBLE(7,2) NULL DEFAULT NULL,
+	`comm` DOUBLE(7,2) NULL DEFAULT '100.00',
+	`deptno` INT(11) NULL DEFAULT NULL
+)
 
+create table emp04 like emp03;
+show columns from emp04;
+alter table emp04 modify column comm double(7,2) DEFAULT 100;
 -- emp04 테이블 데이터 insert 테스트.
 -- 모든 값을 null 채워서 insert 하시오. 불가능. not null 조건 때문에.
-
+insert into emp04() values(); -- 불가능. not null 조건 때문에.
 -- empno에 10, ename에 abcd를 insert 하시오.
-
-
+insert into emp04(empno,ename) values(10,'abcd');
+select *from emp04;
 
 
 -- #####
@@ -154,9 +193,21 @@
 -- | DEPTNO   | int(11)     | YES  |     | NULL    |       |
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
+CREATE TABLE `emp06` (
+	`empno` INT(11) NOT NULL,
+	`ename` VARCHAR(10) NOT NULL,
+	`job` VARCHAR(9) NULL DEFAULT NULL,
+	`mgr` INT(11) NULL DEFAULT NULL,
+	`hiredate` DATE NULL DEFAULT NULL,
+	`sal` DOUBLE(7,2) NULL DEFAULT NULL,
+	`comm` DOUBLE(7,2) NULL DEFAULT '100.00',
+	`deptno` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`empno`)
+)
 
-
-
+create table emp06 like emp04;
+show columns from emp06;
+alter table emp06 modify column empno int(11) PRIMARY KEY;
 -- #####
 -- emp07 테이블 생성 DDL 문을 작성하시오.
 -- empno 에 not null 조건 설정.
@@ -176,8 +227,23 @@
 -- | DEPTNO   | int(11)     | YES  |     | NULL    |       |
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
+CREATE TABLE `emp07` (
+	`empno` INT(11) NOT NULL,
+	`ename` VARCHAR(10) NOT NULL,
+	`job` VARCHAR(9) NULL DEFAULT NULL,
+	`mgr` INT(11) NULL DEFAULT NULL,
+	`hiredate` DATE NULL DEFAULT NULL,
+	`sal` DOUBLE(7,2) NULL DEFAULT NULL,
+	`comm` DOUBLE(7,2) NULL DEFAULT '100.00',
+	`deptno` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`empno`, `ename`)
+)
 
-
+create table emp07 like emp06;
+show columns from emp07;
+alter table emp07 drop primary key (emapno) -- 기존 primary key 를삭제하고 추가
+alter table emp07 add primary key (empno,ename);-- 두개이상일경우 이런식으로
+select * from emp07;
 -- #####
 -- emp08 테이블 생성 DDL 문을 작성하시오.
 -- empno 에 not null 조건 설정.
@@ -198,9 +264,22 @@
 -- | DEPTNO   | int(11)     | YES  |         | NULL    |       |
 -- +----------+-------------+------+---------+---------+-------+
 -- #####
+CREATE TABLE `emp08` (
+	`empno` INT(11) NOT NULL,
+	`ename` VARCHAR(10) NOT NULL,
+	`job` VARCHAR(9) NULL DEFAULT NULL,
+	`mgr` INT(11) NULL DEFAULT NULL,
+	`hiredate` DATE NULL DEFAULT NULL,
+	`sal` DOUBLE(7,2) NULL DEFAULT NULL,
+	`comm` DOUBLE(7,2) NULL DEFAULT '100.00',
+	`deptno` INT(11) NULL DEFAULT NULL,
+	`phone` VARCHAR(13) NULL DEFAULT NULL,
+	PRIMARY KEY (`empno`, `ename`),
+	UNIQUE INDEX `phone` (`phone`)
+)
 
-
-
+show columns from emp08;
+select * from emp08;
 -- #####
 -- emp09 테이블 생성 DDL 문을 작성하시오.
 -- empno 에 not null 조건 설정.
@@ -223,6 +302,32 @@
 -- | DEPTNO   | int(11)     | YES  |         | NULL    |       |
 -- +----------+-------------+------+---------+---------+-------+
 -- #####
+CREATE TABLE `emp09` (
+	`empno` INT(11) NOT NULL,
+	`ename` VARCHAR(10) NOT NULL,
+	`job` VARCHAR(9) NULL DEFAULT NULL,
+	`mgr` INT(11) NULL DEFAULT NULL,
+	`hiredate` DATE NULL DEFAULT NULL,
+	`sal` DOUBLE(7,2) NULL DEFAULT NULL,
+	`comm` DOUBLE(7,2) NULL DEFAULT '100.00',
+	`deptno` INT(11) NULL DEFAULT NULL,
+	`phone` VARCHAR(13) NULL DEFAULT NULL,
+	PRIMARY KEY (`empno`, `ename`),
+	UNIQUE INDEX `phone` (`phone`),
+	INDEX `FK_emp09_dept` (`deptno`),
+	CONSTRAINT `FK_emp09_dept` FOREIGN KEY (`deptno`) REFERENCES `dept` (`DEPTNO`)
+)
+
+create table emp09 like emp08;
+show columns from emp09;
+select * from emp09;
+-- 문제 emp09 테이블에서 empno =10 , ename =abcd를 , deptno=100 을 insert하시오.
+insert into emp09(empno,ename,deptno) values(10,'abcd',100);
+-- insert 실패이유 = 부모 테이블 deptno 에 해당되는 deptno가100이 없어서.
+select * from dept;
+-- 어떻게 하면 가능 ?? : 부모 테이블(dept)에 있는 deptno 의 값을 써야 한다 .
+insert into emp09(empno,ename,deptno) values(10,'abcd',?); 
+-- ?에 10,11,20,21,30,31,40,41을 넣어야한다.
 
 -- ######################  
 -- 미션. ERD를 이용해서 DB를 구축하시오
@@ -238,7 +343,14 @@
 -- | salary   | decimal(6,0) | YES  |     | NULL    |       |    
 -- | birthday | date         | YES  |     | NULL    |       |    
 -- +----------+--------------+------+-----+---------+-------+    
---                                                               
+-- 
+ CREATE TABLE `employee` (
+	`emp_no` DECIMAL(4,0) NOT NULL DEFAULT '0',
+	`emp_name` VARCHAR(20) NULL DEFAULT NULL,
+	`salary` DECIMAL(6,0) NULL DEFAULT NULL,
+	`birthday` DATE NULL DEFAULT NULL,
+	PRIMARY KEY (`emp_no`)
+)                                                             
 -- * project 테이블;                             
 -- +-------------+--------------+------+-----+---------+-------+ 
 -- | Field       | Type         | Null | Key | Default | Extra | 
@@ -248,7 +360,14 @@
 -- | start_date  | date         | YES  |     | NULL    |       | 
 -- | finish_date | date         | YES  |     | NULL    |       | 
 -- +-------------+--------------+------+-----+---------+-------+ 
---                                                               
+--              
+CREATE TABLE `project` (
+	`pro_no` DECIMAL(4,0) NOT NULL DEFAULT '0',
+	`pro_content` VARCHAR(100) NULL DEFAULT NULL,
+	`start_date` DATE NULL DEFAULT NULL,
+	`finish_date` DATE NULL DEFAULT NULL,
+	PRIMARY KEY (`pro_no`)
+)                                                 
 -- * specialty 테이블;                           
 -- +-----------+--------------+------+-----+---------+-------+   
 -- | Field     | Type         | Null | Key | Default | Extra |   
@@ -256,7 +375,12 @@
 -- | emp_no    | decimal(4,0) | NO   | PRI | 0       |       |   
 -- | specialty | varchar(20)  | NO   | PRI |         |       |   
 -- +-----------+--------------+------+-----+---------+-------+   
---                                                               
+--          
+CREATE TABLE `specialty` (
+	`emp_no` DECIMAL(4,0) NOT NULL DEFAULT '0',
+	`specialty` VARCHAR(20) NOT NULL,
+	PRIMARY KEY (`emp_no`, `specialty`)
+)                                                     
 -- * assign 테이블;                              
 -- +--------+--------------+------+-----+---------+-------+      
 -- | Field  | Type         | Null | Key | Default | Extra |      
@@ -264,9 +388,14 @@
 -- | emp_no | decimal(4,0) | NO   | PRI | 0       |       |      
 -- | pro_no | decimal(4,0) | NO   | PRI | 0       |       |      
 -- +--------+--------------+------+-----+---------+-------+    
-
+CREATE TABLE `assign` (
+	`emp_no` DECIMAL(4,0) NOT NULL DEFAULT '0',
+	`pro_no` DECIMAL(4,0) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`emp_no`, `pro_no`)
+)
 
 -- 직원(employee) 테이블 기본 키에 제약조건 조건명 추가하시오. employee_pk_
+
 -- 프로젝트(project) 테이블에 기본 키를 추가하시오 제약조건 이름: project_pk 
 -- 담당(assign) 테이블에 기본 키를 추가하기 제약조건 이름: assign_pk
 -- 특기(specialty) 테이블에 외래 키를 추가하기 제약조건 이름: specialty_fk 
