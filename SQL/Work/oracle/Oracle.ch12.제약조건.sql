@@ -1,52 +1,53 @@
 -- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
--- í…Œì´ë¸” ì œì•½ ì¡°ê±´
+-- Å×ÀÌºí Á¦¾à Á¶°Ç
 -- 
--- ì»¬ëŸ¼ì— ì œì•½ ì¡°ê±´ ì„¤ì • 
--- 	  * NOT NULL ì¡°ê±´
+-- ÄÃ·³¿¡ Á¦¾à Á¶°Ç ¼³Á¤ 
+--    * NOT NULL Á¶°Ç
 -- 
--- 	  * DEFAULT ì¡°ê±´
+--    * DEFAULT Á¶°Ç
 -- 
 -- 
--- í…Œì´ë¸”ì— ì œì•½ ì¡°ê±´ ì„¤ì •
+-- Å×ÀÌºí¿¡ Á¦¾à Á¶°Ç ¼³Á¤
 -- 
---     * ê¸°ë³¸í‚¤(PRIMARY KEY)ëž€?
---         í…Œì´ë¸”ì—ì„œ ìœ ì¼ì„±(UNIQUE)ì„ ë§Œì¡±í•˜ëŠ” ëŒ€í‘œ ì»¬ëŸ¼ë“¤..
---         ì£¼ì‹ë³„ìž.
---         ex) ì£¼ë¯¼ë²ˆí˜¸
+--     * ±âº»Å°(PRIMARY KEY)¶õ?
+--         Å×ÀÌºí¿¡¼­ À¯ÀÏ¼º(UNIQUE)À» ¸¸Á·ÇÏ´Â ´ëÇ¥ ÄÃ·³µé..
+--         ÁÖ½Äº°ÀÚ.
+--         ex) ÁÖ¹Î¹øÈ£
 --     
---     * ì™¸ëž˜í‚¤(FOREIGN KEY)ëž€?
---         ë¶€ëª¨ ìžì‹ ê´€ê³„ê°€ ì„±ë¦½ë˜ëŠ” í…Œì´ë¸”ì—ì„œ ë¶€ëª¨ë¥¼ ì°¾ê¸° ìœ„í•´ ì‚¬ìš©ë˜ëŠ” ì»¬ëŸ¼ë“¤.
---         ìžì‹ í…Œì´ë¸”ì—ì„œ ì„¤ì •.
---         ì™¸ëž˜ì‹ë³„ìž. ë¶€ëª¨ë¥¼ ì°¸ì¡°í•˜ëŠ” ì»¬ëŸ¼ë“¤.
+--     * ¿Ü·¡Å°(FOREIGN KEY)¶õ?
+--         ºÎ¸ð ÀÚ½Ä °ü°è°¡ ¼º¸³µÇ´Â Å×ÀÌºí¿¡¼­ ºÎ¸ð¸¦ Ã£±â À§ÇØ »ç¿ëµÇ´Â ÄÃ·³µé.
+--         ÀÚ½Ä Å×ÀÌºí¿¡¼­ ¼³Á¤.
+--         ¿Ü·¡½Äº°ÀÚ. ºÎ¸ð¸¦ ÂüÁ¶ÇÏ´Â ÄÃ·³µé.
 --     
---     * ìœ ì¼í‚¤(Unique KEY)ëž€?
---         ìœ ì¼í•˜ê²Œ ì‹ë³„í•  ìˆ˜ ìžˆëŠ” ìµœì†Œ ì»¬ëŸ¼ì˜ ì§‘í•©
---         ìŠˆí¼í‚¤, í›„ë³´í‚¤ 
---         ex) ì£¼ë¯¼ë²ˆí˜¸, í•¸ë“œí°ë²ˆí˜¸, ê³„ì¢Œë²ˆí˜¸, ....
+--     * À¯ÀÏÅ°(Unique KEY)¶õ?
+--         À¯ÀÏÇÏ°Ô ½Äº°ÇÒ ¼ö ÀÖ´Â ÃÖ¼Ò ÄÃ·³ÀÇ ÁýÇÕ
+--         ½´ÆÛÅ°, ÈÄº¸Å° 
+--         ex) ÁÖ¹Î¹øÈ£, ÇÚµåÆù¹øÈ£, °èÁÂ¹øÈ£, ....
 --     
--- ê¸°ë³¸í‚¤, ì™¸ëž˜í‚¤, ìœ ì¼í‚¤ëŠ” í…Œì´ë¸”ì— ì ìš©ë˜ëŠ” ê²ƒì´ë‹¤.
+-- ±âº»Å°, ¿Ü·¡Å°, À¯ÀÏÅ°´Â Å×ÀÌºí¿¡ Àû¿ëµÇ´Â °ÍÀÌ´Ù.
+-- À¯ÀÏÅ°¿¡´Â nullÀÌ Çã¿ë, ±âº»Å°¿¡´Â null°ª Çã¿ë ¾ÈµÊ
 -- 
 -- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
--- ë°ì´í„° íƒ€ìž…
+-- µ¥ÀÌÅÍ Å¸ÀÔ
 -- 
 -- -----------------------------------------------------------------
 -- |      | MySQL         |  Oracle                   |    SQLite  |
 -- -----------------------------------------------------------------
--- | ìˆ«ìž | INT           |  NUMBER( ìžë¦¬ìˆ˜,  0 )     |    INTEGER |
+-- | ¼ýÀÚ | INT           |  NUMBER( ÀÚ¸®¼ö,  0 )     |    INTEGER |
 -- |      | BOOLEAN       |                           |            |
 -- |      | NUMERIC       |                           |            |
 -- -----------------------------------------------------------------
--- |      | DOUBLE        |  NUMBER( ìžë¦¬ìˆ˜, ì†Œìˆ˜ì )  |    REAL    |
+-- |      | DOUBLE        |  NUMBER( ÀÚ¸®¼ö, ¼Ò¼öÁ¡)  |    REAL    |
 -- -----------------------------------------------------------------
--- | ë¬¸ìž | CHAR          |  CHAR                     |    TEXT    |
+-- | ¹®ÀÚ | CHAR          |  CHAR                     |    TEXT    |
 -- |      | VARCHAR       |                           |            |
 -- |      | NCHAR         |                           |            |
 -- |      | NVARACHAR     |  VARCHAR2                 |            |
 -- |      | TEXT          |                           |            |
 -- -----------------------------------------------------------------
--- | ë‚ ì§œ | DATE          |  DATE                     |    TEXT    |
+-- | ³¯Â¥ | DATE          |  DATE                     |    TEXT    |
 -- |      | DATETIME      |                           |            |
 -- -----------------------------------------------------------------
 -- |      | BLOB          |  BLOB                     |    NONE    |
@@ -56,17 +57,16 @@
 
 
 -- ########################
--- index í™•ì¸
--- MySQL  : show index from í…Œì´ë¸”ëª… ;
+-- index È®ÀÎ
+-- MySQL  : show index from Å×ÀÌºí¸í ;
 -- Oracle : 
 -- ########################
 
--- emp í…Œì´ë¸”ì— ê±¸ë ¤ ìžˆëŠ” indexë¥¼ ì¡°íšŒí•˜ì‹œì˜¤.
-show index from emp ;
+-- emp Å×ÀÌºí¿¡ °É·Á ÀÖ´Â index¸¦ Á¶È¸ÇÏ½Ã¿À.
 
   
 -- #####
--- emp02 í…Œì´ë¸” ìƒì„± DDL ë¬¸ì„ ìž‘ì„±í•˜ì‹œì˜¤.
+-- emp02 Å×ÀÌºí »ý¼ºÇÏ½Ã¿À. µðÀÚÀÌ³Ê¸¦ »ç¿ëÇÏ¿©.
 -- +----------+-------------+------+-----+---------+-------+
 -- | Field    | Type        | Null | Key | Default | Extra |
 -- +----------+-------------+------+-----+---------+-------+
@@ -80,14 +80,24 @@ show index from emp ;
 -- | DEPTNO   | int(11)     | YES  |     | NULL    |       |
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
+ CREATE TABLE "TESTER1"."EMP02" 
+   (	"EMPNO" NUMBER(11,0) DEFAULT null, 
+	"ENAME" VARCHAR2(10 BYTE) DEFAULT null, 
+	"JOB" VARCHAR2(9 BYTE) DEFAULT null, 
+	"MGR" NUMBER(11,0) DEFAULT null, 
+	"HIREDATE" DATE DEFAULT null, 
+	"SAL" NUMBER(7,2) DEFAULT null, 
+	"COMM" NUMBER(7,2) DEFAULT null, 
+	"DEPTNO" NUMBER(11,0) DEFAULT null
+   );
 
--- emp02 í…Œì´ë¸”ì˜ ëª¨ë“  ì»¬ëŸ¼ì— null ê°’ìœ¼ë¡œ insert í•˜ì‹œì˜¤.
-
+-- emp02 Å×ÀÌºíÀÇ ¸ðµç ÄÃ·³¿¡ °ªÀ» null ·Î insert ÇÏ½Ã¿À.
+insert into emp02(empno) values(null) ;
 
 -- #####
--- emp03 í…Œì´ë¸” ìƒì„± DDL ë¬¸ì„ ìž‘ì„±í•˜ì‹œì˜¤.
--- empno ì— not null ì¡°ê±´ ì„¤ì •.
--- ename ì— not null ì¡°ê±´ ì„¤ì •.
+-- emp03 Å×ÀÌºí »ý¼ºÇÏ½Ã¿À. Å×ÀÌºí º¹Á¦¸¦ »ç¿ëÇÏ¿©
+-- empno ¿¡ not null Á¶°Ç ¼³Á¤.
+-- ename ¿¡ not null Á¶°Ç ¼³Á¤.
 -- +----------+-------------+------+-----+---------+-------+
 -- | Field    | Type        | Null | Key | Default | Extra |
 -- +----------+-------------+------+-----+---------+-------+
@@ -102,18 +112,29 @@ show index from emp ;
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
 
--- emp03 í…Œì´ë¸” ë°ì´í„° insert í…ŒìŠ¤íŠ¸.
--- ëª¨ë“  ê°’ì„ null ì±„ì›Œì„œ insert í•˜ì‹œì˜¤. ë¶ˆê°€ëŠ¥. not null ì¡°ê±´ ë•Œë¬¸ì—.
+  CREATE TABLE "TESTER1"."EMP03" 
+   (	"EMPNO" NUMBER(11,0) DEFAULT null NOT NULL ENABLE, 
+	"ENAME" VARCHAR2(10 BYTE) DEFAULT null NOT NULL ENABLE, 
+	"JOB" VARCHAR2(9 BYTE) DEFAULT null, 
+	"MGR" NUMBER(11,0) DEFAULT null, 
+	"HIREDATE" DATE DEFAULT null, 
+	"SAL" NUMBER(7,2) DEFAULT null, 
+	"COMM" NUMBER(7,2) DEFAULT null, 
+	"DEPTNO" NUMBER(11,0) DEFAULT null
+   );
+-- emp03 Å×ÀÌºí µ¥ÀÌÅÍ insert Å×½ºÆ®.
+-- ¸ðµç °ªÀ» null Ã¤¿ö¼­ insert ÇÏ½Ã¿À. ºÒ°¡´É. not null Á¶°Ç ¶§¹®¿¡.
 
--- empnoì— 10, enameì— abcdë¥¼ insert í•˜ì‹œì˜¤.
+-- emp03 Å×ÀÌºí¿¡¼­ empno¿¡ 10, ename¿¡ abcd¸¦ insert ÇÏ½Ã¿À.
+insert into emp03 (empno,ename) values (10,'abcd'); 
 
-
+select * from emp03;
 
 -- #####
--- emp04 í…Œì´ë¸” ìƒì„± DDL ë¬¸ì„ ìž‘ì„±í•˜ì‹œì˜¤.
--- empno ì— not null ì¡°ê±´ ì„¤ì •.
--- ename ì— not null ì¡°ê±´ ì„¤ì •.
--- comm  ì— default ì¡°ê±´ ì„¤ì •. default ê°’ìœ¼ë¡œ 100 ì‚¬ìš©.
+-- emp04 Å×ÀÌºí »ý¼ºÇÏ½Ã¿À. DDL¹®À» »ç¿ëÇÏ¿©.
+-- empno ¿¡ not null Á¶°Ç ¼³Á¤.
+-- ename ¿¡ not null Á¶°Ç ¼³Á¤.
+-- comm  ¿¡ default Á¶°Ç ¼³Á¤. default °ªÀ¸·Î 100 »ç¿ë.
 -- +----------+-------------+------+-----+---------+-------+
 -- | Field    | Type        | Null | Key | Default | Extra |
 -- +----------+-------------+------+-----+---------+-------+
@@ -127,21 +148,34 @@ show index from emp ;
 -- | DEPTNO   | int(11)     | YES  |     | NULL    |       |
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
+  CREATE TABLE "TESTER1"."EMP04" 
+   (	"EMPNO" NUMBER(11,0) DEFAULT null NOT NULL ENABLE, 
+	"ENAME" VARCHAR2(10 BYTE) DEFAULT null NOT NULL ENABLE, 
+	"JOB" VARCHAR2(9 BYTE) DEFAULT null, 
+	"MGR" NUMBER(11,0) DEFAULT null, 
+	"HIREDATE" DATE DEFAULT null, 
+	"SAL" NUMBER(7,2) DEFAULT null, 
+	"COMM" NUMBER(7,2) DEFAULT 100, 
+	"DEPTNO" NUMBER(11,0) DEFAULT null
+   );
+-- emp04 Å×ÀÌºí µ¥ÀÌÅÍ insert Å×½ºÆ®.
+-- ¸ðµç °ªÀ» null Ã¤¿ö¼­ insert ÇÏ½Ã¿À. ºÒ°¡´É. not null Á¶°Ç ¶§¹®¿¡.
 
--- emp04 í…Œì´ë¸” ë°ì´í„° insert í…ŒìŠ¤íŠ¸.
--- ëª¨ë“  ê°’ì„ null ì±„ì›Œì„œ insert í•˜ì‹œì˜¤. ë¶ˆê°€ëŠ¥. not null ì¡°ê±´ ë•Œë¬¸ì—.
+-- emp04 Å×ÀÌºí¿¡¼­ empno¿¡ 10, ename¿¡ abcd¸¦ insert ÇÒ ¶§ 
+-- comm¿¡ µé¾î°¡´Â °ªÀº ¹«¾ùÀÎ°¡?
+insert into emp04(empno,ename) values(10,'abcd');
 
--- empnoì— 10, enameì— abcdë¥¼ insert í•˜ì‹œì˜¤.
+select * from emp04; -- ±âº»°ªÀÌ 100ÀÌ¿©¼­ 100ÀÌ µé¾î°£´Ù .
 
 
 
 
 -- #####
--- emp06 í…Œì´ë¸” ìƒì„± DDL ë¬¸ì„ ìž‘ì„±í•˜ì‹œì˜¤.
--- empno ì— not null ì¡°ê±´ ì„¤ì •.
--- ename ì— not null ì¡°ê±´ ì„¤ì •.
--- comm  ì— default ì¡°ê±´ ì„¤ì •. default ê°’ìœ¼ë¡œ 100 ì‚¬ìš©.
--- empno ì— primary key ì¡°ê±´ ì„¤ì •.
+-- emp06 Å×ÀÌºí »ý¼ºÇÏ½Ã¿À. µðÀÚÀÌ³Ê¸¦ »ç¿ëÇÏ¿©.
+-- empno ¿¡ not null Á¶°Ç ¼³Á¤.
+-- ename ¿¡ not null Á¶°Ç ¼³Á¤.
+-- comm  ¿¡ default Á¶°Ç ¼³Á¤. default °ªÀ¸·Î 100 »ç¿ë.
+-- empno ¿¡ primary key Á¶°Ç ¼³Á¤.
 -- +----------+-------------+------+-----+---------+-------+
 -- | Field    | Type        | Null | Key | Default | Extra |
 -- +----------+-------------+------+-----+---------+-------+
@@ -156,14 +190,12 @@ show index from emp ;
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
 
-
-
 -- #####
--- emp07 í…Œì´ë¸” ìƒì„± DDL ë¬¸ì„ ìž‘ì„±í•˜ì‹œì˜¤.
--- empno ì— not null ì¡°ê±´ ì„¤ì •.
--- ename ì— not null ì¡°ê±´ ì„¤ì •.
--- comm  ì— default ì¡°ê±´ ì„¤ì •. default ê°’ìœ¼ë¡œ 100 ì‚¬ìš©.
--- empno ì™€ ename  ì— primary key ì¡°ê±´ ì„¤ì •.
+-- emp07 Å×ÀÌºí »ý¼ºÇÏ½Ã¿À.
+-- empno ¿¡ not null Á¶°Ç ¼³Á¤.
+-- ename ¿¡ not null Á¶°Ç ¼³Á¤.
+-- comm  ¿¡ default Á¶°Ç ¼³Á¤. default °ªÀ¸·Î 100 »ç¿ë.
+-- empno ¿Í ename  ¿¡ primary key Á¶°Ç ¼³Á¤.
 -- +----------+-------------+------+-----+---------+-------+
 -- | Field    | Type        | Null | Key | Default | Extra |
 -- +----------+-------------+------+-----+---------+-------+
@@ -178,18 +210,17 @@ show index from emp ;
 -- +----------+-------------+------+-----+---------+-------+
 -- #####
 
-
 -- #####
--- emp08 í…Œì´ë¸” ìƒì„± DDL ë¬¸ì„ ìž‘ì„±í•˜ì‹œì˜¤.
--- empno ì— not null ì¡°ê±´ ì„¤ì •.
--- ename ì— not null ì¡°ê±´ ì„¤ì •.
--- comm  ì— default ì¡°ê±´ ì„¤ì •. default ê°’ìœ¼ë¡œ 100 ì‚¬ìš©.
--- empno ì™€ ename  ì— primary key ì¡°ê±´ ì„¤ì •.
--- empno ì— unique  ì¡°ê±´ ì„¤ì •.
+-- emp08 Å×ÀÌºí »ý¼º DDL ¹®À» ÀÛ¼ºÇÏ½Ã¿À.
+-- empno ¿¡ not null Á¶°Ç ¼³Á¤.
+-- ename ¿¡ not null Á¶°Ç ¼³Á¤.
+-- comm  ¿¡ default Á¶°Ç ¼³Á¤. default °ªÀ¸·Î 100 »ç¿ë.
+-- empno ¿Í ename  ¿¡ primary key Á¶°Ç ¼³Á¤.
+-- phone ¿¡ unique  Á¶°Ç ¼³Á¤.
 -- +----------+-------------+------+---------+---------+-------+
 -- | Field    | Type        | Null | Key     | Default | Extra |
 -- +----------+-------------+------+---------+---------+-------+
--- | EMPNO    | int(11)     | NO   | PRI,UNI | NULL    |       |
+-- | EMPNO    | int(11)     | NO   | PRI     | NULL    |       |
 -- | ENAME    | varchar(10) | NO   | PRI     | NULL    |       |
 -- | JOB      | varchar(9)  | YES  |         | NULL    |       |
 -- | MGR      | int(11)     | YES  |         | NULL    |       |
@@ -197,24 +228,37 @@ show index from emp ;
 -- | SAL      | double(7,2) | YES  |         | NULL    |       |
 -- | COMM     | double(7,2) | YES  |         | 100     |       |
 -- | DEPTNO   | int(11)     | YES  |         | NULL    |       |
+-- | PHONE    | varchar(13) | YES  | UNI     | NULL    |       |
 -- +----------+-------------+------+---------+---------+-------+
 -- #####
 
 
+  CREATE TABLE "TESTER1"."EMP08" 
+   (	"EMPNO" NUMBER(11,0) DEFAULT null NOT NULL ENABLE, 
+	"ENAME" VARCHAR2(10 BYTE) DEFAULT null NOT NULL ENABLE, 
+	"JOB" VARCHAR2(9 BYTE) DEFAULT null, 
+	"MGR" NUMBER(11,0) DEFAULT null, 
+	"HIREDATE" DATE DEFAULT null, 
+	"SAL" NUMBER(7,2) DEFAULT null, 
+	"COMM" NUMBER(7,2) DEFAULT 100, 
+	"DEPTNO" NUMBER(11,0) DEFAULT null, 
+	"PHONE" VARCHAR2(13 BYTE) DEFAULT null, 
+	 PRIMARY KEY ("ENAME", "EMPNO"),
+   UNIQUE ("PHONE")
+  )
 
 -- #####
--- emp09 í…Œì´ë¸” ìƒì„± DDL ë¬¸ì„ ìž‘ì„±í•˜ì‹œì˜¤.
--- empno ì— not null ì¡°ê±´ ì„¤ì •.
--- ename ì— not null ì¡°ê±´ ì„¤ì •.
--- comm  ì— default ì¡°ê±´ ì„¤ì •. default ê°’ìœ¼ë¡œ 100 ì‚¬ìš©.
--- empno ì™€ ename  ì— primary key ì¡°ê±´ ì„¤ì •.
--- empno ì— unique  ì¡°ê±´ ì„¤ì •.
--- 
--- emp09.deptno ì™€ dept.deptno ì— foreign key ì¡°ê±´ ì„¤ì •.
+-- emp09 Å×ÀÌºí »ý¼ºÇÏ½Ã¿À. µðÀÚÀÌ³Ê¸¦ ÀÌ¿ëÇÏ½Ã¿À.
+-- empno ¿¡ not null Á¶°Ç ¼³Á¤.
+-- ename ¿¡ not null Á¶°Ç ¼³Á¤.
+-- comm  ¿¡ default Á¶°Ç ¼³Á¤. default °ªÀ¸·Î 100 »ç¿ë.
+-- empno ¿Í ename  ¿¡ primary key Á¶°Ç ¼³Á¤.
+-- phone ¿¡ unique  Á¶°Ç ¼³Á¤.
+-- emp09.deptno ¿Í dept.deptno ¿¡ foreign key Á¶°Ç ¼³Á¤.
 -- +----------+-------------+------+---------+---------+-------+
 -- | Field    | Type        | Null | Key     | Default | Extra |
 -- +----------+-------------+------+---------+---------+-------+
--- | EMPNO    | int(11)     | NO   | PRI,UNI | NULL    |       |
+-- | EMPNO    | int(11)     | NO   | PRI     | NULL    |       |
 -- | ENAME    | varchar(10) | NO   | PRI     | NULL    |       |
 -- | JOB      | varchar(9)  | YES  |         | NULL    |       |
 -- | MGR      | int(11)     | YES  |         | NULL    |       |
@@ -222,59 +266,68 @@ show index from emp ;
 -- | SAL      | double(7,2) | YES  |         | NULL    |       |
 -- | COMM     | double(7,2) | YES  |         | 100     |       |
 -- | DEPTNO   | int(11)     | YES  |         | NULL    |       |
+-- | PHONE    | varchar(13) | YES  | UNI     | NULL    |       |
 -- +----------+-------------+------+---------+---------+-------+
 -- #####
+
+
+-- ¹®Á¦. emp09 Å×ÀÌºí¿¡¼­ empno=10, ename=abcd¸¦, deptno=100À» insert ÇÏ½Ã¿À.
+-- insert ½ÇÆÐ ¹ß»ý. ¿Ö?
+-- ¾î¶»°Ô ÇÏ¸é insert °¡ °¡´ÉÇÏ°Ú´Â°¡?
+
+
+
 
 -- ######################  
--- ë¯¸ì…˜. ERDë¥¼ ì´ìš©í•´ì„œ DBë¥¼ êµ¬ì¶•í•˜ì‹œì˜¤
+-- ¹Ì¼Ç. ERD¸¦ ÀÌ¿ëÇØ¼­ DB¸¦ ±¸ÃàÇÏ½Ã¿À
 -- 
--- ì•„ëž˜ì˜ ì¡°ê±´ì— ë§žê²Œ í…Œì´ë¸”ì„ ë§Œë“¤ê³  ì œì•½ ì¡°ê±´ PK, FKë¥¼ ì„¤ì •í•˜ì‹œì˜¤. 
+-- ¾Æ·¡ÀÇ Á¶°Ç¿¡ ¸Â°Ô Å×ÀÌºíÀ» ¸¸µé°í Á¦¾à Á¶°Ç PK, FK¸¦ ¼³Á¤ÇÏ½Ã¿À. 
 -- 
--- * employee í…Œì´ë¸”;                            
+-- * employee Å×ÀÌºí;                            
 -- +----------+--------------+------+-----+---------+-------+    
 -- | Field    | Type         | Null | Key | Default | Extra |    
 -- +----------+--------------+------+-----+---------+-------+    
--- | emp_no   | decimal(4,0) | NO   | PRI | 0       |       |    
+-- | emp_no   | int(4,0)     | NO   | PRI | 0       |       |    
 -- | emp_name | varchar(20)  | YES  |     | NULL    |       |    
--- | salary   | decimal(6,0) | YES  |     | NULL    |       |    
+-- | salary   | int(6,0)     | YES  |     | NULL    |       |    
 -- | birthday | date         | YES  |     | NULL    |       |    
 -- +----------+--------------+------+-----+---------+-------+    
 --                                                               
--- * project í…Œì´ë¸”;                             
+-- * project Å×ÀÌºí;                             
 -- +-------------+--------------+------+-----+---------+-------+ 
 -- | Field       | Type         | Null | Key | Default | Extra | 
 -- +-------------+--------------+------+-----+---------+-------+ 
--- | pro_no      | decimal(4,0) | NO   | PRI | 0       |       | 
+-- | pro_no      | int(4,0)     | NO   | PRI | 0       |       | 
 -- | pro_content | varchar(100) | YES  |     | NULL    |       | 
 -- | start_date  | date         | YES  |     | NULL    |       | 
 -- | finish_date | date         | YES  |     | NULL    |       | 
 -- +-------------+--------------+------+-----+---------+-------+ 
 --                                                               
--- * specialty í…Œì´ë¸”;                           
+-- * specialty Å×ÀÌºí;                           
 -- +-----------+--------------+------+-----+---------+-------+   
 -- | Field     | Type         | Null | Key | Default | Extra |   
 -- +-----------+--------------+------+-----+---------+-------+   
--- | emp_no    | decimal(4,0) | NO   | PRI | 0       |       |   
+-- | emp_no    | int(4,0)     | NO   | PRI | 0       |       |   
 -- | specialty | varchar(20)  | NO   | PRI |         |       |   
 -- +-----------+--------------+------+-----+---------+-------+   
 --                                                               
--- * assign í…Œì´ë¸”;                              
+-- * assign Å×ÀÌºí;                              
 -- +--------+--------------+------+-----+---------+-------+      
 -- | Field  | Type         | Null | Key | Default | Extra |      
 -- +--------+--------------+------+-----+---------+-------+      
--- | emp_no | decimal(4,0) | NO   | PRI | 0       |       |      
--- | pro_no | decimal(4,0) | NO   | PRI | 0       |       |      
+-- | emp_no | int(4,0)     | NO   | PRI | 0       |       |      
+-- | pro_no | int(4,0)     | NO   | PRI | 0       |       |      
 -- +--------+--------------+------+-----+---------+-------+    
 
 
--- ì§ì›(employee) í…Œì´ë¸” ê¸°ë³¸ í‚¤ì— ì œì•½ì¡°ê±´ ì¡°ê±´ëª… ì¶”ê°€í•˜ì‹œì˜¤. employee_pk_
--- í”„ë¡œì íŠ¸(project) í…Œì´ë¸”ì— ê¸°ë³¸ í‚¤ë¥¼ ì¶”ê°€í•˜ì‹œì˜¤ ì œì•½ì¡°ê±´ ì´ë¦„: project_pk 
--- ë‹´ë‹¹(assign) í…Œì´ë¸”ì— ê¸°ë³¸ í‚¤ë¥¼ ì¶”ê°€í•˜ê¸° ì œì•½ì¡°ê±´ ì´ë¦„: assign_pk
--- íŠ¹ê¸°(specialty) í…Œì´ë¸”ì— ì™¸ëž˜ í‚¤ë¥¼ ì¶”ê°€í•˜ê¸° ì œì•½ì¡°ê±´ ì´ë¦„: specialty_fk 
+-- Á÷¿ø(employee) Å×ÀÌºí¿¡    ±âº» Å°¿¡ Á¦¾àÁ¶°Ç Á¶°Ç¸í Ãß°¡ÇÏ½Ã¿À. employee_pk_
+-- ÇÁ·ÎÁ§Æ®(project) Å×ÀÌºí¿¡ ±âº» Å°¸¦ Ãß°¡ÇÏ½Ã¿À Á¦¾àÁ¶°Ç ÀÌ¸§: project_pk 
+-- ´ã´ç(assign) Å×ÀÌºí¿¡     ±âº» Å°¸¦ Ãß°¡ÇÏ±â Á¦¾àÁ¶°Ç ÀÌ¸§: assign_pk
+-- Æ¯±â(specialty) Å×ÀÌºí¿¡  ±âº» Å°¸¦ Ãß°¡ÇÏ±â Á¦¾àÁ¶°Ç ÀÌ¸§: specialty_fk 
 
 -- table relation 
--- assign í…Œì´ë¸”ê³¼ project í…Œì´ë¸” ì‚¬ì´ì— ì™¸ëž˜ í‚¤ë¥¼ ì¶”ê°€í•˜ê¸°.ì œì•½ì¡°ê±´ëª…: specialty_fk
--- ë‹´ë‹¹(assign) í…Œì´ë¸”ê³¼ ì§ì› í…Œì´ë¸” ì‚¬ì´ì— ì™¸ëž˜í‚¤ë¥¼ ì¶”ê°€í•˜ê¸°ì œì•½ì¡°ê±´ ì´ë¦„: specialty_fk
+-- assign Å×ÀÌºí°ú project Å×ÀÌºí »çÀÌ¿¡ ¿Ü·¡ Å°¸¦ Ãß°¡ÇÏ±â. Á¦¾àÁ¶°Ç¸í: specialty_fk
+-- ´ã´ç(assign) Å×ÀÌºí°ú Á÷¿ø Å×ÀÌºí »çÀÌ¿¡ ¿Ü·¡Å°¸¦ Ãß°¡ÇÏ±â Á¦¾àÁ¶°Ç ÀÌ¸§: specialty_fk
 -- +--------------+---------------+-----------------------+
 -- | child table  | parent table  |                       |
 -- +--------------+---------------+-----------------------+
@@ -310,7 +363,7 @@ show index from emp ;
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
--- ë³´ë¥˜. ì „ë¬¸ê°€ ê³¼ì •ì—ì„œë§Œ...
+-- º¸·ù. Àü¹®°¡ °úÁ¤¿¡¼­¸¸...
 -- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
@@ -318,86 +371,86 @@ show index from emp ;
 
 
 -- #####
--- . emp10 í…Œì´ë¸” ìƒì„±í•˜ì‹œì˜¤.
--- empno ì— not null ì¡°ê±´ì„ ì‚¬ìš©í•˜ì‹œì˜¤.
--- ename ì— not null ì¡°ê±´ì„ ì‚¬ìš©í•˜ì‹œì˜¤.
--- comm  ì— default ì¡°ê±´ì„ ê±¸ê³  default ê°’ìœ¼ë¡œ 100 ì‚¬ìš©.
--- deptnoëŠ” int íƒ€ìž…ìœ¼ë¡œ.
--- empno ì™€ ename  ì— primary key ì¡°ê±´ì„ ì„¤ì •í•˜ê³  ì¡°ê±´ëª…ìœ¼ë¡œ emp10_pkì„ ì‚¬ìš©í•˜ì‹œì˜¤.
--- deptno ì— unique  key ì¡°ê±´ì„ ì„¤ì •í•˜ê³  ì¡°ê±´ëª…ìœ¼ë¡œ emp10_ukì„ ì‚¬ìš©í•˜ì‹œì˜¤.
--- emp09.deptno ì™€ dept.deptno ì— foreign key ì¡°ê±´ì„ ì„¤ì •í•˜ê³  ì¡°ê±´ëª…ìœ¼ë¡œ emp10_fkì„ ì‚¬ìš©í•˜ì‹œì˜¤.
+-- . emp10 Å×ÀÌºí »ý¼ºÇÏ½Ã¿À.
+-- empno ¿¡ not null Á¶°ÇÀ» »ç¿ëÇÏ½Ã¿À.
+-- ename ¿¡ not null Á¶°ÇÀ» »ç¿ëÇÏ½Ã¿À.
+-- comm  ¿¡ default Á¶°ÇÀ» °É°í default °ªÀ¸·Î 100 »ç¿ë.
+-- deptno´Â int Å¸ÀÔÀ¸·Î.
+-- empno ¿Í ename  ¿¡ primary key Á¶°ÇÀ» ¼³Á¤ÇÏ°í Á¶°Ç¸íÀ¸·Î emp10_pkÀ» »ç¿ëÇÏ½Ã¿À.
+-- deptno ¿¡ unique  key Á¶°ÇÀ» ¼³Á¤ÇÏ°í Á¶°Ç¸íÀ¸·Î emp10_ukÀ» »ç¿ëÇÏ½Ã¿À.
+-- emp09.deptno ¿Í dept.deptno ¿¡ foreign key Á¶°ÇÀ» ¼³Á¤ÇÏ°í Á¶°Ç¸íÀ¸·Î emp10_fkÀ» »ç¿ëÇÏ½Ã¿À.
 -- #####
 
 
 -- @@@@@@@@@@@@@@@@
--- alterë¥¼ ì´ìš©í•œ ì œì•½ ì¡°ê±´ ì¶”ê°€
+-- alter¸¦ ÀÌ¿ëÇÑ Á¦¾à Á¶°Ç Ãß°¡
 -- @@@@@@@@@@@@@@@@
--- emp02.empnoì— alterë¥¼ ì´ìš©í•´ì„œ primary key ì¶”ê°€
--- st1. emp02ì— primary key ì‚­ì œ.
--- st2. empnoì— primary key ì¶”ê°€.
+-- emp02.empno¿¡ alter¸¦ ÀÌ¿ëÇØ¼­ primary key Ãß°¡
+-- st1. emp02¿¡ primary key »èÁ¦.
+-- st2. empno¿¡ primary key Ãß°¡.
 
--- emp02.deptnoì— alterë¥¼ ì´ìš©í•´ì„œ  foreign key ì¶”ê°€
--- ì™¸ëž˜í‚¤ ì„¤ì •ì „ì— emp02.deptnoì™€ dept.deptnoì»¬ëŸ¼ íƒ€ìž…ì„ ê°™ê²Œ ë§Œë“¤ì–´ì•¼ í•œë‹¤.
+-- emp02.deptno¿¡ alter¸¦ ÀÌ¿ëÇØ¼­  foreign key Ãß°¡
+-- ¿Ü·¡Å° ¼³Á¤Àü¿¡ emp02.deptno¿Í dept.deptnoÄÃ·³ Å¸ÀÔÀ» °°°Ô ¸¸µé¾î¾ß ÇÑ´Ù.
 
--- emp02.jobì— alterë¥¼ ì´ìš©í•´ì„œ unique key ì¶”ê°€
-
-
--- ë¬¸ì œ. dept í…Œì´ë¸”ì— auto_incrementë¥¼ ê°–ëŠ” pid ì»¬ëŸ¼ ë¥¼ ì¶”ê°€í•˜ì‹œì˜¤.
--- auto_increment ë¡œ ì„¤ì •í•˜ë ¤ë©´ ë°˜ë“œì‹œ key ê°€ ë˜ì–´ì•¼ í•œë‹¤.
--- pid ì»¬ëŸ¼ ì¶”ê°€.
--- pid ì»¬ëŸ¼ì—  key ì¶”ê°€
+-- emp02.job¿¡ alter¸¦ ÀÌ¿ëÇØ¼­ unique key Ãß°¡
 
 
--- @@@@@@@@@@@@@@@@
--- alterë¥¼ ì´ìš©í•œ ì œì•½ ì¡°ê±´ ìˆ˜ì •
--- @@@@@@@@@@@@@@@@
-
-
--- emp02.enameì— default ê°’ì„ abcë¡œ ë°”ê¾¸ì‹œì˜¤.
-
-
--- emp02.job default ê°’ì„ 'ì¸í„´'ë¡œ ë°”ê¾¸ì‹œì˜¤.
-
-
--- emp02.ename ì„ not null ë¡œ ë°”ê¾¸ì‹œì˜¤.
-
-
--- emp02.job ì„ null í—ˆìš©ìœ¼ë¡œ ë°”ê¾¸ì‹œì˜¤.
+-- ¹®Á¦. dept Å×ÀÌºí¿¡ auto_increment¸¦ °®´Â pid ÄÃ·³ ¸¦ Ãß°¡ÇÏ½Ã¿À.
+-- auto_increment ·Î ¼³Á¤ÇÏ·Á¸é ¹Ýµå½Ã key °¡ µÇ¾î¾ß ÇÑ´Ù.
+-- pid ÄÃ·³ Ãß°¡.
+-- pid ÄÃ·³¿¡  key Ãß°¡
 
 
 -- @@@@@@@@@@@@@@@@
--- alterë¥¼ ì´ìš©í•œ ì œì•½ ì¡°ê±´ ì‚­ì œ
+-- alter¸¦ ÀÌ¿ëÇÑ Á¦¾à Á¶°Ç ¼öÁ¤
 -- @@@@@@@@@@@@@@@@
 
--- emp10ì—ì„œ primary key ì¡°ê±´ ì‚­ì œí•˜ê¸°
 
--- emp10ì—ì„œ ì¡°ê±´ëª…ìœ¼ë¡œ foreign key ì¡°ê±´ ì‚­ì œí•˜ê¸°
+-- emp02.ename¿¡ default °ªÀ» abc·Î ¹Ù²Ù½Ã¿À.
 
--- emp10ì—ì„œ ì¡°ê±´ëª…ìœ¼ë¡œ unique key ì¡°ê±´ ì‚­ì œí•˜ê¸°
+
+-- emp02.job default °ªÀ» 'ÀÎÅÏ'·Î ¹Ù²Ù½Ã¿À.
+
+
+-- emp02.ename À» not null ·Î ¹Ù²Ù½Ã¿À.
+
+
+-- emp02.job À» null Çã¿ëÀ¸·Î ¹Ù²Ù½Ã¿À.
+
+
+-- @@@@@@@@@@@@@@@@
+-- alter¸¦ ÀÌ¿ëÇÑ Á¦¾à Á¶°Ç »èÁ¦
+-- @@@@@@@@@@@@@@@@
+
+-- emp10¿¡¼­ primary key Á¶°Ç »èÁ¦ÇÏ±â
+
+-- emp10¿¡¼­ Á¶°Ç¸íÀ¸·Î foreign key Á¶°Ç »èÁ¦ÇÏ±â
+
+-- emp10¿¡¼­ Á¶°Ç¸íÀ¸·Î unique key Á¶°Ç »èÁ¦ÇÏ±â
 
 
 -- ######################  
--- ë¯¸ì…˜. ì™¸ëž˜í‚¤ë¥¼ ì„¤ì •í•˜ì‹œì˜¤
+-- ¹Ì¼Ç. ¿Ü·¡Å°¸¦ ¼³Á¤ÇÏ½Ã¿À
 -- 
--- authì™€ book í…Œì´ë¸”ì´ ì¡´ìž¬í•œë‹¤. ì´ ë‘ í…Œì´ë¸”ê°„ì— ë¦´ë ˆì´ì…˜ì„ ì„¤ì •í•˜ë ¤ê³  í•œë‹¤.
--- auth.authidì™€ book.authid ì— auth_book_fk ë¼ëŠ” ì´ë¦„ì˜ ì™¸ëž˜í‚¤ë¥¼ ì„¤ì •í•˜ì‹œì˜¤.
--- ì™¸ëž˜í‚¤ ì„¤ì •ì´ ì•ˆëœë‹¤ë©´ ì™œ ì•ˆë˜ëŠ” ê²ƒì¸ê°€?
--- ì–´ë–»ê²Œ í•˜ë©´ ì™¸ëž˜í‚¤ ì„¤ì • ë¬¸ì œë¥¼ í•´ê²° í•  ìˆ˜ ìžˆì„ ê²ƒì¸ê°€?
+-- auth¿Í book Å×ÀÌºíÀÌ Á¸ÀçÇÑ´Ù. ÀÌ µÎ Å×ÀÌºí°£¿¡ ¸±·¹ÀÌ¼ÇÀ» ¼³Á¤ÇÏ·Á°í ÇÑ´Ù.
+-- auth.authid¿Í book.authid ¿¡ auth_book_fk ¶ó´Â ÀÌ¸§ÀÇ ¿Ü·¡Å°¸¦ ¼³Á¤ÇÏ½Ã¿À.
+-- ¿Ü·¡Å° ¼³Á¤ÀÌ ¾ÈµÈ´Ù¸é ¿Ö ¾ÈµÇ´Â °ÍÀÎ°¡?
+-- ¾î¶»°Ô ÇÏ¸é ¿Ü·¡Å° ¼³Á¤ ¹®Á¦¸¦ ÇØ°á ÇÒ ¼ö ÀÖÀ» °ÍÀÎ°¡?
 -- ######################
 
 
--- joinì„ ì´ìš©í•´ì„œ ë¶€ëª¨.ìžì‹ê´€ê³„ ì„¤ì •ì— ë°©í•´ë˜ëŠ” ë°ì´í„°ë¥¼ ì°¾ìœ¼ì‹œì˜¤.
--- left joinì„ ì´ìš©í•˜ì—¬ ì°¨ì§‘í•© êµ¬í•˜ê¸°. book - auth 
+-- joinÀ» ÀÌ¿ëÇØ¼­ ºÎ¸ð.ÀÚ½Ä°ü°è ¼³Á¤¿¡ ¹æÇØµÇ´Â µ¥ÀÌÅÍ¸¦ Ã£À¸½Ã¿À.
+-- left joinÀ» ÀÌ¿ëÇÏ¿© Â÷ÁýÇÕ ±¸ÇÏ±â. book - auth 
 
--- joinì„ ì´ìš©í•´ì„œ ë¶€ëª¨.ìžì‹ê´€ê³„ ì„¤ì •ì— ë°©í•´ë˜ëŠ” ë°ì´í„°ë¥¼ deleteí•˜ì‹œì˜¤.
+-- joinÀ» ÀÌ¿ëÇØ¼­ ºÎ¸ð.ÀÚ½Ä°ü°è ¼³Á¤¿¡ ¹æÇØµÇ´Â µ¥ÀÌÅÍ¸¦ deleteÇÏ½Ã¿À.
 
--- ì™¸ëž˜í‚¤ ì„¤ì •
+-- ¿Ü·¡Å° ¼³Á¤
 
--- ë¶€ëª¨ í…Œì´ë¸”ì— ë°ì´í„° insert í•˜ê¸°.
+-- ºÎ¸ð Å×ÀÌºí¿¡ µ¥ÀÌÅÍ insert ÇÏ±â.
 
--- ì™¸ëž˜í‚¤ ì„¤ì •
+-- ¿Ü·¡Å° ¼³Á¤
 
--- joinì„ ì´ìš©í•´ì„œ ë¶€ëª¨.ìžì‹ê´€ê³„ ì„¤ì •ì— ë°©í•´ë˜ëŠ” ë°ì´í„°ë¥¼ ì°¾ìœ¼ì‹œì˜¤.
--- left joinì„ ì´ìš©í•˜ì—¬ ì°¨ì§‘í•© êµ¬í•˜ê¸°. book - auth 
+-- joinÀ» ÀÌ¿ëÇØ¼­ ºÎ¸ð.ÀÚ½Ä°ü°è ¼³Á¤¿¡ ¹æÇØµÇ´Â µ¥ÀÌÅÍ¸¦ Ã£À¸½Ã¿À.
+-- left joinÀ» ÀÌ¿ëÇÏ¿© Â÷ÁýÇÕ ±¸ÇÏ±â. book - auth 
   
   

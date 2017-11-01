@@ -74,8 +74,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee [name=" + name + ", address=" + address + ", salary="
-                + salary + ", rrn=" + rrn + "]";
+        return "직원정보- 이름: " + name + " 주소:" + address + " 월급:"
+                + salary + " 주민번호:" + rrn ;
     }
     
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TestProduct {
     static Scanner key    = new Scanner(System.in);
     static int     roomid = 0;
-   
+    
     public static void main(String[] args) {
         // 배열을 만들다
         Product[] pr = new Product[10];
@@ -13,7 +13,7 @@ public class TestProduct {
         pr[0] = new Book();
         pr[1] = new CompatDisc();
         pr[2] = new ConversationBook();
- 
+        
         for (;;) {
             // 상품 추가 메뉴 출력
             System.out.print("상품 추가(1), 모든 상품 조회(2), 끝내기(3) >>");
@@ -59,8 +59,7 @@ public class TestProduct {
             
             pr[roomid] = new Book();
             roomid += 1;
-        } 
-        else if (menu == 2) {
+        } else if (menu == 2) {
             CompatDisc cd = new CompatDisc();
             System.out.print("상품설명>> ");
             cd.set상품설명(key.next());
@@ -75,9 +74,8 @@ public class TestProduct {
             
             pr[roomid] = cd;
             roomid += 1;
-        } 
-        else if (menu == 3) {
-            ConversationBook cbook =new ConversationBook();
+        } else if (menu == 3) {
+            ConversationBook cbook = new ConversationBook();
             System.out.print("상품설명>> ");
             cbook.set상품설명(key.next());
             System.out.print("생산자>> ");
@@ -95,8 +93,7 @@ public class TestProduct {
             
             pr[roomid] = new ConversationBook();
             roomid += 1;
-        } 
-        else {
+        } else {
             
         }
         
