@@ -7,10 +7,8 @@ public class MannagerTest {
         Scanner key = new Scanner(System.in);
         Mannager[] mg = new Mannager[3];
         Mannager mannager = new Mannager();
-        mg[0] = mannager;
-        mg[1] = mannager;
-        mg[2] = mannager;
         for (int i = 0; i < mg.length; i++) {
+            mg[i] = mannager;
             System.out.print("이름: ");
             String name = key.next();
             mg[i].setName(name);
@@ -30,6 +28,5 @@ public class MannagerTest {
         for (int i = 0; i < mg.length; i++) {
             mannager.test();
         }
-        
     }
 }
