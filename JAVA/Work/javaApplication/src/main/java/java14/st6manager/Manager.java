@@ -6,7 +6,7 @@ public class Manager extends Employee{
     public void test(){
         String info = "name: "+ super.getName();
         info = info + ", address:"+ super.getAddress();
-        info = info + ", salary:"+super.salary;
+        info = info + ", salary:"+super.getSalary();
         info = info + ", rrn:"+super.getRrn();
         info = info + ", bonus:"+this.bonus;
         System.out.println(info);

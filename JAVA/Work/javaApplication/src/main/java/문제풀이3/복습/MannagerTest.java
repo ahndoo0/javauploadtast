@@ -6,9 +6,8 @@ public class MannagerTest {
     public static void main(String[] args) {
         Scanner key = new Scanner(System.in);
         Mannager[] mg = new Mannager[3];
-        Mannager mannager = new Mannager();
         for (int i = 0; i < mg.length; i++) {
-            mg[i] = mannager;
+            mg[i] = new Mannager();
             System.out.print("이름: ");
             String name = key.next();
             mg[i].setName(name);
@@ -25,8 +24,11 @@ public class MannagerTest {
             int bonus = key.nextInt();
             mg[i].setBonus(bonus);
         }
+//        System.out.println(mg[0]);
+//        System.out.println(mg[1]);
+//        System.out.println(mg[2]);
         for (int i = 0; i < mg.length; i++) {
-            mannager.test();
+            mg[i].test();
         }
-    }
+     }
 }

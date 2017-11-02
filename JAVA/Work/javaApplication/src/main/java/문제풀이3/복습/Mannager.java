@@ -23,8 +23,7 @@ public class Mannager extends Employee {
     
     @Override
     public String toString() {
-        return "Mannager [bonus=" + bonus + ", toString()=" + super.toString()
-                + "]";
+        return super.toString() + "보너스: "+this.bonus;
     }
     
     public Mannager() {

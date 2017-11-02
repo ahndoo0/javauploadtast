@@ -33,17 +33,19 @@
 
 
 -- dept01 테이블을 삭제하시오.
-
+drop table dept01;
 -- dept 테이블을 복제해서 dept01 테이블을 생성하시오.
-
-
+create table dept01 as select * from dept;
 -- dept01 테이블에 pkid 컬럼을 추가히고 auto_increment로 설정하시오. 
+alter table dept01 drop primary key;
+alter table dept01 add  pkid number(11,0) primary key  ;
 
 -- dept01 테이블의 인덱스를 출력하는 sql문을 만드시오.
-
+desc index dept01;
 -- dept01 테이블의 dname 컬럼에 인덱스, idx_dname를 생성하시오.
-
-
+create index idx_dname on dept01(dname);
+-- dept01 테이블의 인덱스를 출력하는 sql문을 만드시오.
+SELECT * FROM USER_INDEXES WHERE TABLE_NAME='DEPT01';
 -- dept01에 dname='abc' 값을 갖는 데이터를 2번 insert하여 결과를 확인한다.
 -- 에러가 발생하면 그 이유를 찾아보고 해결책을 제시하시오.
 
