@@ -37,3 +37,20 @@ public class 반평균구하기ArrayList {
 //
 //// 6.list에서 0번 값을 출력하시오.
 // int 첫번째값 = list.get(0);
+
+//List<String> list = new ArrayList<>();  <------생성
+//List<Integer> list = new ArrayList<>(); <------생성
+
+//list.add() <------추가
+//list.add() <------삽입
+//list.get() <------읽기
+//ist.set()  <------수정
+//list.remove() <------삭제
+//list.indexOf() <------검색
+//list.lastIndexOf() <------검색
+//오름: Collections.sort( list ) <------정렬
+//내림: Collections.reverse( list ) <------정렬
+//Collections.shuffle() <------섞기
+//ist.size() <------크기
+//list.indexOf() <------위치찾기
+
