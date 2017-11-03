@@ -6,8 +6,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import 문제풀이.oper;
-
 public class TestOper {
     
  
@@ -23,7 +21,7 @@ public class TestOper {
         Oper op = new Oper(2,4);
         int minus = op.minus();
         assertEquals(-2, minus);
-    }
+    } 
     @Test
     public void testmul(){
         Oper op = new Oper(2,4);
