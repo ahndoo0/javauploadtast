@@ -2,39 +2,37 @@ package java23.jdbc;
 
 import static org.junit.Assert.*;
 
-import java.sql.Date;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestDaoBook {
-    static java.sql.Connection conn = null             ;
-    DaoBook                    dao  = new DaoBook(conn);
+public class TestServiceBook {
+    private static ServiceBook svr=null;
     
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        conn = DBConnect.makeConnection();
-        
-    }
+         svr = new ServiceBook();
+    }    
     
     @Test
     public void testGetCount() throws SQLException {
         ModelBook model = new ModelBook();
-        int resurt = dao.getCount(model);
+        int resurt = svr.getCount(model);
         assertEquals(4, resurt);
     }
     
     @Test
     public void testGetMaxBookid() throws SQLException {
-        int resurt = dao.getMaxBookid();
+        int resurt = svr.getMaxBookid();
         assertEquals(4, resurt);
     }
     
     @Test
     public void testSelectAll() throws SQLException {
-        ResultSet rs = dao.selectAll();
+        ResultSet rs = svr.selectAll();
         rs.next();
         int bookid = rs.getInt("bookid");
         assertEquals(1, bookid);
@@ -44,10 +42,10 @@ public class TestDaoBook {
     }
     
     @Test
-    public void testSelectALike() throws SQLException {
+    public void testSelectLike() throws SQLException {
         ModelBook book = new ModelBook();
         book.setBookname("ja");
-        ResultSet rs = dao.selectLike(book);
+        ResultSet rs = svr.selectLike(book);
         // ResultSet을 이용한 검증
         assertNotNull(rs);
         // assertTrue(rs.getRow()>=1);//ResultSet의 커서를 가르키는 위치
@@ -63,7 +61,7 @@ public class TestDaoBook {
         ModelBook book = new ModelBook();
         book.setBookname("mysql");
         
-        ResultSet rs = dao.selectEqual(book);
+        ResultSet rs = svr.selectEqual(book);
         
         // 인스턴스 검증
         assertNotNull(rs);
@@ -80,17 +78,17 @@ public class TestDaoBook {
         //첫번째 검증 . select * from book where 1=1
         book.setBookid(null);
         book.setBookname("");
-        ResultSet rs =dao.selectDynamic(book);
+        ResultSet rs =svr.selectDynamic(book);
         assertNotNull(rs); //인스턴스 검증 -select * from book where 1=1
         rs.last();
         int rows = rs.getRow();
         //갯수 검증 select count(*) from book where 1=1
-        assertEquals(dao.getCount(book), rows);
+        assertEquals(svr.getCount(book), rows);
         
         //두번째검증
         book.setBookid(1);
         book.setBookname("operating system");
-        rs=dao.selectDynamic(book);
+        rs=svr.selectDynamic(book);
         //인스턴스 검증
         assertNotNull(rs);
         
@@ -107,7 +105,7 @@ public class TestDaoBook {
         //세번째검증 select * from book where 1=1 and bookid=3 and bookname ='java';
         book.setBookid(null);
         book.setBookname("java");
-        rs= dao.selectDynamic(book);
+        rs= svr.selectDynamic(book);
         
         //인스턴스 검증
         assertNotNull(rs);
@@ -123,7 +121,7 @@ public class TestDaoBook {
         //네번째검증 select * from book where 1=1 and bookid=2 bookname ='mysql';
         book.setBookid(2);
         book.setBookname("mysql");
-        rs=dao.selectDynamic(book);
+        rs=svr.selectDynamic(book);
         
         //인스턴스검증
         assertNotNull(rs);
@@ -159,7 +157,7 @@ public class TestDaoBook {
         book.setUse_yn(true);
         book.setAuthid(3);
         
-        int result = dao.insertBook(book);
+        int result = svr.insertBook(book);
         
         // insert검증 :
         // 1 리턴되는 경우 insert성공
@@ -167,7 +165,6 @@ public class TestDaoBook {
         assertEquals(1, result);
         
         //-1 리턴되는 경우 exception 으로 인한 실패 - 보류 
-        
     }
     
     @Test
@@ -179,7 +176,7 @@ public class TestDaoBook {
         setbook.setYear("2016");
         setbook.setPrice(15000);
         
-        int rs = dao.updateBook(wherebook, setbook);
+        int rs = svr.updateBook(wherebook, setbook);
         // update검증 :
         // 1 이상의 값이 리턴되는 경우 update성공
         // 0 값이 리턴되는 경우 update에서는 성공 이나 다름없다 
@@ -191,17 +188,28 @@ public class TestDaoBook {
         ModelBook book = new ModelBook();
         book.setBookname("test");
         
-        int rs = dao.deleteBook(book); //rs ==1
+        int rs = svr.deleteBook(book); //rs ==1
         // delete검증 :
         // 1 이상의 값이 리턴되는 경우 delete성공
         // 0 값이 리턴되는 경우 delete에서는 성공 이나 다름없다 
         assertTrue(rs>=0);
         
         book.setBookname("tset2");
-        rs = dao.deleteBook(book); //rs ==2
+        rs = svr.deleteBook(book); //rs ==2
         // delete검증 :
         // 1 이상의 값이 리턴되는 경우 delete성공
         // 0 값이 리턴되는 경우 delete에서는 성공 이나 다름없다 
         assertTrue(rs>=0);
     }
+    
+    @Test
+    public void testTransCommit() {
+        fail("Not yet implemented");
+    }
+    
+    @Test
+    public void testTransRollback() {
+        fail("Not yet implemented");
+    }
+    
 }

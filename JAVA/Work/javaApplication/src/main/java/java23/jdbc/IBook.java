@@ -10,7 +10,7 @@ public interface IBook {
     
     ResultSet selectAll() throws SQLException;
     
-    ResultSet selectALike(ModelBook book) throws SQLException;
+    ResultSet selectLike(ModelBook book) throws SQLException;
     
     ResultSet selectEqual(ModelBook book) throws SQLException;
     

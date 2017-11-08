@@ -1,65 +1,177 @@
 package java23.jdbc;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ServiceBook implements IServiceBook {
+    private Connection conn= null;
     
+    public ServiceBook() {
+        super();
+        this.conn = DBConnect.makeConnection();
+    }
+
     @Override
     public int getCount(ModelBook Book) throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
+        int rs =-1;
+        try {
+            //트렌잭션 시작
+            conn.setAutoCommit(false);
+            
+            DaoBook dao = new DaoBook(conn);
+            rs = dao.getCount(Book);
+            
+            conn.commit();//트랜젝션 종료
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback(); //트랜젝션 롤백
+        }
+        return rs;
     }
     
     @Override
     public int getMaxBookid() throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
+        int rs =-1;
+        try {
+            //트렌잭션 시작
+            conn.setAutoCommit(false);
+            
+            DaoBook dao = new DaoBook(conn);
+            rs = dao.getMaxBookid();
+            
+            conn.commit();//트랜젝션 종료
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback(); //트랜젝션 롤백
+        }
+        return rs;
     }
     
     @Override
     public ResultSet selectAll() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        ResultSet rs =null;
+        try {
+            //트렌잭션 시작
+            conn.setAutoCommit(false);
+            
+            DaoBook dao = new DaoBook(conn);
+            rs = dao.selectAll();
+            
+            conn.commit();//트랜젝션 종료
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback(); //트랜젝션 롤백
+        }
+        return rs;
     }
     
     @Override
-    public ResultSet selectALike(ModelBook book) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+    public ResultSet selectLike(ModelBook book) throws SQLException {
+        ResultSet rs =null;
+        try {
+            //트렌잭션 시작
+            conn.setAutoCommit(false);
+            
+            DaoBook dao = new DaoBook(conn);
+            rs = dao.selectLike(book);
+            
+            conn.commit();//트랜젝션 종료
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback(); //트랜젝션 롤백
+        }
+        return rs;
     }
-    
+        
     @Override
     public ResultSet selectEqual(ModelBook book) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        ResultSet rs =null;
+        try {
+            //트렌잭션 시작
+            conn.setAutoCommit(false);
+            
+            DaoBook dao = new DaoBook(conn);
+            rs = dao.selectLike(book);
+            
+            conn.commit();//트랜젝션 종료
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback(); //트랜젝션 롤백
+        }
+        return rs;
     }
     
     @Override
     public ResultSet selectDynamic(ModelBook book) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        ResultSet rs =null;
+        try {
+            //트렌잭션 시작
+            conn.setAutoCommit(false);
+            
+            DaoBook dao = new DaoBook(conn);
+            rs = dao.selectLike(book);
+            
+            conn.commit();//트랜젝션 종료
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback(); //트랜젝션 롤백
+        }
+        return rs;
     }
     
     @Override
     public int insertBook(ModelBook book) throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
+        int rs =-1;
+        try {
+            //트렌잭션 시작
+            conn.setAutoCommit(false);
+            
+            DaoBook dao = new DaoBook(conn);
+            rs = dao.insertBook(book);
+            
+            conn.commit();//트랜젝션 종료
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback(); //트랜젝션 롤백
+        }
+        return rs;
     }
-    
     @Override
-    public int updateBook(ModelBook wherebook, ModelBook setbook)
-            throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    
+    public int updateBook(ModelBook wherebook, ModelBook setbook)throws SQLException {
+        int rs =-1;
+        try {
+            //트렌잭션 시작
+            conn.setAutoCommit(false);
+            
+            DaoBook dao = new DaoBook(conn);
+            rs = dao.updateBook(wherebook,setbook);
+            
+            conn.commit();//트랜젝션 종료
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback(); //트랜젝션 롤백
+        }
+        return rs;
+    }    
     @Override
     public int deleteBook(ModelBook book) throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    
+        int rs =-1;
+        try {
+            //트렌잭션 시작
+            conn.setAutoCommit(false);
+            
+            DaoBook dao = new DaoBook(conn);
+            rs = dao.deleteBook(book);
+            
+            conn.commit();//트랜젝션 종료
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback(); //트랜젝션 롤백
+        }
+        return rs;
+    }    
     @Override
     public int transCommit(ModelBook b1, ModelBook b2) {
         // TODO Auto-generated method stub
