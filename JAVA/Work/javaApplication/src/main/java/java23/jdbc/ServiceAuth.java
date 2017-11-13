@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ServiceAuth implements IAuth {
- private java.sql.Connection conn = null;
+ private Connection conn = null;
     
     public ServiceAuth() {
         super();
