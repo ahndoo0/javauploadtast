@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface IAuth {
-int getCount(ModelAuth auth) throws SQLException;
+    int getCount(ModelAuth auth) throws SQLException;
     
     int getMaxauthid() throws SQLException;
     

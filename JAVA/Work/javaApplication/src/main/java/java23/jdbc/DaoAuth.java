@@ -57,45 +57,130 @@ public class DaoAuth implements IAuth {
     
     @Override
     public ResultSet selectAll() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        
+        //SQL 문장 실행  executeQuery(); or executeUpdate(); 두가지가 있다
+        ResultSet rs=null;
+        try {
+            //SQL 문장 은 Mysql에서 쿼리 작성과 같다
+            String query = " select * from auth ";
+            // 문장 객체생성  PreparedStatement 는 Mysql에서 실행 버튼과같은것
+            PreparedStatement stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return rs;
     }
     
     @Override
     public ResultSet selectLike(ModelAuth auth) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        ResultSet rs = null;
+        try {
+            String query =" select * from auth where name like ? ";
+            
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, "%"+auth.getName()+"%");
+            
+             rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return rs;
     }
     
     @Override
     public ResultSet selectEqual(ModelAuth auth) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        
+        ResultSet rs = null;
+        try {
+            String query = " select * from auth where name =? ";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, auth.getName());
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
     }
     
     @Override
     public ResultSet selectDynamic(ModelAuth auth) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        ResultSet rs = null;
+        try {
+            String                         query = " select * from auth ";
+                                           query += " where 1=1 ";
+            if(!auth.getName().isEmpty())  query += " and name =? ";
+            if(!auth.getBirth().isEmpty()) query += " and birth = ? ";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            int c =1 ;
+            if(!auth.getName().isEmpty())stmt.setString(c++, auth.getName());
+            if(!auth.getBirth().isEmpty())stmt.setString(c++, auth.getBirth());
+            
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        }
+        return rs;
     }
     
     @Override
     public int insertauth(ModelAuth auth) throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
+        int rs = 0;
+        try {
+            String qurey = " insert into ";
+                   qurey += " auth(authid,name,birth) ";
+                   qurey += " values(?,?,?) ";
+                   PreparedStatement stmt = conn.prepareStatement(qurey);
+                   stmt.setInt(1, auth.getAuthid());
+                   stmt.setString(2, auth.getName());
+                   stmt.setString(3, auth.getBirth());
+                    rs = stmt.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+               
+        return rs;
     }
     
     @Override
-    public int updateauth(ModelAuth whereauth, ModelAuth setauth)
-            throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
+    public int updateauth(ModelAuth whereauth, ModelAuth setauth)throws SQLException {
+        int rs = 0;
+        try {
+            String qurey = " update auth ";
+                   qurey += " set name =? , birth =? ";
+                   qurey += " where name = ? ";
+                   PreparedStatement stmt = conn.prepareStatement(qurey);
+                   stmt.setString(1, setauth.getName());
+                   stmt.setString(2, setauth.getBirth());
+                   stmt.setString(3, whereauth.getName());
+                   rs = stmt.executeUpdate();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+               return rs;
     }
     
     @Override
     public int deleteauth(ModelAuth auth) throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        int rs = 0;
+        try {
+            String qurey = " delete from auth where name =?";
+             PreparedStatement stmt = conn.prepareStatement(qurey);
+             stmt.setString(1, auth.getName());
+             rs = stmt.executeUpdate();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+         
+        return rs;
     }
     
 }

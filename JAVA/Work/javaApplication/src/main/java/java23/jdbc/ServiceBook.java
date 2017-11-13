@@ -93,7 +93,7 @@ public class ServiceBook implements IServiceBook {
             conn.setAutoCommit(false);
             
             DaoBook dao = new DaoBook(conn);
-            rs = dao.selectLike(book);
+            rs = dao.selectEqual(book);
             
             conn.commit();//트랜젝션 종료
         } catch (SQLException e) {
@@ -111,7 +111,7 @@ public class ServiceBook implements IServiceBook {
             conn.setAutoCommit(false);
             
             DaoBook dao = new DaoBook(conn);
-            rs = dao.selectLike(book);
+            rs = dao.selectDynamic(book);
             
             conn.commit();//트랜젝션 종료
         } catch (SQLException e) {

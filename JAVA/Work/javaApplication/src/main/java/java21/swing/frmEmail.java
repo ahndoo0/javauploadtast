@@ -12,17 +12,19 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 public class frmEmail extends JFrame {
     
     private JPanel contentPane;
     private JTextField textEmail;
-    private JTextField textaddEmail;
     private JTextField textname;
     private JTextField textjob;
     private JTextField textid;
+    private JTextArea textadd;
     
     /**
      * Launch the application.
@@ -54,6 +56,11 @@ public class frmEmail extends JFrame {
         JButton btnNewButton = new JButton("OK");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                String pane = "이름: "+textname.getText()+"\n"+"아이디: "+textid.getText()+"\n"+
+                        "직업: "+textjob.getText()+"\n"+"이메일: "+textadd.getText();
+                JOptionPane.showMessageDialog(null, pane, "정보", JOptionPane.PLAIN_MESSAGE);
+
+                
             }
         });
         btnNewButton.setBounds(211, 402, 97, 49);
@@ -80,8 +87,8 @@ public class frmEmail extends JFrame {
         JButton btnNewButton_3 = new JButton("Add");
         btnNewButton_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String text = textaddEmail.getText()+textEmail.getText();
-                textaddEmail.setText(text);
+                String text = textadd.getText()+textEmail.getText()+"\n";
+                textadd.setText(text);
             }
         });
         btnNewButton_3.setBounds(302, 24, 97, 41);
@@ -98,11 +105,6 @@ public class frmEmail extends JFrame {
         JButton btnNewButton_4 = new JButton("Remove");
         btnNewButton_4.setBounds(302, 115, 97, 23);
         panel.add(btnNewButton_4);
-        
-        textaddEmail = new JTextField();
-        textaddEmail.setBounds(12, 65, 278, 106);
-        panel.add(textaddEmail);
-        textaddEmail.setColumns(10);
         
         textEmail = new JTextField();
         textEmail.setBounds(95, 34, 195, 21);
@@ -132,6 +134,10 @@ public class frmEmail extends JFrame {
         JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Custom");
         rdbtnNewRadioButton_2.setBounds(200, 197, 121, 23);
         panel.add(rdbtnNewRadioButton_2);
+        
+        textadd = new JTextArea();
+        textadd.setBounds(12, 65, 278, 96);
+        panel.add(textadd);
         
         JPanel panel_1 = new JPanel();
         panel_1.setBounds(12, 24, 410, 112);
