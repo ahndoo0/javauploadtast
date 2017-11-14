@@ -6,9 +6,20 @@ public class PhoneInfo {
     private String birthday="";
     
     
-    
+    public void showPoneInfo(){
+        System.out.println("name: "+this.name);
+        System.out.println("Phone: "+this.phoneNumber);
+        System.out.println("birth: "+this.birthday);
+    }
     public PhoneInfo() {
         super();
+    }
+    
+    public PhoneInfo(String name, String phoneNumber, String birthday) {
+        super();
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.birthday = birthday;
     }
     public String getName() {
         return name;
