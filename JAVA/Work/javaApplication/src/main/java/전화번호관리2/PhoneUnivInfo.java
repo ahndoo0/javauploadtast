@@ -14,6 +14,7 @@ public class PhoneUnivInfo extends PhoneInfo {
         super();
     }
 
+   
     public PhoneUnivInfo(String name, String phoneNumber, String major,
             int year) {
         super(name, phoneNumber);
