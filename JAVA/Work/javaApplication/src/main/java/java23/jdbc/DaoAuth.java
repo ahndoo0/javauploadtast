@@ -105,6 +105,7 @@ public class DaoAuth implements IAuth {
         return rs;
     }
     
+    
     @Override
     public ResultSet selectDynamic(ModelAuth auth) throws SQLException {
         ResultSet rs = null;
