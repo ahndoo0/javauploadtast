@@ -19,8 +19,8 @@ public class TestServiceAuth {
     @Test
     public void testGetCount() throws SQLException {
         ModelAuth auth = new ModelAuth();
-        int re = svr.getCount(auth);
-        assertEquals(3, re);
+        int rs = svr.getCount(auth);
+        assertEquals(3, rs);
     }
     
     @Test
@@ -111,7 +111,7 @@ public class TestServiceAuth {
     @Test
     public void testDeleteauth() throws SQLException {
         ModelAuth auth = new ModelAuth();
-        auth.setName("000");
+        auth.setName("010");
         int re = svr.deleteauth(auth);
         assertEquals(1, re);
     }

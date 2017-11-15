@@ -134,9 +134,10 @@ public class DaoAuth implements IAuth {
                    qurey += " auth(authid,name,birth) ";
                    qurey += " values(?,?,?) ";
                    PreparedStatement stmt = conn.prepareStatement(qurey);
-                   stmt.setInt(1, auth.getAuthid());
-                   stmt.setString(2, auth.getName());
-                   stmt.setString(3, auth.getBirth());
+                   int c =1;
+                   stmt.setInt(c++, auth.getAuthid());
+                   stmt.setString(c++, auth.getName());
+                   stmt.setString(c, auth.getBirth());
                     rs = stmt.executeUpdate();
         } catch (SQLException e) {
 

@@ -60,7 +60,7 @@ public class PhoneBook {
                     회사phon.setCompany(company);
                     System.out.println("데이터 입력이 완료되었습니다.");
                     일반정보.add(new PhoneCompanyInfo(name, phoneNumber, company));
-                }else {
+                } else {
                     System.out.println(선택2 + " 에 해당하는 선택은 존재 하지 않습니다.");
                     System.out.println("메뉴를 처음부터 다시 진행합니다.");
                     continue;
