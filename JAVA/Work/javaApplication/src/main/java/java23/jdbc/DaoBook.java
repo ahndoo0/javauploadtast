@@ -148,7 +148,7 @@ public class DaoBook implements IBook {
     
     @Override
     public int updateBook(ModelBook wherebook, ModelBook setbook) throws SQLException {
-        int rs =0;
+        int rs =-1;
         try {
             String qurey = "update book";
             qurey += " set year =? , price =? ";
