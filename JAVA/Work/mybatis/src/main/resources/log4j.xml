@@ -40,7 +40,7 @@
     
     <!-- Root Logger -->
     <root>
-    <!-- log lecel에는  error , fatal ,info , warn ,debug 등이 있다.-->
+    <!-- log lecel에는  -->
         <priority value="debug" />
         <appender-ref ref="console" />
         <appender-ref ref="rolling" />

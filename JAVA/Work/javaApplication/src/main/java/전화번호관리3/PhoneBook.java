@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.util.*;
 
 public class PhoneBook {
-    private static Connection conn=DBConnect.makeConnection();
-    private static DaoPhoneinfo 일반 = new DaoPhoneinfo(conn);
-    private static DaoPhoneCompanyInfo 회사 =  new DaoPhoneCompanyInfo(conn);
+    private static Connection          conn = DBConnect.makeConnection();
+    private static DaoPhoneinfo        일반   = new DaoPhoneinfo(conn);
+    private static DaoPhoneCompanyInfo 회사   = new DaoPhoneCompanyInfo(conn);
+    
     public static void main(String[] args) throws Exception {
         Scanner key = new Scanner(System.in);
         ModelPhoneinfo 일반phon = new ModelPhoneinfo();
@@ -30,7 +31,7 @@ public class PhoneBook {
                 int 선택2 = key.nextInt();
                 if (선택2 == 1) {
                     System.out.print("ID: ");
-                    Integer ID =key.nextInt();
+                    Integer ID = key.nextInt();
                     일반phon.setPhoneid(ID);
                     System.out.print("이름: ");
                     String name = key.next();
@@ -39,12 +40,12 @@ public class PhoneBook {
                     String phoneNumber = key.next();
                     일반phon.setPhoneNumber(phoneNumber);
                     System.out.println("데이터 입력이 완료되었습니다.");
-                    일반정보.add(new ModelPhoneinfo(ID,name, phoneNumber));
+                    일반정보.add(new ModelPhoneinfo(ID, name, phoneNumber));
                     일반.insertphoneinfo(일반phon);
                     
                 } else if (선택2 == 2) {
                     System.out.print("ID: ");
-                    Integer ID =key.nextInt();
+                    Integer ID = key.nextInt();
                     일반phon.setPhoneid(ID);
                     System.out.print("이름: ");
                     String name = key.next();
@@ -59,11 +60,12 @@ public class PhoneBook {
                     int year = key.nextInt();
                     대학phon.setYear(year);
                     System.out.println("데이터 입력이 완료되었습니다.");
-                    일반정보.add(new PhoneUnivInfo(ID,name, phoneNumber, major, year));
+                    일반정보.add(new PhoneUnivInfo(ID, name, phoneNumber, major,
+                            year));
                     
                 } else if (선택2 == 3) {
                     System.out.print("ID: ");
-                    Integer ID =key.nextInt();
+                    Integer ID = key.nextInt();
                     일반phon.setPhoneid(ID);
                     System.out.print("이름: ");
                     String name = key.next();
@@ -75,7 +77,8 @@ public class PhoneBook {
                     String company = key.next();
                     회사phon.setCompany(company);
                     System.out.println("데이터 입력이 완료되었습니다.");
-                    일반정보.add(new ModelPhoneCompanyInfo(ID,name,phoneNumber,company));
+                    일반정보.add(new ModelPhoneCompanyInfo(ID, name, phoneNumber,
+                            company));
                     회사.insertphoneinfo(회사phon);
                 } else {
                     System.out.println(선택2 + " 에 해당하는 선택은 존재 하지 않습니다.");
