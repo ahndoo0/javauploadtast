@@ -1,6 +1,6 @@
 package 전화번호관리3;
 
-public class PhoneUnivInfo extends ModelPhoneinfo {
+public class ModelPhoneUnivInfo extends ModelPhoneinfo {
     private String major = "";
     private int    year  = 0;
     
@@ -11,13 +11,13 @@ public class PhoneUnivInfo extends ModelPhoneinfo {
         System.out.println("학년: " + this.year);
     }
     
-    public PhoneUnivInfo() {
+    public ModelPhoneUnivInfo() {
         super();
     }
     
     
     
-    public PhoneUnivInfo(Integer phoneid, String name, String phoneNumber,
+    public ModelPhoneUnivInfo(Integer phoneid, String name, String phoneNumber,
             String major, int year) {
         super(phoneid, name, phoneNumber);
         this.major = major;

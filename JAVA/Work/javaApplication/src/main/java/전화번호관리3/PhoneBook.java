@@ -7,13 +7,14 @@ public class PhoneBook {
     private static Connection          conn = DBConnect.makeConnection();
     private static DaoPhoneinfo        일반   = new DaoPhoneinfo(conn);
     private static DaoPhoneCompanyInfo 회사   = new DaoPhoneCompanyInfo(conn);
+    private static ModelPhoneinfo 일반phon = null;
     
     public static void main(String[] args) throws Exception {
         Scanner key = new Scanner(System.in);
-        ModelPhoneinfo 일반phon = new ModelPhoneinfo();
+
         ModelPhoneCompanyInfo 회사phon = new ModelPhoneCompanyInfo();
-        PhoneUnivInfo 대학phon = new PhoneUnivInfo();
-        List<ModelPhoneinfo> 일반정보 = new ArrayList<>();
+        ModelPhoneUnivInfo 대학phon = new ModelPhoneUnivInfo();
+        List<ModelPhoneinfo> 일반정보 = null;
         
         for (;;) {
             System.out.println("선택하세요..");
@@ -25,11 +26,12 @@ public class PhoneBook {
             
             int 선택 = key.nextInt();
             if (선택 == 1) {
+                일반정보 = new ArrayList<ModelPhoneinfo>();
                 System.out.println("데이터 입력을 시작합니다..");
                 System.out.println("1.일반 2.대학 3.회사");
                 System.out.print("선택: ");
                 int 선택2 = key.nextInt();
-                if (선택2 == 1) {
+                if (선택2 == 1) { 
                     System.out.print("ID: ");
                     Integer ID = key.nextInt();
                     일반phon.setPhoneid(ID);
@@ -60,7 +62,7 @@ public class PhoneBook {
                     int year = key.nextInt();
                     대학phon.setYear(year);
                     System.out.println("데이터 입력이 완료되었습니다.");
-                    일반정보.add(new PhoneUnivInfo(ID, name, phoneNumber, major,
+                    일반정보.add(new ModelPhoneUnivInfo(ID, name, phoneNumber, major,
                             year));
                     
                 } else if (선택2 == 3) {
@@ -87,9 +89,13 @@ public class PhoneBook {
                 }
                 
             } else if (2 == 선택) {
+                일반정보 = new ArrayList<ModelPhoneinfo>();
+                일반phon = new ModelPhoneinfo();
                 System.out.println("데이터 검색을 시작합니다..");
                 System.out.print("이름: ");
                 String 검색 = key.next();
+                일반phon.setName(검색); 
+                일반.selectEqual(일반phon);
                 int index = -1;
                 for (int i = 0; i < 일반정보.size(); i++) {
                     if (일반정보.get(i).getName().equals(검색)) {
