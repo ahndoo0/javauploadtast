@@ -13,7 +13,7 @@ public class PhoneBook {
     private static ModelPhone   phon       = null;
     private static ModelCompany company    = null;
     private static ModelUniv    univ       = null;
-    
+    private static ServicePhone sphone = new ServicePhone(conn);
     public static void main(String[] args) throws SQLException {
         Scanner key = new Scanner(System.in);
         
@@ -95,11 +95,10 @@ public class PhoneBook {
                 System.out.println("데이터 검색을 시작합니다..");
                 System.out.print("이름: ");
                 String 검색 = key.next();
-                
+                ResultSet rs = sphone.selectname(검색);
                 if (검색.equals(phon.getName())) {
                     phon = new ModelPhone();
                     phon.setName(검색);
-                    ResultSet rs = daophone.selectEqual(phon);
                     rs.next();
                     String name = rs.getString("name");
                     System.out.println("일반정보\n" + "ID: " + rs.getInt("phoneid"));

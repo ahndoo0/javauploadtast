@@ -2,15 +2,20 @@ package java24.mybatis;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
+import org.apache.ibatis.scripting.xmltags.WhereSqlNode;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java24.mybatis.inf.IServiceBook;
+import java24.mybatis.model.ModelBook;
 import java24.mybatis.svr.ServiceBook;
 
 public class TestServiceBook {
-    private static ServiceBook service = null;
+    private static IServiceBook service = null;
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         
@@ -21,33 +26,60 @@ public class TestServiceBook {
     }
     
     @Test
-    public void testGetCount() {
-        fail("Not yet implemented");
+    public void testGetCount() throws Exception {
+        ModelBook book = new ModelBook();
+        int rs = service.getCount(book);
+        assertEquals(4, rs);
     }
     
     @Test
-    public void testGetMaxBookid() {
-        fail("Not yet implemented");
+    public void testGetMaxBookid() throws Exception {
+        ModelBook book = new ModelBook();
+        int rs = service.getMaxBookid();
+        assertEquals(4, rs);
     }
     
     @Test
-    public void testSelectAll() {
-        fail("Not yet implemented");
+    public void testSelectAll() throws Exception {
+        ModelBook book = new ModelBook();
+        List<ModelBook> list =service.selectAll(book);
+        book=list.get(0);
+        assertEquals("operating system", book.getBookname());
     }
     
     @Test
-    public void testSelectLike() {
-        fail("Not yet implemented");
+    public void testSelectLike() throws Exception {
+        ModelBook book = new ModelBook();
+        book.setBookname("%my%");
+        List<ModelBook> list = service.selectLike(book);
+        book = list.get(0);
+        assertEquals("mysql", book.getBookname());
+        
     }
     
     @Test
-    public void testSelectEqual() {
-        fail("Not yet implemented");
+    public void testSelectEqual() throws Exception {
+        ModelBook book = new ModelBook();
+        book.setBookid(1);
+        List<ModelBook>list = service.selectEqual(book);
+        book=list.get(0);
+         
+        assertSame(1,book.getBookid());
     }
     
     @Test
-    public void testInsertBook() {
-        fail("Not yet implemented");
+    public void testInsertBook() throws Exception {
+        java.sql.Date date = java.sql.Date.valueOf("2017-11-22");
+        ModelBook book = new ModelBook();
+        book.setAuthid(5);
+        book.setBookname("노원");
+        book.setDtm(date);
+        book.setPrice(35000);
+        book.setPublisher("더조은");
+        book.setUse_yn(true);
+        
+        int rs =service.insertBook(book);
+        assertEquals(5, rs);
     }
     
     @Test
@@ -56,13 +88,24 @@ public class TestServiceBook {
     }
     
     @Test
-    public void testUpdateBook() {
-        fail("Not yet implemented");
+    public void testUpdateBook() throws Exception {
+        ModelBook wherebook = new ModelBook();
+        wherebook.setBookname("이영규");
+        
+        ModelBook setbook = new ModelBook();
+        setbook.setBookid(4);
+        setbook.setBookname("이영규");
+        setbook.setPrice(4);
+        int rs = service.updateBook(wherebook, setbook);
+        assertTrue(rs>=1);
     }
     
     @Test
-    public void testDeleteBook() {
-        fail("Not yet implemented");
+    public void testDeleteBook() throws Exception {
+        ModelBook book = new ModelBook();
+        book.setBookname("이영규");
+        int rs =service.deleteBook(book);
+        assertTrue(rs>=0);
     }
     
     @Test
