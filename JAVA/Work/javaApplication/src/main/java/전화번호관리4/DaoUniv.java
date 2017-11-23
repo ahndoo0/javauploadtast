@@ -17,9 +17,10 @@ public class DaoUniv implements IUniv {
     public ResultSet selectEqual(ModelUniv univ) throws SQLException {
         ResultSet rs = null;
         try {
-            String query = " select * from univ where name =? ";
+            String query = " select * from univ where 1=1 ";
+            if(univ.getName()!=null)query += " name = ? ";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, univ.getName());
+            if(univ.getName()!=null) stmt.setString(1, univ.getName());
             rs = stmt.executeQuery();
         } catch (SQLException e) {
             // TODO Auto-generated catch block

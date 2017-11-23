@@ -18,9 +18,10 @@ public class DaoPhone implements IPhone {
     public ResultSet selectEqual(ModelPhone phone) throws SQLException {
         ResultSet rs = null;
         try {
-            String query = " select * from phone where name =? ";
+            String query = " select * from phone where 1=1 ";
+            if(phone.getName()!=null)query +=  " and name = ? ";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, phone.getName());
+            if(phone.getName()!=null) stmt.setString(1, phone.getName());
             rs = stmt.executeQuery();
         } catch (SQLException e) {
             // TODO Auto-generated catch block

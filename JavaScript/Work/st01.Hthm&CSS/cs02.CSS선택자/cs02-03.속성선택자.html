@@ -2,15 +2,28 @@
 <html>
 <head>
     <title>CSS3 Selector Basic Page</title>
+    <style type="text/css">
+        input[type="text"]{ background-color: red;}/* 속성선택자 = 태그[속성명="속성값"]*/
+        input[name="password"]{background-color: blue;}/* 속성선택자 = 태그[속성명="속성값"] */
+        input[value="findme"]{background-color: yellow;}/*속성선택자 = 태그[속성명="속성값"] */
+        input[disabled="disabled"]{background-color: gray;}/*속성선택자= 태그[속성명="속성값"] */
+
+        input {background-color: green;}/*태그선택자 = 태그이름*/
+
+        /* input 태그에 커서가 위치하는 경우에
+          background-color 속성에 orange 키워드를 적용합니다.
+        */
+        input:focus {background-color:  orange;}
+    </style>
 </head>
 <body>
     <input type="text" />
     <input name="password" />
     <input value="findme" />
 
-    <h2>사용 가능</h2>
+    <h2>사용 가능(input기능) 속성선택자는 사용불가능</h2>
     <input />
-    <h2>사용 불가능</h2>
+    <h2>사용 불가능(input기능) 속성선택자는 사용가능</h2>
     <input disabled="disabled"/>
 </body>
 </html>

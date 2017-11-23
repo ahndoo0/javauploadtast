@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>CSS3 Selector Basic Page</title>
+    <style type="text/css">
+        #header {background-color: red; width: 100%;}
+        #wrap {}
+        #aside {width:20%; display: inline-block; float: left; background-color: blue;}
+        #content {width: 80%; display: inline-block; float: left; background-color: green;}
+        /* display: inline-block = 줄바꿈이 되지 않는다. ,
+          display: block = 가로 길이가 기본적으로 100%이며 줄바꿈이되어보인다.
+          float: float = 왼쪽으로 붙여서 하겟다.
+        */
+    </style>
 </head>
 <body>
+    <!-- div = 기본block으로 성정된다 .-->
     <div id="header"><h2>#header 태그</h2></div>
     <div id="wrap">
         <div id="aside"><h2>#aside 태그</h2></div>

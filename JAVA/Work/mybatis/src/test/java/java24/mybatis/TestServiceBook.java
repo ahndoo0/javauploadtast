@@ -41,7 +41,7 @@ public class TestServiceBook {
     
     @Test
     public void testSelectAll() throws Exception {
-        ModelBook book = new ModelBook();
+        ModelBook book = null;
         List<ModelBook> list =service.selectAll(book);
         book=list.get(0);
         assertEquals("operating system", book.getBookname());
@@ -55,16 +55,39 @@ public class TestServiceBook {
         book = list.get(0);
         assertEquals("mysql", book.getBookname());
         
+        
     }
     
     @Test
     public void testSelectEqual() throws Exception {
         ModelBook book = new ModelBook();
+        List<ModelBook>list=null;
+        
+        
         book.setBookid(1);
-        List<ModelBook>list = service.selectEqual(book);
-        book=list.get(0);
-         
+        list = service.selectEqual(book);
+        book=list.get(0);         
         assertSame(1,book.getBookid());
+        
+        book = new ModelBook();
+        
+        book.setBookname("mysql");
+        list = service.selectEqual(book);
+        book=list.get(0);   
+        assertEquals("mysql", book.getBookname());
+        
+        book = new ModelBook();
+        book.setPublisher("wiley");
+        list = service.selectEqual(book);
+        book= list.get(0);
+        assertEquals("wiley", book.getPublisher());
+        
+        book= new ModelBook();
+        book.setPrice(30700);
+        list = service.selectEqual(book);
+        book= list.get(0);
+        assertEquals("operating system", book.getBookname());
+        
     }
     
     @Test

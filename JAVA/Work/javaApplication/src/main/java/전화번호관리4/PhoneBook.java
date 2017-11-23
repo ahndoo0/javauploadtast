@@ -13,7 +13,8 @@ public class PhoneBook {
     private static ModelPhone   phon       = null;
     private static ModelCompany company    = null;
     private static ModelUniv    univ       = null;
-    private static ServicePhone sphone = new ServicePhone(conn);
+    private static ServicePhone sphone     =null;
+    
     public static void main(String[] args) throws SQLException {
         Scanner key = new Scanner(System.in);
         
@@ -45,7 +46,6 @@ public class PhoneBook {
                     String phoneNumber = key.next();
                     phon.setPhoneNumber(phoneNumber);
                     System.out.println("데이터 입력이 완료되었습니다.");
-                    info.add(new ModelPhone(id, name, phoneNumber));
                     daophone.insertphone(phon);
                     
                 } else if (선택2 == 2) {
@@ -66,7 +66,6 @@ public class PhoneBook {
                     int year = key.nextInt();
                     univ.setYear(year);
                     System.out.println("데이터 입력이 완료되었습니다.");
-                    info.add(new ModelUniv(id, name, phoneNumber, major, year));
                     daouniv.insertBook(univ);
                 } else if (선택2 == 3) {
                     company = new ModelCompany();
@@ -83,7 +82,6 @@ public class PhoneBook {
                     String companys = key.next();
                     company.setCompanys(companys);
                     System.out.println("데이터 입력이 완료되었습니다.");
-                    info.add(new ModelCompany(id, name, phoneNumber, companys));
                     daocompany.insertCompany(company);
                 } else {
                     System.out.println(선택2 + " 에 해당하는 선택은 존재 하지 않습니다.");
@@ -92,85 +90,18 @@ public class PhoneBook {
                 }
                 
             } else if (2 == 선택) {
+                sphone = new ServicePhone(conn);
                 System.out.println("데이터 검색을 시작합니다..");
                 System.out.print("이름: ");
                 String 검색 = key.next();
-                ResultSet rs = sphone.selectname(검색);
-                if (검색.equals(phon.getName())) {
-                    phon = new ModelPhone();
-                    phon.setName(검색);
-                    rs.next();
-                    String name = rs.getString("name");
-                    System.out.println("일반정보\n" + "ID: " + rs.getInt("phoneid"));
-                    System.out.println("이름: " + rs.getString("name"));
-                    System.out.println("휴대번호: " + rs.getString("phoneNumber"));
-                    System.out.println("데이터 검색이 완료되었습니다.");
-                } else if (검색.equals(univ.getName())) {
-                    univ = new ModelUniv();
-                    univ.setName(검색);
-                    ResultSet rs2 = daouniv.selectEqual(univ);
-                    rs2.next();
-                    String name2 = rs2.getString("name");
-                    System.out.println(rs2.getInt("univid"));
-                    System.out.println(rs2.getString("name"));
-                    System.out.println(rs2.getString("phoneNumber"));
-                    System.out.println(rs2.getString("major"));
-                    System.out.println(rs2.getInt("year"));
-                    System.out.println("데이터 검색이 완료되었습니다.");
-                } else if (검색.equals(company.getName())) {
-                    
-                    company = new ModelCompany();
-                    company.setName(검색);
-                    ResultSet rs3 = daocompany.selectEqual(company);
-                    rs3.next();
-                    String name3 = rs3.getString("name");
-                    System.out.println(rs3.getInt("companyid"));
-                    System.out.println(rs3.getString("name"));
-                    System.out.println(rs3.getString("phoneNumber"));
-                    System.out.println(rs3.getString("companys"));
-                    System.out.println("데이터 검색이 완료되었습니다.");
-                }
-                else{
-                    
-                }
-                // int index = -1;
-                // for (int i = 0; i < info.size(); i++) {
-                // if (info.get(i).getName().equals(검색)) {
-                // index = i;
-                // break;
-                // }
-                // }
-                // if (index == -1) {
-                // System.out.println("검색결과가 없습니다.");
-                // } else {
-                // info.get(index).일반();
-                // System.out.println("데이터 검색이 완료되었습니다.");
-                // }
-            } else if (3 == 선택) {
+                ResultSet rs =sphone.selectname(검색);
+                
+            }     
+            else if (3 == 선택) {
                 System.out.println("데이터를 삭제 합니다.");
                 System.out.print("이름: ");
                 String 삭제 = key.next();
                 
-                // int index = -1;
-                // for (int i = 0; i < info.size(); i++) {
-                // if (info.get(i).getName().equals(삭제)) {
-                // index = i;
-                // break;
-                // }
-                // }
-                // if (index == -1) {
-                // System.out.println("검색 결과가 없습니다.");
-                // } else {
-                // info.remove(index);
-                // System.out.println("데이터 삭제가 완료되었습니다.");
-                // }
-                // } else if (4 == 선택) {
-                // System.out.println("종료합니다.");
-                // break;
-                // } else {
-                // System.out.println(선택 + " 에 해당하는 선택은 존재 하지 않습니다.");
-                // System.out.println("메뉴를 처음부터 다시 진행합니다.");
-                // continue;
             }
         }
     }

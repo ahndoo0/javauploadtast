@@ -5,15 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ServicePhone {
-    private Connection conn = null;
+    private Connection conn =  DBConnect.makeConnection();
     
     public ServicePhone(Connection conn) {
         super();
         this.conn = DBConnect.makeConnection();
     }
-    private DaoPhone   dphone ;
-    private DaoUniv    duniv;
-    private DaoCompany dcompany;
+    private DaoPhone   dphone = new DaoPhone(conn);
+    private DaoUniv    duniv = new DaoUniv(conn);
+    private DaoCompany dcompany = new DaoCompany(conn);
     
     public ResultSet selectname(String name) throws SQLException{
      ModelPhone phone = new ModelPhone();
@@ -22,9 +22,12 @@ public class ServicePhone {
      company.setName(name);
      ModelUniv univ = new ModelUniv();
      univ.setName(name);
-        ResultSet rphone = dphone.selectEqual(phone);
-        ResultSet runiv = duniv.selectEqual(univ);
-        ResultSet rcompany = dcompany.selectEqual(company);
+        ResultSet rphone = null;
+        rphone = dphone.selectEqual(phone);
+        ResultSet runiv =null; 
+        runiv=duniv.selectEqual(univ);
+        ResultSet rcompany=null;
+        rcompany= dcompany.selectEqual(company);
         if(rphone!=null ){
             return rphone;
         }

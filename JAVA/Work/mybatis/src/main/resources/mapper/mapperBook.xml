@@ -38,14 +38,14 @@
     <insert id="insertBook" parameterType="ModelBook" 
     useGeneratedKeys="true" keyProperty="bookid"> 
     insert into book(  bookname,  publisher,   year,    price,   dtm,  use_yn,    authid )
-           VALUES   (#{bookname},#{publisher},#{year},#{price},#{dtm},#{use_yn},#{authid});
+           VALUES   (#{bookname},#{publisher},#{year},#{price},#{dtm},#{use_yn},#{authid})
     
     </insert>
     
     <insert id="insertMap" parameterType="java.util.Map"
     useGeneratedKeys="true" keyProperty="bookid">
     insert into book(  bookname,  dtm,     authid )
-           VALUES   (   #{b1},   #{d1},     #{a1} );
+           VALUES   (   #{b1},   #{d1},     #{a1} )
     </insert>
 
     <update id="updateBook" parameterType="java.util.Map">

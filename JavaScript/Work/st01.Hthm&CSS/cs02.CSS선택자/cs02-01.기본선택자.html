@@ -3,6 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>CSS3 Selector Basic Page</title>
+    <style type="text/css">
+
+    /* 전체선택자 = *
+      태그선택자 = 태그이름
+      아이디선택자 = #
+      클래스 선택자 = .
+      속성선택자 = 태그{속성명="속성값"}
+    */
+
+        * {font-size: 20px;} /*   전체선택자   */
+        h1 {color: red;}   /*   태그선택자   */
+        p {color: blue;}   /*   태그선택자   */
+        #header {background-color: red; color: red;} /* 아이디선택자 */
+        .class {color: pink;}/* 클래스 선택자 */
+        #aside {background-color: blue;}/* 아이디선택자 */
+        #content { background-color: green; }/* 아이디선택자 */
+        .select { color: red; }/* 클래스 선택자 */
+        li {color:green;}/* 태그선택자 */
+    </style>
 </head>
 <body>
     <h1>제목 글자</h1>
