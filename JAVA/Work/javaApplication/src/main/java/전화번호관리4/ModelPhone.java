@@ -1,5 +1,7 @@
 package 전화번호관리4;
 
+import java.sql.ResultSet;
+
 public class ModelPhone {
     private Integer phoneid = null;
     private String name = "";

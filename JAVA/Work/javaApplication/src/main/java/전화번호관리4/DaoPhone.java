@@ -26,6 +26,8 @@ public class DaoPhone implements IPhone {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            
+            
         }
         return rs;
     }

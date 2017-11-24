@@ -18,7 +18,7 @@ public class DaoUniv implements IUniv {
         ResultSet rs = null;
         try {
             String query = " select * from univ where 1=1 ";
-            if(univ.getName()!=null)query += " name = ? ";
+            if(univ.getName()!=null)query += " and name = ? ";
             PreparedStatement stmt = conn.prepareStatement(query);
             if(univ.getName()!=null) stmt.setString(1, univ.getName());
             rs = stmt.executeQuery();

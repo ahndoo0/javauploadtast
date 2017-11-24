@@ -95,7 +95,10 @@ public class PhoneBook {
                 System.out.print("이름: ");
                 String 검색 = key.next();
                 ResultSet rs =sphone.selectname(검색);
+                rs.next();
+                String phonename = rs.getString("phoneNumber");
                 
+                System.out.println(phonename);
             }     
             else if (3 == 선택) {
                 System.out.println("데이터를 삭제 합니다.");

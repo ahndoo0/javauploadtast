@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
+
 public class ServicePhone {
     private Connection conn =  DBConnect.makeConnection();
     
@@ -11,11 +13,12 @@ public class ServicePhone {
         super();
         this.conn = DBConnect.makeConnection();
     }
-    private DaoPhone   dphone = new DaoPhone(conn);
-    private DaoUniv    duniv = new DaoUniv(conn);
-    private DaoCompany dcompany = new DaoCompany(conn);
     
     public ResultSet selectname(String name) throws SQLException{
+     DaoPhone   dphone = new DaoPhone(conn);
+     DaoUniv    duniv = new DaoUniv(conn);
+     DaoCompany dcompany = new DaoCompany(conn);
+     
      ModelPhone phone = new ModelPhone();
      phone.setName(name);
      ModelCompany company = new ModelCompany();

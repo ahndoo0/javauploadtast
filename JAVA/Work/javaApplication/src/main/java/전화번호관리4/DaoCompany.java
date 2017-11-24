@@ -17,8 +17,8 @@ public class DaoCompany implements ICompany {
     public ResultSet selectEqual(ModelCompany company) throws SQLException {
         ResultSet rs = null;
         try {
-            String query = " select * from company where 1+1 ";
-            if(company.getName()!=null)query += " name = ? ";
+            String query = " select * from company where 1=1 ";
+            if(company.getName()!=null)query += " and name = ? ";
             PreparedStatement stmt = conn.prepareStatement(query);
             if(company.getName()!=null)stmt.setString(1, company.getName());
             rs = stmt.executeQuery();
