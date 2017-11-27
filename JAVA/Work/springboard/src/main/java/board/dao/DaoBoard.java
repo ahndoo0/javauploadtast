@@ -132,104 +132,134 @@ public class DaoBoard implements IBoard{
 
     @Override
     public List<ModelArticle> getArticle(int articleno) throws Exception {
-        
-        return null;
+        List<ModelArticle> result =null;
+        result = session.selectOne("mapper.mapperBoard.getArticle", articleno);
+        return result;
     }
 
     @Override
     public int insertArticle(ModelArticle article) throws Exception {
-        // TODO Auto-generated method stub
-        return 0;
+        int result =-1;
+        result = session.insert("mapper.mapperBoard.insertArticle", article);
+        return result;
     }
 
     @Override
     public int updateArticle(ModelArticle updateValue, ModelArticle searchValue)
             throws Exception {
-        // TODO Auto-generated method stub
-        return 0;
+             int result =-1;
+             Map<String, Object> map = new HashMap<>();
+             map.put("searchValue", searchValue);
+             map.put("updateValue", updateValue);
+             result = session.update("mapper.mapperBoard.updateArticle", map);
+        return result;
     }
 
     @Override
     public int deleteArticle(ModelArticle article) throws Exception {
-        // TODO Auto-generated method stub
-        return 0;
+        int result =-1;
+        result = session.delete("mapper.mapperBoard.deleteArticle", article);
+        return result;
     }
 
     @Override
     public int increaseHit(int articleno) throws Exception {
-        // TODO Auto-generated method stub
-        return 0;
+        int result =-1;
+        result = session.insert("mapper.mapperBoard.increaseHit", articleno);
+        return result;
     }
 
     @Override
     public List<ModelArticle> getNextArticle(String boardcd, String articleno,
             String searchWord) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        List<ModelArticle> result =null;
+        Map<String, Object> map = new HashMap<>();
+        map.put("boardcd", boardcd);
+        map.put("articleno", articleno);
+        map.put("searchWord", searchWord);
+        result = session.selectList("mapper.mapperBoard.getNextArticle", map);
+        return result;
     }
 
     @Override
     public List<ModelArticle> getPrevArticle(String boardcd, String articleno,
             String searchWord) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+       List<ModelArticle> result = null;
+       Map<String, Object> map = new HashMap<>();
+       map.put("boardcd", boardcd);
+       map.put("articleno", articleno);
+       map.put("searchWord", searchWord);
+       result = session.selectList("mapper.mapperBoard.getPrevArticle", map);
+        return result;
     }
 
     @Override
     public List<ModelAttachFile> getAttachFile(int attachFileNo)
             throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        List<ModelAttachFile> result =null;
+        result = session.selectOne("mapper.mapperBoard.getAttachFile", attachFileNo);
+        return result;
     }
 
     @Override
     public List<ModelAttachFile> getAttachFileList(int articleno)
             throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        List<ModelAttachFile> result = null;
+        result = session.selectList("mapper.mapperBoard.getAttachFileList", articleno);
+        return result;
     }
 
     @Override
     public int insertAttachFile(ModelAttachFile attachfile) throws Exception {
-        // TODO Auto-generated method stub
-        return 0;
+        int result = -1;
+        result = session.insert("mapper.mapperBoard.insertAttachFile", attachfile);
+        return result;
     }
 
     @Override
     public int deleteAttachFile(ModelAttachFile attachfile) throws Exception {
-        // TODO Auto-generated method stub
-        return 0;
+        int result =-1;
+        result = session.delete("mapper.mapperBoard.deleteAttachFile", attachfile);
+        return result;
     }
 
     @Override
     public List<ModelComments> getComment(int commentNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        List<ModelComments> result = null;
+        result = session.selectOne("mapper.mapperBoard.getComment", commentNo);
+        return result;
     }
 
     @Override
     public List<ModelComments> getCommentList(int articleno) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        List<ModelComments> result = null;
+        result = session.selectList("mapper.mapperBoard.getCommentList", articleno);
+        return result;
     }
 
     @Override
     public int insertComment(ModelComments comments) throws Exception {
-        // TODO Auto-generated method stub
-        return 0;
+        int result = -1;
+        result = session.insert("mapper.mapperBoard.insertComment", comments);
+        return result;
     }
 
     @Override
     public int updateComment(ModelComments updateValue,
             ModelComments searchValue) throws Exception {
-        // TODO Auto-generated method stub
-        return 0;
+        int result = -1; 
+        Map<Object, Object> map = new HashMap<>();
+        map.put("updateValue", updateValue);
+        map.put("searchValue", searchValue);
+        result = session.update("mapper.mapperBoard.updateComment", map);
+        return result;
     }
 
     @Override
     public int deleteComment(ModelComments comments) throws Exception {
-        // TODO Auto-generated method stub
-        return 0;
+        int result = -1;
+        result= session.delete("mapper.mapperBoard.deleteComment", comments);
+        return result;
     }
     
 }
