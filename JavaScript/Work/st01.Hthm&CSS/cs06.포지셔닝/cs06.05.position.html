@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>position</title>
+    <style type="text/css">
+    div {}
+    #pos1 {background-color: lightblue;
+        position: static; /* 요소를 문서의 흐름에 맞춰 배치 */
+    }
+    #pos2 {background-color: lightgreen;
+        position: relative; /* 이전요소에 자연스럽게 연력하여 배치 */
+        left: 10px; top:10px;
+    }
+    #pos3 {background-color: lightyellow;
+        position: absolute;  /* 원하는 위치를 지정하여 배치*/
+        left: 0px;
+        top: 100px
+    }
+    </style>
+</head>
+<body>
+    <div id="pos1">첫번쨰</div>
+    <div id="pos2">두번쨰</div>
+    <div id="pos3">세번쨰</div>
+
+</body>
+</html>

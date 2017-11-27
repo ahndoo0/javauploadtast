@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import board.inf.IServiceUser;
+import board.model.ModelUser;
 import board.service.ServiceUser;
 
 public class TestServiceUser {
@@ -20,8 +21,12 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testInsertUser() {
-        fail("Not yet implemented");
+    public void testInsertUser() throws Exception {
+        ModelUser user = new ModelUser();
+        user.setEmail("eh_127@naver.com");
+        
+        int rs = service.insertUser(user);
+        assertEquals(1, rs);
     }
     
     @Test
@@ -35,8 +40,14 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testUpdateUserInfo() {
-        fail("Not yet implemented");
+    public void testUpdateUserInfo() throws Exception {
+        ModelUser whereuser = new ModelUser();
+        whereuser.setEmail("eh_127@naver.com");
+        ModelUser updateValue = new ModelUser();
+        updateValue.setInsertUID("010");
+        updateValue.setName("이영규");
+        int rs = service.updateUserInfo(updateValue, whereuser);
+        assertTrue(rs>=1);
     }
     
     @Test

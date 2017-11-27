@@ -65,11 +65,11 @@ public class ServiceUser implements IServiceUser{
     }
 
     @Override
-    public int updatePasswd(ModelUser newPasswd, ModelUser currentPasswd)
+    public int updatePasswd(String newPasswd, String currentPasswd , String userid)
             throws Exception {
         int result=-1;
         try {
-            result = dao.updatePasswd(newPasswd, currentPasswd);
+            result = dao.updatePasswd(newPasswd, currentPasswd ,userid);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

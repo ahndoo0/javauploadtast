@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>visibility</title>
+    <style type="text/css">
+    img {margin: 0px 20px 0px 20px; border: 1px black solid;}
+
+    #visibility {border:1px red dotted; visibility: hidden;}
+    /* 요소가 감춰짐 visibility 는 그림만 없어지고 영은은 남아잇음.*/
+
+    #display {border:1px red dotted; display: none;}
+    /* 요소가 감춰짐 display의 none는 영역이 없어진다. */
+    </style>
+</head>
+<body>
+    <img src="../images/tomato.jpg">
+    <img src="../images/tomato.jpg" id="visibility">
+    <img src="../images/tomato.jpg" id="display">
+    <img src="../images/tomato.jpg">
+
+</body>
+</html>

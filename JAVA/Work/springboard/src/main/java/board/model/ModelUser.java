@@ -9,7 +9,7 @@ public class ModelUser {
   private String passwd    ="";      //`passwd`     VARCHAR(30) NULL DEFAULT NULL,
   private String name      ="";      //`name`       VARCHAR(30) NULL DEFAULT NULL,
   private String mobile    ="";      //`mobile`     VARCHAR(20) NULL DEFAULT NULL,
-  private Integer retireYN  =null;      //`retireYN`   TINYINT(1) NULL DEFAULT '1',
+  private Boolean retireYN  =null;      //`retireYN`   TINYINT(1) NULL DEFAULT '1',
   private String InsertUID ="";       //`InsertUID`  VARCHAR(40) NULL DEFAULT NULL,
   private Date InsertDT  =null;      //`InsertDT`   DATETIME NULL DEFAULT NULL,
   private String UpdateUID ="";       //`UpdateUID`  VARCHAR(40) NULL DEFAULT NULL,
@@ -22,7 +22,7 @@ public class ModelUser {
 
 
 public ModelUser(Integer userno, String userid, String email, String passwd,
-        String name, String mobile, Integer retireYN, String insertUID,
+        String name, String mobile, Boolean retireYN, String insertUID,
         Date insertDT, String updateUID, Date updateDT) {
     super();
     this.userno = userno;
@@ -99,12 +99,12 @@ public void setMobile(String mobile) {
 }
 
 
-public Integer getRetireYN() {
+public Boolean getRetireYN() {
     return retireYN;
 }
 
 
-public void setRetireYN(Integer retireYN) {
+public void setRetireYN(Boolean retireYN) {
     this.retireYN = retireYN;
 }
 
