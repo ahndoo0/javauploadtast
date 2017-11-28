@@ -78,8 +78,8 @@
             <if test="boardcd != null and boardcd != ''">
             AND boardcd = #{boardcd}
             </if>
-            <if test="boardnm != null and boardnm != ''">
-            AND boardnm LIKE #{searchWord} 
+            <if test="searchWord != null and searchWord != ''">
+            AND boardnm LIKE  #{searchWord} 
             </if>
     </select>
     

@@ -2,6 +2,8 @@ package board.test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -23,20 +25,24 @@ public class TestServiceUser {
     @Test
     public void testInsertUser() throws Exception {
         ModelUser user = new ModelUser();
-        user.setEmail("eh_127@naver.com");
-        
+        user.setName("안도균");
+        user.setUserid("01");
         int rs = service.insertUser(user);
         assertEquals(1, rs);
     }
     
     @Test
-    public void testLogin() {
-        fail("Not yet implemented");
+    public void testLogin() throws Exception {
+        ModelUser user = new ModelUser();
+        user.setUserid("01");
+        user.setPasswd("");
+        List<ModelUser> rs = service.login(user);
+        assertNotNull(rs);
     }
     
     @Test
     public void testLogout() {
-        fail("Not yet implemented");
+        
     }
     
     @Test
@@ -51,28 +57,40 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testUpdatePasswd() {
-        fail("Not yet implemented");
+    public void testUpdatePasswd() throws Exception {
+        int rs = service.updatePasswd("1234","", "");
+        assertEquals(1 ,rs);
     }
     
     @Test
-    public void testDeleteUser() {
-        fail("Not yet implemented");
+    public void testDeleteUser() throws Exception {
+        ModelUser user  = new ModelUser();
+        user.setName("이영규");
+        int rs = service.deleteUser(user);
+        
+        assertTrue(rs>=0);
     }
     
     @Test
-    public void testSelectUserOne() {
-        fail("Not yet implemented");
+    public void testSelectUserOne() throws Exception {
+        ModelUser user = new ModelUser();
+        user.setUserno(2);
+        ModelUser rs = service.selectUserOne(user);
+        assertNotNull(rs);
     }
     
     @Test
-    public void testSelectUserList() {
-        fail("Not yet implemented");
+    public void testSelectUserList() throws Exception {
+        ModelUser user = new ModelUser();
+        List<ModelUser> rs = service.selectUserList(user);
+        assertNotNull(rs);
     }
     
     @Test
-    public void testCheckuserid() {
-        fail("Not yet implemented");
+    public void testCheckuserid() throws Exception {
+        int rs =-1;
+        rs = service.checkuserid("0");
+        assertEquals(1, rs);
     }
     
 }

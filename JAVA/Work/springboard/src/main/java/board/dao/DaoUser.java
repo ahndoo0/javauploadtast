@@ -68,9 +68,9 @@ public class DaoUser implements IUser {
     }
 
     @Override
-    public List<ModelUser> selectUserOne(ModelUser user) throws Exception {
-        List<ModelUser> result=null;
-        result = session.selectList("mapper.mapperUser.selectUserOne", user);
+    public ModelUser selectUserOne(ModelUser user) throws Exception {
+        ModelUser result=null;
+        result = session.selectOne("mapper.mapperUser.selectUserOne", user);
         return result;
     }
 

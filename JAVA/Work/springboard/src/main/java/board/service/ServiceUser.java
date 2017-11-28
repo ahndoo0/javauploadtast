@@ -90,8 +90,8 @@ public class ServiceUser implements IServiceUser{
     }
 
     @Override
-    public List<ModelUser> selectUserOne(ModelUser user) throws Exception {
-        List<ModelUser> result= null;
+    public ModelUser selectUserOne(ModelUser user) throws Exception {
+        ModelUser result= null;
         try {
             result = dao.selectUserOne(user);
         } catch (Exception e) {
