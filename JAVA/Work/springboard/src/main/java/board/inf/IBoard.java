@@ -18,7 +18,7 @@ public interface IBoard {
     List<ModelBoard> getBoardSearch (ModelBoard board)throws Exception;
     int getBoardTotalRecord (String boardcd , String searchWord)throws Exception;
     List<ModelBoard> getBoardPaging (String boardcd, String searchWord,int start, int end )throws Exception;
-    int insertBoardList (ModelBoard board)throws Exception;
+    int insertBoardList (List<ModelBoard> board)throws Exception;
     int getArticleTotalRecord (String boardcd ,String searchWord)throws Exception ; 
     List<ModelArticle> getArticleList ( String boardcd, String searchWord, int start , int end) throws Exception;
     List<ModelArticle> getArticle(int articleno )throws Exception ;
@@ -26,8 +26,8 @@ public interface IBoard {
     int updateArticle (ModelArticle updateValue,ModelArticle searchValue )throws Exception;
     int deleteArticle (ModelArticle article)throws Exception;
     int increaseHit (int articleno) throws Exception;
-    List<ModelArticle> getNextArticle (String boardcd ,String articleno, String searchWord )throws Exception;
-    List<ModelArticle> getPrevArticle(String boardcd ,String articleno, String searchWord ) throws Exception;
+    List<ModelArticle> getNextArticle (String boardcd ,int articleno, String searchWord )throws Exception;
+    List<ModelArticle> getPrevArticle(String boardcd ,int articleno, String searchWord ) throws Exception;
     List<ModelAttachFile> getAttachFile (int attachFileNo )throws Exception;
     List<ModelAttachFile> getAttachFileList (int articleno )throws Exception;
     int insertAttachFile (ModelAttachFile attachfile) throws Exception ;

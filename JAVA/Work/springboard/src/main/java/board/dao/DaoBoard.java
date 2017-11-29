@@ -100,7 +100,7 @@ public class DaoBoard implements IBoard{
     }
 
     @Override
-    public int insertBoardList(ModelBoard board) throws Exception {
+    public int insertBoardList(List<ModelBoard> board) throws Exception {
         int result =-1;
         result = session.insert("mapper.mapperBoard.insertBoardList", board);
         return result;
@@ -133,7 +133,7 @@ public class DaoBoard implements IBoard{
     @Override
     public List<ModelArticle> getArticle(int articleno) throws Exception {
         List<ModelArticle> result =null;
-        result = session.selectOne("mapper.mapperBoard.getArticle", articleno);
+        result = session.selectList("mapper.mapperBoard.getArticle", articleno);
         return result;
     }
 
@@ -170,7 +170,7 @@ public class DaoBoard implements IBoard{
     }
 
     @Override
-    public List<ModelArticle> getNextArticle(String boardcd, String articleno,
+    public List<ModelArticle> getNextArticle(String boardcd, int articleno,
             String searchWord) throws Exception {
         List<ModelArticle> result =null;
         Map<String, Object> map = new HashMap<>();
@@ -182,7 +182,7 @@ public class DaoBoard implements IBoard{
     }
 
     @Override
-    public List<ModelArticle> getPrevArticle(String boardcd, String articleno,
+    public List<ModelArticle> getPrevArticle(String boardcd, int articleno,
             String searchWord) throws Exception {
        List<ModelArticle> result = null;
        Map<String, Object> map = new HashMap<>();
@@ -197,7 +197,7 @@ public class DaoBoard implements IBoard{
     public List<ModelAttachFile> getAttachFile(int attachFileNo)
             throws Exception {
         List<ModelAttachFile> result =null;
-        result = session.selectOne("mapper.mapperBoard.getAttachFile", attachFileNo);
+        result = session.selectList("mapper.mapperBoard.getAttachFile", attachFileNo);
         return result;
     }
 

@@ -132,7 +132,7 @@ public class ServiceBoard implements IServiceBoard{
     }
 
     @Override
-    public int insertBoardList(ModelBoard board) throws Exception {
+    public int insertBoardList(List<ModelBoard> board) throws Exception {
         int reslut=-1;
         try {
             reslut = dao.insertBoardList(board);
@@ -231,7 +231,7 @@ public class ServiceBoard implements IServiceBoard{
     }
 
     @Override
-    public List<ModelArticle> getNextArticle(String boardcd, String articleno,
+    public List<ModelArticle> getNextArticle(String boardcd, int articleno,
             String searchWord) throws Exception {
         List<ModelArticle> result=null;
         try {
@@ -244,7 +244,7 @@ public class ServiceBoard implements IServiceBoard{
     }
 
     @Override
-    public List<ModelArticle> getPrevArticle(String boardcd, String articleno,
+    public List<ModelArticle> getPrevArticle(String boardcd, int articleno,
             String searchWord) throws Exception {
         List<ModelArticle> result=null;
         try {
