@@ -22,20 +22,20 @@
 
 	<update id="updateUserInfo" parameterType="hashmap">
 	        UPDATE TB_USER 
-	           SET email=#{updateValue.email}
-	           ,passwd=#{updateValue.passwd}
-	           ,name=#{updateValue.name}
-	           ,mobile=#{updateValue.mobile} 
-	           ,retireYN=#{updateValue.retireYN}
-	           ,UpdateUID=#{updateValue.UpdateUID} 
-	           ,UpdateDT=#{updateValue.UpdateDT}  
+	           SET email=#{setValue.email}
+	           ,passwd=#{setValue.passwd}
+	           ,name=#{setValue.name}
+	           ,mobile=#{setValue.mobile} 
+	           ,retireYN=#{setValue.retireYN}
+	           ,UpdateUID=#{setValue.UpdateUID} 
+	           ,UpdateDT=#{setValue.UpdateDT}  
            
 	        WHERE 1 = 1
-	        <if test="searchValue.userno != null">
-	            AND userno = #{searchValue.userno}
+	        <if test="whereValue.userno != null">
+	            AND userno = #{whereValue.userno}
 	        </if>
-            <if test="searchValue.userid != null">
-                AND userid = #{searchValue.userid}
+            <if test="whereValue.userid != null">
+                AND userid = #{whereValue.userid}
             </if>
 
 	</update>

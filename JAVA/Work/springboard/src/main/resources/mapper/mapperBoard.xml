@@ -79,7 +79,7 @@
             AND boardcd = #{boardcd}
             </if>
             <if test="searchWord != null and searchWord != ''">
-            AND boardnm LIKE  #{searchWord} 
+            AND boardnm LIKE CONCAT('%', #{searchWord},'%') 
             </if>
     </select>
     
@@ -335,10 +335,10 @@
     <delete id="deleteComment" parameterType="ModelComments">
         DELETE FROM TB_BBS_Comments 
         WHERE 1 = 1 
-          <if test="commentno != null and commentno != ''" >
+          <if test="commentno != null" >
           AND commentno = #{commentno}
           </if>
-          <if test="articleno != null and articleno != ''">
+          <if test="articleno != null">
           AND articleno  = #{articleno}
           </if>
           <if test="email != null and email != ''">
