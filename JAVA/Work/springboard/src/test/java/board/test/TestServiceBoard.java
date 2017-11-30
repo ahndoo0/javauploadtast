@@ -295,7 +295,7 @@ public class TestServiceBoard {
         
         @Test
         public void test23_DeleteAttachFile() {
-            fail("Not yet implemented");
+            
         }
         
         @Test

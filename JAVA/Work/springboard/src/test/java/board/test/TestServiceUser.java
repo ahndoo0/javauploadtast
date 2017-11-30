@@ -16,7 +16,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import board.inf.IServiceUser;
 import board.model.ModelUser;
 import board.service.ServiceUser;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestServiceUser {
     private static IServiceUser service = null;
     
@@ -70,7 +70,7 @@ public class TestServiceUser {
         @Test
         public void test04_UpdateUserInfo() throws Exception {
             ModelUser whereuser = new ModelUser();
-            whereuser.setEmail("eh_127@naver.com");
+            whereuser.setUserid("userid");
             ModelUser updateValue = new ModelUser();
             updateValue.setInsertUID("010");
             updateValue.setName("이영규");
@@ -80,7 +80,7 @@ public class TestServiceUser {
         
         @Test
         public void test05_UpdatePasswd() throws Exception {
-            int rs = service.updatePasswd("1234", "", "");
+            int rs = service.updatePasswd("1234", "", "userid");
             assertEquals(1, rs);
         }
         
@@ -111,7 +111,7 @@ public class TestServiceUser {
         @Test
         public void test09_Checkuserid() throws Exception {
             int rs = -1;
-            rs = service.checkuserid("0");
+            rs = service.checkuserid("userid");
             assertEquals(1, rs);
         }
     
