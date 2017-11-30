@@ -1,5 +1,7 @@
 package board.model;
 
+import java.util.Date;
+
 public class ModelAttachFile {
  private Integer attachfileno=null;          //`attachfileno   INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
  private String filename    ="";          //`filename     VARCHAR(50) NOT NULL,
@@ -8,9 +10,9 @@ public class ModelAttachFile {
  private Integer articleno   =null;          //`articleno    INT(11) NULL DEFAULT NULL,
  private Boolean UseYN       =null;          //`UseYN        TINYINT(1) NULL DEFAULT '1',
  private String InsertUID   ="";          //`InsertUID     VARCHAR(40) NULL DEFAULT NULL,
- private String InsertDT    ="";          //`InsertDT     DATETIME NULL DEFAULT NULL,
+ private Date InsertDT    =null;          //`InsertDT     DATETIME NULL DEFAULT NULL,
  private String UpdateUID   ="";          //`UpdateUID    VARCHAR(40) NULL DEFAULT NULL,
- private String UpdateDT    ="";          //`UpdateDT     DATETIME NULL DEFAULT NULL,
+ private Date UpdateDT    =null;          //`UpdateDT     DATETIME NULL DEFAULT NULL,
  private String imageData   ="";          //`imageData      LONGBLOB NULL,
 @Override
 public String toString() {
@@ -62,10 +64,10 @@ public String getInsertUID() {
 public void setInsertUID(String insertUID) {
     InsertUID = insertUID;
 }
-public String getInsertDT() {
+public Date getInsertDT() {
     return InsertDT;
 }
-public void setInsertDT(String insertDT) {
+public void setInsertDT(Date insertDT) {
     InsertDT = insertDT;
 }
 public String getUpdateUID() {
@@ -74,10 +76,10 @@ public String getUpdateUID() {
 public void setUpdateUID(String updateUID) {
     UpdateUID = updateUID;
 }
-public String getUpdateDT() {
+public Date getUpdateDT() {
     return UpdateDT;
 }
-public void setUpdateDT(String updateDT) {
+public void setUpdateDT(Date updateDT) {
     UpdateDT = updateDT;
 }
 public String getImageData() {
@@ -88,7 +90,7 @@ public void setImageData(String imageData) {
 }
 public ModelAttachFile(Integer attachfileno, String filename, String filetype,
         Integer filesize, Integer articleno, Boolean useYN, String insertUID,
-        String insertDT, String updateUID, String updateDT, String imageData) {
+        Date insertDT, String updateUID, Date updateDT, String imageData) {
     super();
     this.attachfileno = attachfileno;
     this.filename = filename;

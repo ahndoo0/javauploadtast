@@ -284,7 +284,13 @@ public class TestServiceBoard {
         
         @Test
         public void test22_InsertAttachFile() throws Exception {
-         
+         java.util.Date date1 = new java.util.Date(117, 10, 8);
+         ModelAttachFile attachfile = new ModelAttachFile();
+         attachfile.setFilename("이영규");
+         attachfile.setInsertDT(date1);
+         attachfile.setUpdateDT(date1);
+         int result = service.insertAttachFile(attachfile);
+         assertTrue(result>=0);
         }
         
         @Test
