@@ -32,7 +32,7 @@ public interface IBoard {
     List<ModelAttachFile> getAttachFileList (int articleno )throws Exception;
     int insertAttachFile (ModelAttachFile attachfile) throws Exception ;
     int deleteAttachFile (ModelAttachFile attachfile)throws Exception;
-    List<ModelComments> getComment (int commentNo)throws Exception;
+    ModelComments getComment (int commentNo)throws Exception;
     List<ModelComments> getCommentList (int articleno)throws Exception;
     int insertComment (ModelComments comments)throws Exception;
     int updateComment (ModelComments updateValue , ModelComments searchValue)throws Exception;

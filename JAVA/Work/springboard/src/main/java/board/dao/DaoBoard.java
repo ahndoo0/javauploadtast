@@ -224,8 +224,8 @@ public class DaoBoard implements IBoard{
     }
 
     @Override
-    public List<ModelComments> getComment(int commentNo) throws Exception {
-        List<ModelComments> result = null;
+    public ModelComments getComment(int commentNo) throws Exception {
+        ModelComments result = null;
         result = session.selectOne("mapper.mapperBoard.getComment", commentNo);
         return result;
     }

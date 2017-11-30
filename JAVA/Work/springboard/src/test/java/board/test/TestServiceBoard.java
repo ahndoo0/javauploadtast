@@ -20,10 +20,11 @@ import board.inf.IServiceBoard;
 import board.model.ModelArticle;
 import board.model.ModelAttachFile;
 import board.model.ModelBoard;
+import board.model.ModelComments;
 import board.model.ModelUser;
 import board.service.ServiceBoard;
 import org.junit.*;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestServiceBoard {
     private static IServiceBoard service = null;
     
@@ -226,7 +227,7 @@ public class TestServiceBoard {
         public void test16_DeleteArticle() throws Exception {
             int result = -1;
             ModelArticle article = new ModelArticle();
-            article.setArticleno(1);
+            article.setArticleno(3);
             article.setBoardcd("free");
             article.setEmail("aa@aa.co.kr");
             article.setUseYN(true);
@@ -287,6 +288,7 @@ public class TestServiceBoard {
          java.util.Date date1 = new java.util.Date(117, 10, 8);
          ModelAttachFile attachfile = new ModelAttachFile();
          attachfile.setFilename("이영규");
+         attachfile.setArticleno(1);
          attachfile.setInsertDT(date1);
          attachfile.setUpdateDT(date1);
          int result = service.insertAttachFile(attachfile);
@@ -294,33 +296,66 @@ public class TestServiceBoard {
         }
         
         @Test
-        public void test23_DeleteAttachFile() {
+        public void test23_DeleteAttachFile() throws Exception {
+            int result = -1;
+            ModelAttachFile attachfile = new ModelAttachFile();
+            attachfile.setAttachfileno(8);
+            attachfile.setArticleno(1);
+            attachfile.setUseYN(true);
+            result = service.deleteAttachFile(attachfile);
+            assertTrue(result>=0);
+        }
+        
+        @Test
+        public void test24_GetComment() throws Exception {
+            ModelComments com = new ModelComments(); 
+            com = service.getComment(1);
+            assertEquals(1,(int) com.getCommentno());
+            assertEquals(1,(int )com.getCommentno());
+            assertEquals(1,(int)com.getArticleno());
+            assertEquals("aa@aa.co.kr",com.getEmail());
+        }
+        
+        @Test
+        public void test25_GetCommentList() throws Exception {
+            List<ModelComments> com = null; 
+            com = service.getCommentList(1);
+            assertEquals(1  ,com.size());
+            assertEquals(1,(int )com.get(0).getCommentno());
+            assertEquals(1,(int)com.get(0).getArticleno());
+            assertEquals("aa@aa.co.kr",com.get(0).getEmail());
+        }
+        
+        @Test
+        public void test26_InsertComment() throws Exception {
+            int result = -1;
+            ModelComments comments = new ModelComments();
+            comments.setArticleno(2);
+            result = service.insertComment(comments);
+            assertTrue(result>=0);
+        }
+        
+        @Test
+        public void test27_UpdateComment() throws Exception {
+            java.sql.Date date = java.sql.Date.valueOf("2017-11-22");
+            int result = -1;
+            ModelComments searchValue = new ModelComments();
+            ModelComments updateValue = new ModelComments();
+            updateValue.setMemo("comment test");
+            updateValue.setRegdate(date);
+            searchValue.setArticleno(2);
+            result = service.updateComment(updateValue, searchValue);
+            assertTrue(result>=0);
             
         }
         
         @Test
-        public void test24_GetComment() {
-            fail("Not yet implemented");
-        }
-        
-        @Test
-        public void test25_GetCommentList() {
-            fail("Not yet implemented");
-        }
-        
-        @Test
-        public void test26_InsertComment() {
-            fail("Not yet implemented");
-        }
-        
-        @Test
-        public void test27_UpdateComment() {
-            fail("Not yet implemented");
-        }
-        
-        @Test
-        public void test28_DeleteComment() {
-            fail("Not yet implemented");
+        public void test28_DeleteComment() throws Exception {
+            int result =-1;
+            ModelComments comments = new ModelComments();
+            comments.setCommentno(2);
+            result = service.deleteComment(comments);
+            assertTrue(result>=0);
         }
     
 }

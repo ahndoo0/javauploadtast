@@ -197,7 +197,7 @@
     <delete id="deleteArticle" parameterType="ModelArticle">
         DELETE FROM TB_BBS_Article 
          WHERE 1 = 1 
-          <if test="articleno != null and articleno != ''" >
+          <if test="articleno != null" >
           AND articleno = #{articleno}
           </if>
           <if test="boardcd != null and boardcd != ''">
@@ -284,10 +284,10 @@
     <delete id="deleteAttachFile" parameterType="ModelAttachFile">
         DELETE FROM TB_BBS_Attachfile          
          WHERE 1 = 1 
-          <if test="attachfileno != null and attachfileno != ''" >
+          <if test="attachfileno != null " >
           AND attachfileno = #{attachfileno}
           </if>
-          <if test="articleno != null and articleno != ''">
+          <if test="articleno != null">
           AND articleno  = #{articleno}
           </if>
           <if test="UseYN != null">
@@ -321,10 +321,10 @@
              , regdate   = #{updateValue.regdate} 
              , UseYN     = #{updateValue.UseYN  } 
          WHERE  1 = 1 
-              <if test="searchValue.commentno != null and searchValue.commentno != ''" >
+              <if test="searchValue.commentno != null " >
               AND commentno = #{searchValue.commentno}
               </if>
-              <if test="searchValue.articleno != null and searchValue.articleno != ''">
+              <if test="searchValue.articleno != null ">
               AND articleno = #{searchValue.articleno}
               </if>
               <if test="searchValue.email != null and searchValue.email != ''">
