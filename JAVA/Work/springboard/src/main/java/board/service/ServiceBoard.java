@@ -33,8 +33,8 @@ public class ServiceBoard implements IServiceBoard{
     }
 
     @Override
-    public List<ModelBoard> getBoardOne(String board) throws Exception {
-        List<ModelBoard> result=null ;
+    public ModelBoard getBoardOne(String board) throws Exception {
+        ModelBoard result=null ;
         try {
             result = dao.getBoardOne(board);
         } catch (Exception e) {

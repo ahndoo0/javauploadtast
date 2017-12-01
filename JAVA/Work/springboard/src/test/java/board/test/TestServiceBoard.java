@@ -61,10 +61,10 @@ public class TestServiceBoard {
         
         @Test
         public void test02_GetBoardOne() throws Exception {
-            List<ModelBoard> rs = null;
+            ModelBoard rs = null;
             rs = service.getBoardOne("data");
-            assertEquals("자료실", rs.get(0).getBoardnm());
-            assertEquals("data", rs.get(0).getBoardcd());
+            assertEquals("자료실", rs.getBoardnm());
+            assertEquals("data", rs.getBoardcd());
         }
         
         @Test

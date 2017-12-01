@@ -15,7 +15,7 @@ public class PhoneBook {
     private static ModelPhone   phon       = null;
     private static ModelCompany company    = null;
     private static ModelUniv    univ       = null;
-    private static ServicePhone sphone     =null;
+    private static ServicePhone sphone     = null;
     
     public static void main(String[] args) throws SQLException {
         Scanner key = new Scanner(System.in);
@@ -96,19 +96,18 @@ public class PhoneBook {
                 System.out.println("데이터 검색을 시작합니다..");
                 System.out.print("이름: ");
                 String 검색 = key.next();
-                List<ResultSet> list = null; 
-                list=sphone.selectname(검색);
-                for(int i = 0 ; i <list.size() ; i=i+1){
+                List<ResultSet> list = null;
+                list = sphone.selectname(검색);
+                for (int i = 0; i < list.size(); i = i + 1) {
                     ResultSet rs = list.get(i);
                     rs.next();
                     String phonename = rs.getString("name");
-                    String phoneNumber= rs.getString("phoneNumber");
-                    System.out.println("이름: "+phonename);
-                    System.out.println("전화번호: "+phoneNumber);
-                break;
+                    String phoneNumber = rs.getString("phoneNumber");
+                    System.out.println("이름: " + phonename);
+                    System.out.println("전화번호: " + phoneNumber);
+                    break;
                 }
-            }     
-            else if (3 == 선택) {
+            } else if (3 == 선택) {
                 System.out.println("데이터를 삭제 합니다.");
                 System.out.print("이름: ");
                 String 삭제 = key.next();

@@ -1,0 +1,12 @@
+
+ResultSetMetaData rsmd = rs.getMetaData();
+
+for (; rs.next();) {
+	for (int i = 0; i < rsmd.getColumnCount(); i++) {
+		if (rsmd.getColumnType(i + 1) == java.sql.Types.BOOLEAN)
+			tempObject[i] = rs.getBoolean(i + 1);
+		else
+			tempObject[i] = rs.getString(i + 1);
+	}
+}
+
