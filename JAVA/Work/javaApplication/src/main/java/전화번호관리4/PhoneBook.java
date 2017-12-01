@@ -19,7 +19,7 @@ public class PhoneBook {
     
     public static void main(String[] args) throws SQLException {
         Scanner key = new Scanner(System.in);
-        
+       
         List<ModelPhone> info = new ArrayList<>();
         
         for (;;) {

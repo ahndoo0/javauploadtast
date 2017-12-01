@@ -12,6 +12,7 @@ public enum PhoneHeaderEnum {
     
     private final String value;
     PhoneHeaderEnum(String value) {
+        System.out.println("enum");
         this.value=value;
     }
     public String getValue(){//메서그
