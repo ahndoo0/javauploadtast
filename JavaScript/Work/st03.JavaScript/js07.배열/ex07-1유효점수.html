@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        // 숫자를 크기순으로 소트할 때, 내부적으로 필요한 함수
+        var compNumber = function (a, b) {
+            return a - b;
+        }
+
+        var array = [7,9,4,8,5];
+
+        console.log( array );
+
+        array.sort(  compNumber   );
+        console.log( array );
+        array.splice(0,1);
+        array.splice(3,1);
+        console.log(array);
+        var sum = 0;
+        var dd =0;
+        for( var i=0; i< array.length ;  i= i+1) {
+            sum = sum + array[i];
+            dd = sum / array.length;
+        }
+
+        console.log( '합계: ' + sum );
+
+
+        console.log( '평균: ' + dd.toFixed(2));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

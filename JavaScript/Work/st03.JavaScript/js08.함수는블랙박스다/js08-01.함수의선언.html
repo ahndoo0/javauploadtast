@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    
+    <script type="text/javascript">
+
+
+        //선언식 함수 정의 **(함수가 밑에정의 되있어도된다.)
+
+        var result = add1(1,3);
+        console.log(result);
+
+
+        function add1(a,b){
+            return a+b;
+        }
+
+
+        // 표현식 함수 정의 **(함수가 미리정의 되있어야한다.) 추천!
+
+        var add2 =function(a,b){
+            return a+b;
+        }
+        var result = add2(1,3);
+        console.log(result);
+
+
+
+    </script>
 </head>
 <body>
 

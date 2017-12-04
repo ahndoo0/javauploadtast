@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    
+    <script type="text/javascript">
+
+        console.log('x: '+x);
+        var x =1;
+        console.log('x: '+x);
+
+        var outer =function(){
+            console.log('x: '+x);
+            console.log('y: '+y);
+            if(true){
+             var y =5;
+            }
+            console.log('y: '+y);
+        }
+         outer();
+    </script>
 </head>
 <body>
 
