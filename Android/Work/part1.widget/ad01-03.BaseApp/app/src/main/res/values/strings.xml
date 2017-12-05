@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BaseApp</string>
+    <string name="btnclick">버튼을눌렀어요.</string>
+</resources>
