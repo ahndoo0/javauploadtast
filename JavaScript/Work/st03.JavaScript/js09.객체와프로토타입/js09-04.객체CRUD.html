@@ -3,7 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>객체 생성</title>
-    
+    <script type="text/javascript">
+        var foo = {
+            name : 'foo',
+            age : 30,
+            array : [1,4,5,5],
+            run : function () {
+                return this.name;
+            }
+        };
+        //CRUD
+        //읽기- 마침표
+        console.log('읽기: ',foo.name);
+        console.log('읽기: ',foo.age);
+
+        //읽기- 대괄호 표기법
+        console.log('읽기: ',foo[1]);
+        console.log('읽기: ',foo['age']);
+
+        console.log('읽기: ',foo.run());
+
+        // 추가
+        foo.gender = 'man';
+        foo.nickname = 'babo';
+        console.log('추가: ', foo.gender );
+        console.log('추가: ', foo.nickname );
+
+        // 수정
+        foo.name = 'bar';
+        foo.age = 50;
+        console.log('수정: ',foo.name);
+        console.log('수정: ',foo.age);
+
+        //삭제
+        delete foo.gender;
+        delete foo.nickname;
+        console.log(foo.gender);
+        console.log(foo.nickname);
+    </script>
 </head>
 <body>
 
