@@ -3,7 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    
+    <script type="text/javascript">
+        // 변수를 만들어준다 .
+        var MYAPP={};
+
+
+        // 페이지 로드 시에 이벤트 핸들러를 등록
+        window.onload=function(event) {
+
+
+        // alert 이벤트 핸들러 등록
+        MYAPP.alert = document.getElementById('alert');
+        MYAPP.alert.onclick = function(event){
+            window.alert('alert 클릭');
+        };
+
+
+        // confirm 이벤트 핸들러 등록
+        MYAPP.confirm = document.getElementById('confirm');
+        MYAPP.confirm.onclick = function(event){
+            window.confirm('확인');
+        };
+
+
+        // prompt 이벤트 핸들러 등록
+        MYAPP.prompt = document.getElementById('prompt');
+        MYAPP.prompt.onclick = function(event){
+            window.prompt('입력',0);
+        };
+
+
+        // win_open 이벤트 핸들러 등록
+        MYAPP.win_open = document.getElementById('win_open');
+        MYAPP.win_open.onclick = function(event){
+            MYAPP.subwindow = window.open('https://www.naver.com/','새창','location=yes'); // 새창 띄우기
+            MYAPP.win_close.disabled = false; //버튼 활성화시키키
+        };
+
+
+        // win_close 이벤트 핸들러 등록
+        MYAPP.win_close = document.getElementById('win_close');
+        MYAPP.win_close.onclick = function(event){
+           MYAPP.subwindow.close(); //ㅣ새창 닫기
+           this.disabled =true;//버튼 비활성화
+       };
+
+        };
+</script>
 </head>
 
 <body>
