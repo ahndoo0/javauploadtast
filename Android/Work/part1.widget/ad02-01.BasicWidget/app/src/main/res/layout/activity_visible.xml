@@ -20,13 +20,13 @@
         android:visibility="invisible"/>
     
     <Button
-        android:id="@+id/btn_gone"
+        android:id="@+id/btn"
         android:text="버튼3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     
     <Button
-        android:id="@+id/btn_visible"
+        android:id="@+id/btn_gone"
         android:text="버튼4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
