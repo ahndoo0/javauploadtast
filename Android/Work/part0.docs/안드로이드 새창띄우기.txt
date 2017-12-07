@@ -1,0 +1,10 @@
+새창띄우기
+방법1(내가 만든클래스사용시)
+Intent intent = new Intent(getApplicationContext(),RadioActivity.class);
+startActivity(intent);
+
+
+
+방법2(남이 만들어놓은 클래스)
+Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.nate.com/"));
+startActivity(intent);

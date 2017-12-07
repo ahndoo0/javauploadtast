@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">BasicWidget</string>
+    <string name="radio">남성</string>
+    <string name="radio1">여성</string>
+    <string name="TextView">성별 선택</string>
+</resources>

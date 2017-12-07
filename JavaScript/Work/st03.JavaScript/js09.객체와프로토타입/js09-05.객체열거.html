@@ -3,7 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    
+    <script type="text/javascript">
+      var foo = {
+        name : 'foo',
+        age : 30,
+        array : [1,4,5,5],
+        run : function () {
+            return this.name;
+        }
+      };
+        //함수를 제외한 열거
+        for (var name in foo) {
+            if(typeof foo[name] != 'function'){
+                console.log(name+':'+foo[name]);
+            }
+        }
+        //배열만 열거
+        for (var name in foo) {
+            if (typeof foo[name] == 'object' &&
+                foo[name].hasOwnProperty('length')) {
+                console.log(name + ':' + foo[name]);
+            }
+        }
+</script>
 </head>
 <body>
 
