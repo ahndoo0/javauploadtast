@@ -40,28 +40,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 num1 = Integer.parseInt(Edit1.getText().toString());
                 num2 = Integer.parseInt(Edit2.getText().toString());
-                if (view.getId() == R.id.BtnA){
-                    rs = num1+num2;
-                    Result.setText("계산결과: "+rs);
-                }
-                else if (view.getId() == R.id.BtnS){
-                    rs = num1-num2;
-                    Result.setText("계산결과: "+rs);
-                }
-                else if (view.getId() == R.id.BtnM){
-                    rs = num1*num2;
-                    Result.setText("계산결과: "+rs);
-                }
-                else if (view.getId() == R.id.BtnD){
-                    rs = num1/num2;
-                    Result.setText("계산결과: "+(double)rs);
-                }
-                else if (view.getId() == R.id.BtnR){
-                    rs = num1%num2;
-                    Result.setText("계산결과: "+rs);
+
+                    if (view.getId() == R.id.BtnA) {
+                        rs = num1 + num2;
+                        Result.setText("계산결과: " + rs);
+                    } else if (view.getId() == R.id.BtnS) {
+                        rs = num1 - num2;
+                        Result.setText("계산결과: " + rs);
+                    } else if (view.getId() == R.id.BtnM) {
+                        rs = num1 * num2;
+                        Result.setText("계산결과: " + rs);
+                    } else if (view.getId() == R.id.BtnD) {
+                        if (Edit2.equals(null) || num2 == 0) {
+                            Toast.makeText(getApplicationContext(), "0입니다", Toast.LENGTH_SHORT).show();
+                        } else {
+                            rs = num1 / num2;
+                            Result.setText("계산결과: " + (double) rs);
+                        }
+                    } else if (view.getId() == R.id.BtnR) {
+                        rs = num1 % num2;
+                        Result.setText("계산결과: " + rs);
+                    }
+
                 }
 
-            }
         };
         BtnA.setOnClickListener(clickListener);
         BtnS.setOnClickListener(clickListener);

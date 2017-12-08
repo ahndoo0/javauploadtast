@@ -27,10 +27,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         //방법3. 내부 클래스 리스너 ( 클래스 선언 해줘야하고, 필드 선언 해줘야함 ,아디도 찾아야함)
         button3 = findViewById(R.id.button3);
-        button3.setOnClickListener(new innerclass());
+        innerclass inner =new innerclass();
+        button3.setOnClickListener(inner);
         //방법4. IMPLEMENT 리스너
         button4 = findViewById(R.id.button4);
-        button4.setOnClickListener(this);
+        button4.setOnClickListener(inner);
     }
     //방법2.  인라인 리스너  (필드선언 안해도됨. 레이아웃에 선언 만해주면됨)
     public void inlineclick(View view) {
@@ -48,7 +49,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(getApplicationContext(),"내부 클래스 리스너",Toast.LENGTH_SHORT).show();
+            int id = view.getId();
+            switch (id){
+                case R.id.button1:
+                    break;
+                case R.id.button2:
+                    break;
+                case R.id.button3:
+                    Toast.makeText(getApplicationContext(),"내부 클래스 리스너",Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.button4:
+                    break;
+
+            }
+
 
         }
     }

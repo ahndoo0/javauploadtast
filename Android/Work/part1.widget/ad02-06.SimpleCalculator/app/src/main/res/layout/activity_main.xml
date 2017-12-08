@@ -13,12 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
+        android:inputType="number"
         android:hint="숫자1"/>
     <EditText
         android:id="@+id/Edit2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
+        android:inputType="number"
         android:hint="숫자2"/>
     <Button
         android:id="@+id/BtnA"
@@ -55,10 +57,10 @@
         android:id="@+id/Result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dip"
-        android:textColor="#0000ff"
         android:layout_margin="10dip"
-        android:text="계산 결과: "/>
+        android:text="계산 결과: "
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="30dip"/>
 </LinearLayout>
 
 
