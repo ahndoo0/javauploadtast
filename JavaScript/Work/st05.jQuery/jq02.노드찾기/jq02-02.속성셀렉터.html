@@ -6,8 +6,34 @@
 	    div, span { background: #FFF; padding: 10px; margin: 10px; }
         hr { clear:both; }
     </style>
-	
-	
+		<script type="text/javascript" src="../jquery-3.2.1.js"></script>
+		<script type="text/javascript">
+			$('document').ready(function() {
+
+				$('#has').click(function(event) {
+					$('a[target]').css('background', 'gray');
+				});
+				$('#equal').click(function(event) {
+					$('a[href = "http://slqer.com"]').css('background', 'gray');
+				});
+				$('#notequal').click(function(event) {
+					$('a[href != "http://slqer.com"]').css('background', 'gray');
+				});
+				$('#startwith').click(function(event) {
+					$('a[href ^= "http://h"]').css('background', 'gray');
+				});
+				$('#endwith').click(function(event) {
+					$('a[href $= "net"]').css('background', 'gray');
+				});
+				$('#contains').click(function(event) {
+					$('a[name *= "man"]').css('background', 'gray');
+				});
+				$('#findword').click(function(event) {
+					$('a[name ~= "man"]').css('background', 'gray');
+				});
+			});
+		</script>
+
 </head>
 <body>
 	<h2>Attribute Selector</h2>

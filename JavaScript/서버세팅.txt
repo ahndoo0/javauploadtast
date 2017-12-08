@@ -1,0 +1,6 @@
+{
+"D:\\DevTool\\workspace\\Lecture\\JavaScript\\Source": {
+"url_testing":"http://localhost",
+"url_production":"http://www.project.com"
+}
+}

@@ -13,8 +13,30 @@
         }
         hr { clear:both; }
     </style>
-    
-    
+    <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#all').click(function(event) {
+            // style ="border : 1px dotted red; "
+                $('*').css('border', '1px dotted red');
+             });
+            $('#id').click(function(event) {
+                $('#content').css('background', 'yellow');
+            });
+            $('#element').click(function(event) {
+                $('div').css('border', '1px solid red');
+            });
+            $('#class').click(function(event) {
+                $('.myClass').css('border', '2px dotted blue');
+            });
+            $('#multi').click(function(event) {
+                $('p,#content').css('border', '2px dotted blue');
+            });
+        });
+    </script>
+
+
 </head>
 <body>
     <h2>jQuery Selector</h2>
