@@ -3,19 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        button { cursor: pointer;}
-        p { cursor: pointer; width: 500px; }
-        p:hover { background: #c1ceff; }
-        div     { width: 500px; background: yellow; padding-bottom: 5px; }
-        hr      { width: 500px; float: left; }
-        ul      { width: 300px; }
-        .yellow { background: yellow; }
-        .red    { background: red;    }
-        .white  { background: white;  }
-        .gray   { background: gray;   }
-    </style>
-    
-    
+    button { cursor: pointer;}
+    p { cursor: pointer; width: 500px; }
+    p:hover { background: #c1ceff; }
+    div     { width: 500px; background: yellow; padding-bottom: 5px; }
+    hr      { width: 500px; float: left; }
+    ul      { width: 300px; }
+    .yellow { background: yellow; }
+    .red    { background: red;    }
+    .white  { background: white;  }
+    .gray   { background: gray;   }
+</style>
+<script type="text/javascript" src="../jquery-3.2.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#value_read').click(function(event) {
+            alert($('input[id=text]').val());
+        });
+        $('#value_create').click(function(event) {
+            var text = $('input[id=text]').val();
+            text = text + '>추가';
+            $('input[id=text]').val(text);
+        });
+        $('#value_update').click(function(event) {
+            var text = $('#value_update').text();
+            $('input[id=text]').val(text);
+        });
+        $('#value_delete').click(function(event) {
+            $('input[id=text]').val('');
+        });
+
+
+        $('#prop_read').click(function(event) {
+            alert($('input[type="checkbox"]').prop('checked'));
+        });
+        $('#prop_create').click(function(event) {
+            $('input[type="radio"]').prop('checked', true);
+        });
+        $('#prop_update').click(function(event) {
+            $('input[type="checkbox"]').prop('checked',false);
+        });
+        $('#prop_delete').click(function(event) {
+            $('input[name="ccc"]').prop('disabled', false);
+        });
+    });
+</script>
+
 </head>
 <body>
 
