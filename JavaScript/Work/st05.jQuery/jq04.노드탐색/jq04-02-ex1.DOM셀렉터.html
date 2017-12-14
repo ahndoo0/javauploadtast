@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        div,span { background: #FFF; padding: 10px; margin: 10px; }
-    </style>
-    
-    
+    div,span { background: #FFF; padding: 10px; margin: 10px; }
+</style>
+<script type="text/javascript" src="../jquery-3.2.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#firstSibling').click(function(event) {
+            $('#current').css('border', '2px blue solid');
+            $('#current').prevAll('div').last().css('border', '2px red solid');
+        });
+        $('#prevSibling').click(function(event) {
+            $('#current').css('border', '2px blue solid');
+            $('#current').prevAll('div').first().css('border', '2px red solid');
+        });
+        $('#nextSibling').click(function(event) {
+            $('#current').css('border', '2px blue solid');
+            $('#current').nextAll('div').first().css('border', '2px red solid');
+        });
+        $('#lastSibling').click(function(event) {
+            $('#current').css('border', '2px blue solid');
+            $('#current').nextAll('div').last().css('border', '2px red solid');
+        });
+    });
+</script>
+
+
 </head>
 <body>
     <h2>DOM Selector</h2>

@@ -9,8 +9,17 @@
     </style>
     <script type="text/javascript" src="../jquery-3.2.1.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+         $(document).ready(function() {
             $('#btnStart').click(function(event) {
+                var wi = $('#fish').width();
+                var hi = $('#fish').height();
+
+                var l = String(Math.random()*(600-wi))+'px';
+                var t = String(Math.random()*(400-hi))+'px';
+                $('#fish').css({
+                    'left': l,
+                    'top': t
+                });
 
             });
         });
