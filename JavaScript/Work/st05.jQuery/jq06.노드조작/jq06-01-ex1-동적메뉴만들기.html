@@ -9,9 +9,31 @@
         ul.menu li { border: 1px #eeeeee solid; padding-left: 10px; padding-right: 10px; display: block; }
         li.select { background-color: #ccc; }
     </style>
+    <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#add').click(function(event) {
+                var text = $('#menuName[type="text"]').val();
+                $('.menu').add().prepend('<li>'+text+'</li>');
 
-    
-    
+            });
+            $('#update').click(function(event) {
+
+            });
+            $('#remove').click(function(event) {
+
+            });
+            $('#up').click(function(event) {
+
+            });
+            $('#down').click(function(event) {
+
+            });
+        });
+    </script>
+
+
+
 </head>
 
 <body>
