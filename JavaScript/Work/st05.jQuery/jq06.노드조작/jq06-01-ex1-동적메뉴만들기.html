@@ -18,7 +18,12 @@
         $('#add').click(function(event) {
             var text =$('#menuName').val();
             var texts='';
-            if (text != '' ) {
+            if (text === '' ) {
+                return false;
+            }else if ($('.select').val() === $('#menuName').val() ) {
+                $('.select').after('<li>'+text+'</li>');
+                $('#menuName').val('');
+            }else{
                 $('.menu').prepend('<li>'+text+'</li>');
                 $('#menuName').val('');
             }
@@ -28,10 +33,7 @@
                 texts = $(this).text();
                 $('#menuName').val(texts);
             });
-            if ($('#menuName').val() != '') {
-                $('.menu li[class="select"]').after('<li>'+texts+'</li>');
-                $('#menuName').val('');
-            }
+
 
 
         });
