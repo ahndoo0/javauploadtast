@@ -13,26 +13,23 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-
         $('#add').click(function(event) {
-            var text = $('#menuName').val();
+            var text =$('#menuName').val();
             if (text != '' ) {
-                $('.menu').add().prepend('<li>'+text+'</li>');
+                $('.menu').prepend('<li>'+text+'</li>');
                 $('#menuName').val('');
             }
-
+            var texts='';
             $('.menu li').click(function(event) {
                 $('.menu li').removeClass('select');
                 $(this).addClass('select');
-
-
+                texts = $(this).text();
+                $('#menuName').val(texts);
             });
+
 
         });
         $('#update').click(function(event) {
-
-
-
 
         });
         $('#remove').click(function(event) {
