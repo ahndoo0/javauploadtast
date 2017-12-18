@@ -11,21 +11,27 @@
 </style>
 <script type="text/javascript" src="../jquery-3.2.1.js"></script>
 <script type="text/javascript">
+
+
     $(document).ready(function() {
 
         $('#add').click(function(event) {
             var text =$('#menuName').val();
+            var texts='';
             if (text != '' ) {
                 $('.menu').prepend('<li>'+text+'</li>');
                 $('#menuName').val('');
             }
-            var texts='';
             $('.menu li').click(function(event) {
                 $('.menu li').removeClass('select');
                 $(this).addClass('select');
                 texts = $(this).text();
                 $('#menuName').val(texts);
             });
+            if ($('#menuName').val() != '') {
+                $('.menu li[class="select"]').after('<li>'+texts+'</li>');
+                $('#menuName').val('');
+            }
 
 
         });
