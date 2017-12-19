@@ -16,17 +16,8 @@
     $(document).ready(function() {
 
         $('#add').click(function(event) {
-            var text =$('#menuName').val();
-            var texts='';
-            if (text === '' ) {
-                return false;
-            }else if ($('.select').val() === $('#menuName').val() ) {
-                $('.select').after('<li>'+text+'</li>');
-                $('#menuName').val('');
-            }else{
-                $('.menu').prepend('<li>'+text+'</li>');
-                $('#menuName').val('');
-            }
+            if ($('#menuName').val()) {}
+
             $('.menu li').click(function(event) {
                 $('.menu li').removeClass('select');
                 $(this).addClass('select');

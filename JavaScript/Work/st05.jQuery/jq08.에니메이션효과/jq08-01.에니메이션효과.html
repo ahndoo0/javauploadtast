@@ -50,6 +50,54 @@
                     var easing = $('select>option:selected').text();
                     $('p.easing').toggle(2000,easing).css('background', 'yellow');
                 });
+                $('span.slide:eq(0)').click(function(event) {
+                   $('div.slide').slideUp(1000);
+               });
+
+                $('span.slide:eq(1)').click(function(event) {
+                    $('div.slide').slideDown(1000);
+                });
+                $('span.slide:eq(2)').click(function(event) {
+                    $('div.slide').slideToggle(2000);
+                });
+                $('span.fade:eq(0)').click(function(event) {
+                    $('div.fade').fadeIn(1000, function() {
+                        $('p.fade').show();
+                    });
+                });
+                $('span.fade:eq(1)').click(function(event) {
+                    $('div.fade').fadeOut(1000, function() {
+                        $('p.fade').hide();
+                    });
+                });
+                $('span.fade:eq(2)').click(function(event) {
+                    $('div.fade').fadeToggle(2000, function() {
+                        $('p.fade').toggle();
+                    });
+                });
+                $('span.fade:eq(3)').click(function(event) {
+                    var opacity = $('div.fade').css('opacity');
+                    if (opacity === '0.5') {
+
+                        $('div.fade').fadeTo(1000,0,function(){
+
+                        });
+                    }else{
+                        $('div.fade').fadeTo(1000,0.5,function(){
+
+                        });
+                    }
+                });
+
+                $('.leftbtn').click(function(event) {
+                    $('#leftimage').animate({width:0});
+                    $('#rightimage').animate({width:200});
+                });
+                $('.rightbtn').click(function(event) {
+
+                    $('#leftimage').animate({width:200});
+                    $('#rightimage').animate({width:0});
+                });
             });
         </script>
 
@@ -139,7 +187,7 @@
         <span class="fade"> fadeTo()     </span>
         <br>
 
-        <p>
+        <p class="fade">
             불투명도를 점점 높여서 보이도록 한다.
             speed를 fast, normal, slow 또는 0이상의 숫자(밀리세컨드 단위)를 준다.
             에니메이션이 끝난 후에 실행할 함수를 지정한다.
@@ -148,23 +196,23 @@
             <p class="fade">S U C C E S S !!!</p>
         </div>
         <hr>
-<!--
-    <h2>사용자 효과</h2>
-    <div style="float:left;">
-        <div id="direction">
-            <button class="leftbtn">&laquo;</button>
-            <button class="rightbtn">&raquo;</button>
-        </div>
-        <div id="region">
-            <div id="images">
-                <a href="#"><img src="./images/image3.jpg" id="leftimage" /></a>
-                <a href="#"><img src="./images/image4.jpg" id="rightimage" /></a>
+
+        <h2>사용자 효과</h2>
+        <div style="float:left;">
+            <div id="direction">
+                <button class="leftbtn">&laquo;</button>
+                <button class="rightbtn">&raquo;</button>
+            </div>
+            <div id="region">
+                <div id="images">
+                    <a href="#"><img src="./images/image3.jpg" id="leftimage" /></a>
+                    <a href="#"><img src="./images/image4.jpg" id="rightimage" /></a>
+                </div>
             </div>
         </div>
-    </div>
--->
-</body>
-</html>
+
+    </body>
+    </html>
 
 
 
