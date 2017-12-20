@@ -22,10 +22,22 @@
         ul.menu{ zoom:1; }
         ul.menu:after { height:0; visibility:hidden; content:"."; display:block; clear:both; }
     </style>
+    <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function (e) {
+            $('ul.menu li').mouseover( function(e){
+                $(this).children('ul').show();
+            }).mouseout( function(e){
+                $(this).children('ul').hide();
+            });
+        });
 
 
-    
-    
+    </script>
+
+
+
+
 
 </head>
 <body>
