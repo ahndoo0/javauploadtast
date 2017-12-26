@@ -34,6 +34,13 @@ http://stackoverflow.com/questions/5603117/jquery-create-object-from-form-fields
 </style>
 <script type="text/javascript" src="../jquery-3.2.1.js"></script>
 <script type="text/javascript">
+        function add(i){
+            var obj = {};
+            for (var i in obj) {
+                obj[i].text();
+            }
+        }
+
     $(document).ready(function() {
         $('#submit').click(function(event) {
             $.ajax({
@@ -49,6 +56,10 @@ http://stackoverflow.com/questions/5603117/jquery-create-object-from-form-fields
             }).done( function(data, textStatus, xhr ){
              // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
                 console.log(data);
+
+                $('div.profile').show();
+                $('#user_name').text( data.username );
+
 
             }).fail( function(xhr, textStatus, error ) {
             // 통신이 실패했을 때 이 함수를 타게 된다.
