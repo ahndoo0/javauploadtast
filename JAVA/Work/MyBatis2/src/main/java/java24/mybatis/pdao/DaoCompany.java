@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java24.mybatis.pinf.ICompany;
 import java24.mybatis.pmodel.ModelCompany;
+
 @Repository("daocompany")
 public class DaoCompany implements ICompany{
     @Autowired

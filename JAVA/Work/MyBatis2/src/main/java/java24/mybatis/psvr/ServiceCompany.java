@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import java24.mybatis.pinf.ICompany;
 import java24.mybatis.pinf.IServiceCompany;
 import java24.mybatis.pmodel.ModelCompany;
+
 @Service("servicecompany")
 public class ServiceCompany implements IServiceCompany {
+    
     @Autowired
     @Qualifier("daocompany")
     private ICompany dao;
