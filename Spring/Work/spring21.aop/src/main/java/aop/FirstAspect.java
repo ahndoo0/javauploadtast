@@ -37,12 +37,12 @@ public class FirstAspect {
     }
     
     //around : 메서드 호출 전과 후에 실행되는 advice.
-    public ModelProduct  around( ProceedingJoinPoint jp ) throws Throwable{
+    public Object  around( ProceedingJoinPoint jp ) throws Throwable{
         logger.debug("around ---> 메서드 호출 전");
         logger.debug("around ---> 메서드 호출 전");
         logger.debug("around ---> 메서드 호출 전");
         
-        ModelProduct p = (ModelProduct) jp.proceed();
+        Object p = jp.proceed();
         
         logger.debug("around ---> 메서드 호출 후");
         logger.debug("around ---> 메서드 호출 후");
