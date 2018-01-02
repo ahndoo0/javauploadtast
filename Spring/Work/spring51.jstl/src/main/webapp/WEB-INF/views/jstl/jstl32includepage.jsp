@@ -6,17 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JSTL url query string 처리</title>
+<title>JSTL include file 실습</title>
 </head>
 <body>
+    <h3>JSTL include page 실습</h3>
 
-    <h3>JSTL url query string 처리 >> param 사용</h3>
-    <hr>
-    상품코드 : ${param.code}
-    <br> 상품명 : ${param.name}
-    <br> 가격 : ${param.price}원
-    <br> 브라우저 : ${param.browser}
-    <br>
-
+    <jsp:include page="jstl32sub.jsp" />
 </body>
 </html>

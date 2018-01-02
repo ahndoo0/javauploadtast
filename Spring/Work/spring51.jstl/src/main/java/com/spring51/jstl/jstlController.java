@@ -100,23 +100,41 @@ public class jstlController {
 
     return "jstl/jstl31includefile";
     }
+    @RequestMapping(value = "/jstl/jstl32includepage", method = RequestMethod.GET)
+    public String jstl32includepage(Model model) {
+        logger.info("jstl32includepage");
+        
+    return "jstl/jstl32includepage";
+    }
+    @RequestMapping(value = "/jstl/jstl32sub", method = RequestMethod.GET)
+    public String jstl32sub(Model model) {
+        logger.info("jstl32sub");
+        
+    return "jstl/jstl32sub";
+    }
     @RequestMapping(value = "/jstl/jstl33import", method = RequestMethod.GET)
     public String jstl33import(Model model) {
     logger.info("jstl33import");
 
     return "jstl/jstl33import";
     }
-    @RequestMapping(value = "/jstl/jstl41", method = RequestMethod.GET)
-    public String jstl41(Model model) {
-    logger.info("jstl41");
+    @RequestMapping(value = "/jstl/jstl41redirect", method = RequestMethod.GET)
+    public String jstl41redirect(Model model) {
+    logger.info("jstl41redirect");
 
-    return "jstl/jstl41";
+    return "jstl/jstl41redirect";
     }
-    @RequestMapping(value = "/jstl/jstl61", method = RequestMethod.GET)
-    public String jstl61(Model model) {
-    logger.info("jstl61");
+    @RequestMapping(value = "/jstl/jstl42forward", method = RequestMethod.GET)
+    public String jstl42forward(Model model) {
+    logger.info("jstl42forward");
 
-    return "jstl/jstl61";
+    return "jstl/jstl42forward";
+    }
+    @RequestMapping(value = "/jstl/jstl61scope", method = RequestMethod.GET)
+    public String jstl61(Model model) {
+    logger.info("jstl61scope");
+
+    return "jstl/jstl61scope";
     } 
     @RequestMapping(value = "/jstl/jstl61sub", method = RequestMethod.GET)
     public String jstl61sub(Model model) {

@@ -10,7 +10,7 @@
     div { background-color: #CCCCCC; layer-background-color: #CCCCCC; border: 1px dotted red; width:800px; }
     div#static_include    { position: absolute; left: 375px; top: 60px; padding : 5px; }
     div#dynamic_include   { position: absolute; left: 375px; top: 250px; padding : 5px; }
-    div#redirect_forward  { }
+   div#redirect_forward  { }
     </style>
 </head>
 <body>   
@@ -57,8 +57,8 @@
     </dl>
     <dl>
         <dt>JSTL scope</dt>
-        <dd> <a href="./jstl/jstl61"      target="_blank">/jstl/jstl61</a> </dd>
-        <dd> <a href="./jstl/jstl61sub"    target="_blank">/jstl/jstl61sub</a> </dd>
+        <dd> <a href="./jstl/jstl61scope"      target="_blank">/jstl/jstl61 scope</a> </dd>
+        <dd> <a href="./jstl/jstl63session"    target="_blank">/jstl/jstl63 session scope</a> </dd>
         <dd> <a href="./jstl/jstl64fn"         target="_blank">/jstl/jstl64 fn splite</a> </dd>
     </dl>
     <dl>
@@ -136,4 +136,3 @@
 
 </body>
 </html>
-
