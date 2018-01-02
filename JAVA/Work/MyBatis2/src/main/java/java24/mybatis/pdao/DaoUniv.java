@@ -44,8 +44,8 @@ public class DaoUniv implements IUniv {
             throws Exception {
         int result =-1;
         Map<String ,Object> map = new HashMap<>();
-        map.put("wherephone",whereuniv);
-        map.put("setphone", setuniv);
+        map.put("whereuniv",whereuniv);
+        map.put("setuniv", setuniv);
         result = session.update("mapper.mapperUniv.updateUniv", map);
         return result;
     }

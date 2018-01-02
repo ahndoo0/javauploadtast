@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-
+import java24.mybatis.pinf.IServiceUniv;
 import java24.mybatis.pinf.IUniv;
 
 import java24.mybatis.pmodel.ModelUniv;
 @Service("seviceuniv")
-public class ServiceUniv implements IUniv{
+public class ServiceUniv implements IServiceUniv{
     @Autowired
     @Qualifier("daouniv")
     private IUniv dao;

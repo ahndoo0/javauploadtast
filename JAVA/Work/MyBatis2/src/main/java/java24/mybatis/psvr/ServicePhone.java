@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 
 import java24.mybatis.pinf.IPhone;
+import java24.mybatis.pinf.IServicePhone;
 import java24.mybatis.pmodel.ModelCompany;
 import java24.mybatis.pmodel.ModelPhone;
 @Service("sevicephone")
-public class ServicePhone implements IPhone{
+public class ServicePhone implements IServicePhone{
     @Autowired
     @Qualifier("daophone")
     private IPhone dao;

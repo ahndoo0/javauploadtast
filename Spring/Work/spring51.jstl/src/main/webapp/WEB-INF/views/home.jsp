@@ -70,8 +70,16 @@
         <br>
         <dd> <a href="./jstl/jstl74select"      target="_blank">jstl과 SELECT </a> </dd>
     </dl>
+    
+     <dl>
+     <dt>El 실습</dt>
+        <dd> <a href="/El/El01" target="_blank" > /El/El01 </a></dd>
+        <dd> <a href="/El/El02" target="_blank" > /El/El02 </a></dd>
+        <dd> <a href="/El/El03?id=pinksung" target="_blank" >/El/El03?id=pinksung </a></dd>
+    </dl>
+    
     <hr />
-   
+    
 <div id="static_include"> 
     <h4>정적 include</h4>          
     <pre>

@@ -26,7 +26,7 @@
         set name =#{setcompany.name}
         ,phoneNumber =#{setcompany.phoneNumber}
         where 1=1
-        <if test="whereauth.name != null and whereauth.name != '' ">and name = #{wherecompany.name}</if>
-        <if test="whereauth.phoneNumber != null and whereauth.phoneNumber !='' ">and phoneNumber = #{wherecompany.phoneNumber}</if>
+        <if test="wherecompany.name != null and wherecompany.name != '' ">and name = #{wherecompany.name}</if>
+        <if test="wherecompany.phoneNumber != null and wherecompany.phoneNumber !='' ">and phoneNumber = #{wherecompany.phoneNumber}</if>
     </update>
 </mapper>

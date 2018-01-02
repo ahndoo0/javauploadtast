@@ -91,7 +91,7 @@ public class TestServiceAuth {
     @Test
     public void testInsertAuth() throws Exception {
         auth = new ModelAuth();
-        auth.setAuthid(8);
+        auth.setAuthid(9);
         auth.setBirth("2017.11.23");
         auth.setName("안도균");
         int rs = service.insertAuth(auth);
