@@ -24,23 +24,23 @@ public class ElController {
     
     @RequestMapping(value = "/El/El01", method = RequestMethod.GET)
     public String El01(Model model) {
-    logger.info("El01");
-
-    return "El/El01";
+        logger.info("El01");
+        
+        return "El/El01";
     }
-
+    
     @RequestMapping(value = "/El/El02", method = RequestMethod.GET)
     public String El02(Model model) {
-    logger.info("El02");
-
-    return "El/El02";
+        logger.info("El02");
+        
+        return "El/El02";
     }
+    
     @RequestMapping(value = "/El/El02sub", method = RequestMethod.GET)
     public String El02sub(Model model) {
-    logger.info("El02sub");
-
-    return "El/El02sub";
+        logger.info("El02sub");
+        
+        return "El/El02sub";
     }
-
     
 }
