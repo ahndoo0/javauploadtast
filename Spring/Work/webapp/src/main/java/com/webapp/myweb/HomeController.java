@@ -35,6 +35,11 @@ public class HomeController {
 		
 		return "home";
 	}
-
+	  @RequestMapping(value = "/company1.jsp", method = RequestMethod.GET)
+	    public String company1(Model model) {
+	        logger.info("company1.jsp");
+	        
+	        return "company1.jsp";
+	    }
 	
 }
