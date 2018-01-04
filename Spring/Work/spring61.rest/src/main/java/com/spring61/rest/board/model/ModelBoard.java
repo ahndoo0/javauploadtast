@@ -3,20 +3,13 @@ package com.spring61.rest.board.model;
 import java.util.Date;
 
 public class ModelBoard {
-    private String  boardcd   = "";   // `boardcd ` VARCHAR(20) NOT NULL,
-    private String  boardnm   = "";   // `boardnm ` VARCHAR(40) NOT NULL,
-    private Boolean UseYN     = null;   // `UseYN ` TINYINT(1) NULL DEFAULT '1',
-    private String  InsertUID = "";   // `InsertUID ` VARCHAR(40) NULL DEFAULT NULL,
-    private Date    InsertDT  = null; // `InsertDT ` DATETIME NULL DEFAULT NULL,
-    private String  UpdateUID = "";   // `UpdateUID ` VARCHAR(40) NULL DEFAULT NULL,
-    private Date    UpdateDT  = null;   // `UpdateDT ` DATETIME NULL DEFAULT NULL,
-    @Override
-    public String toString() {
-        return "ModelBoard [boardcd=" + boardcd + ", boardnm=" + boardnm
-                + ", UseYN=" + UseYN + ", InsertUID=" + InsertUID
-                + ", InsertDT=" + InsertDT + ", UpdateUID=" + UpdateUID
-                + ", UpdateDT=" + UpdateDT + "]";
-    }
+    String  boardcd    ; // VARCHAR2(20)    NOT NULL ENABLE
+    String  boardnm    ; // VARCHAR2(40)    NOT NULL ENABLE
+    Boolean UseYN      ; // NUMBER(1)       DEFAULT 1 NOT NULL ENABLE
+    String  InsertUID  ; // VARCHAR(40)     NULL                            
+    Date    InsertDT   ; // Date            NULL
+    String  UpdateUID  ; // VARCHAR(40)     NULL                            
+    Date    UpdateDT   ; // Date            NULL
     public String getBoardcd() {
         return boardcd;
     }
@@ -59,20 +52,19 @@ public class ModelBoard {
     public void setUpdateDT(Date updateDT) {
         UpdateDT = updateDT;
     }
-    public ModelBoard(String boardcd, String boardnm, Boolean useYN,
-            String insertUID, Date insertDT, String updateUID, Date updateDT) {
-        super();
-        this.boardcd = boardcd;
-        this.boardnm = boardnm;
-        UseYN = useYN;
-        InsertUID = insertUID;
-        InsertDT = insertDT;
-        UpdateUID = updateUID;
-        UpdateDT = updateDT;
-    }
+    
     public ModelBoard() {
         super();
     }
+    
+    @Override
+    public String toString() {
+        return "ModelBoard [boardcd=" + boardcd + ", boardnm=" + boardnm
+                + ", UseYN=" + UseYN + ", InsertUID=" + InsertUID
+                + ", InsertDT=" + InsertDT + ", UpdateUID=" + UpdateUID
+                + ", UpdateDT=" + UpdateDT + "]";
+    }
+     
     
     
 }

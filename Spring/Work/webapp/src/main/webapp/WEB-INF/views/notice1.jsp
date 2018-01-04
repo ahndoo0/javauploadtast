@@ -22,7 +22,7 @@
 <body>
 
 <section id="page1" data-role="page">
-    <div w3-include-header="header.jsp"></div>
+    <div w3-include-header="header"></div>
 
     <div data-role="content">
         <div class="s_main">
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div w3-include-footer="footer.jsp"></div>
+    <div w3-include-footer="footer"></div>
 </section>
 
 </body>

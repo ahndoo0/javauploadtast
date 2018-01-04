@@ -21,7 +21,7 @@
 <body>
 
 <section id="page1" data-role="page">
-    <div w3-include-header="header.jsp"></div>
+    <div w3-include-header="header"></div>
 
     <div data-role="content" class="content" class="m_bg">
         <div class="s_main">
@@ -34,14 +34,14 @@
                   <!-- Safari/Chrome 브라우저일 경우, 지원하는 MP4 파일을 재생합니다 -->
                   <source src="../../resources/images/viedo.mp4" type="video/mp4"/>
                      <!-- HTML5 video요소를 지원하지 않는 브라우저의 경우 플래시 무비를 사용합니다 -->
-                  <img src="images/m1_02_imgx2.png" width="286" height="168"/>
+                  <img src="../../resources/images/m1_02_imgx2.png" width="286" height="168"/>
                  </video>
                 </span>
             </div>
         </div>
     </div>
 
-    <div w3-include-footer="footer.jsp"></div>
+    <div w3-include-footer="footer"></div>
 </section>
 
 </body>

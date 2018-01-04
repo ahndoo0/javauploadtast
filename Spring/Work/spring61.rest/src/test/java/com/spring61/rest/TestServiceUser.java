@@ -1,10 +1,13 @@
 package com.spring61.rest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-
-import javax.sql.DataSource;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -15,103 +18,137 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.spring61.rest.board.inf.IServiceUser;
 import com.spring61.rest.board.model.ModelUser;
-import com.spring61.rest.board.service.ServiceUser;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestServiceUser {
+    
     private static IServiceUser service = null;
+
+    Date from = new Date();
+    String userid = "MISS A" + new SimpleDateFormat("yyMMddhhmm").format(from);
+
     
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        ApplicationContext context = new  ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml");
-        service = context.getBean("serviceuser", ServiceUser.class);
+        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml");
+        service = context.getBean("serviceuser", IServiceUser.class);  
+
+        
         // DB Table 초기화 코드
-        javax.sql.DataSource dataSource = (DataSource) context
-                .getBean("dataSource");
-        org.apache.ibatis.jdbc.ScriptRunner runner = new org.apache.ibatis.jdbc.ScriptRunner(
-                dataSource.getConnection());
+        javax.sql.DataSource dataSource = context.getBean("dataSource", javax.sql.DataSource.class);                 
+        org.apache.ibatis.jdbc.ScriptRunner runner = new org.apache.ibatis.jdbc.ScriptRunner(dataSource.getConnection());
         runner.setAutoCommit(true);
         runner.setStopOnError(true);
-        
-        ClassLoader cl = ClassLoader.getSystemClassLoader();
-        String sf = cl.getResource("ddl/board.ddl.mysql.sql").getFile();
-        
-        java.io.Reader br = new java.io.BufferedReader(
-                new java.io.FileReader(sf));
-        runner.runScript(br);
+        String sqlScriptFilePath = ClassLoader.getSystemClassLoader().getResource("ddl/board.ddl.mysql.sql").getFile();
+        java.io.Reader br = new java.io.BufferedReader(new java.io.FileReader(sqlScriptFilePath ));
+        runner.runScript( br);
         runner.closeConnection();
+    }
+
+    @Test
+    public void test01_SelectUserOne() {
+        ModelUser user = new ModelUser();
+        user.setUserno(1);
+
+        ModelUser result = service.selectUserOne(user);
         
+        assertEquals(result.getUserid(), "userid");
+    }
+
+    @Test
+    public void test02_SelectUserList() {
+        
+        ModelUser user = new ModelUser();
+        
+        user.setUserid("userid");
+        List<ModelUser> result = service.selectUserList(user); 
+        assertNotNull( result );
+        assertTrue( result.size() >= 1 );
+    }
+
+    @Test
+    public void test03_Login() {
+        String userid = "userid";
+        String passwd = "password";
+
+        ModelUser result = service.login(userid, passwd);        
+        assertNotNull(result);
+        assertEquals(userid, result.getUserid() );
+        assertSame(1     , result.getUserno() );
+    }
+
+    @Test
+    public void test04_Logout() {
+    }
+
+    @Test
+    public void test05_checkuserid() {
+        String userid= "userid" ;
+        int result = service.checkuserid(userid);
+        
+        assertSame(1, result );
+    }
+
+    @Test
+    public void test21_InsertUser() {
+        ModelUser user = new ModelUser();
+        user.setUserid( this.userid );
+        user.setEmail("missa@naver.com");
+        user.setMobile("010-3214-6879");
+        user.setInsertDT(from);
+        user.setInsertUID("ufy uygyu");
+        user.setName("miss");
+        user.setPasswd("miss1234");
+        user.setUpdateDT(from);
+        user.setUpdateUID("uytf yui");
+        
+        int result = service.insertUser(user);
+        
+        assertEquals(result, 1);
     }
     
-  
-        @Test
-        public void test01_InsertUser() throws Exception {
-            ModelUser user = new ModelUser();
-            user.setName("안도균");
-            user.setUserid("01");
-            int rs = service.insertUser(user);
-            assertEquals(1, rs);
-        }
+    @Test
+    public void test31_updateUserInfo() {
+        ModelUser updatevalue = new ModelUser();
+        updatevalue.setEmail("sonyo@hanmail.net");
+        updatevalue.setMobile("010-5555-6666");
+        updatevalue.setName("98g uhu ihuu");
+        updatevalue.setRetireYN(true);
+        updatevalue.setPasswd("girls8888");
+        updatevalue.setUpdateDT(from);
+        updatevalue.setUpdateUID("JYP");
         
-        @Test
-        public void test02_Login() throws Exception {
-            ModelUser user = new ModelUser();
-            user.setUserid("01");
-            user.setPasswd("");
-            List<ModelUser> rs = service.login(user);
-            assertNotNull(rs);
-        }
+        ModelUser searchvalue = new ModelUser();
+        searchvalue.setUserid( this.userid ); 
         
-        @Test
-        public void test03_Logout() {
-            
-        }
+        int result = service.updateUserInfo(updatevalue, searchvalue);   
         
-        @Test
-        public void test04_UpdateUserInfo() throws Exception {
-            ModelUser whereuser = new ModelUser();
-            whereuser.setUserid("userid");
-            ModelUser updateValue = new ModelUser();
-            updateValue.setInsertUID("010");
-            updateValue.setName("이영규");
-            int rs = service.updateUserInfo(updateValue, whereuser);
-            assertTrue(rs >= 1);
-        }
+        assertEquals(1, result);
+    }
+
+    @Test
+    public void test32_updatePasswd() {
+        ModelUser user = new ModelUser();
+        user.setUserid( this.userid ); 
+        user.setPasswd("uuji");
         
-        @Test
-        public void test05_UpdatePasswd() throws Exception {
-            int rs = service.updatePasswd("1234", "", "userid");
-            assertEquals(1, rs);
-        }
+        String userid        = "userid";
+        String currentPasswd = "password";
+        String newPasswd     = "newpass";
         
-        @Test
-        public void test06_DeleteUser() throws Exception {
-            ModelUser user = new ModelUser();
-            user.setName("이영규");
-            int rs = service.deleteUser(user);
-            
-            assertTrue(rs >= 0);
-        }
+        int result = service.updatePasswd(userid, currentPasswd, newPasswd);
         
-        @Test
-        public void test07_SelectUserOne() throws Exception {
-            ModelUser user = new ModelUser();
-            user.setUserno(2);
-            ModelUser rs = service.selectUserOne(user);
-            assertNotNull(rs);
-        }
+        assertEquals(result, 1);
+    }
+
+    @Test
+    public void test33_UpdateRetire() {
+        ModelUser searchvalue = new ModelUser();
+        searchvalue.setUserid(this.userid); 
         
-        @Test
-        public void test08_SelectUserList() throws Exception {
-            ModelUser user = new ModelUser();
-            List<ModelUser> rs = service.selectUserList(user);
-            assertNotNull(rs);
-        }
+        int result = service.updateRetire(searchvalue);
         
-        @Test
-        public void test09_Checkuserid() throws Exception {
-            int rs = -1;
-            rs = service.checkuserid("userid");
-            assertEquals(1, rs);
-        }
+        assertEquals(result, 1);
+    }
     
 }

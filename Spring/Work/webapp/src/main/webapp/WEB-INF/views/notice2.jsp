@@ -21,18 +21,18 @@
 <body>
 
 <section id="page1" data-role="page">
-    <div w3-include-header="header.jsp"></div>
+    <div w3-include-header="header"></div>
 
     <div data-role="content">
         <div class="s_main">
             <h2 class="sub_tit helv bold">NOTICE</h2>
             <span class="m_tit bold">모바일웹 공지사항입니다.</span>
             <ul class="pr_list">
-                <li><a href="notice2.jsp" class="pr_link"><strong>&lt;어비 모바일&gt; 출간!!</strong><span class="pr_date verd">2011.10.03</span></a></li>
-                <li><a href="notice2.jsp" class="pr_link"><strong>함께 즐기는 공부 모임 탄생!</strong><span class="pr_date verd">2011.10.03</span></a></li>
-                <li><a href="notice2.jsp" class="pr_link"><strong>최고의 공부 공유자</strong><span class="pr_date verd">2011.10.03</span></a></li>
-                <li><a href="notice2.jsp" class="pr_link"><strong>웹표준과 모바일의 관계</strong><span class="pr_date verd">2011.10.03</span></a></li>
-                <li><a href="notice2.jsp" class="pr_link"><strong>어비와 송태민</strong><span class="pr_date verd">2011.10.03</span></a></li>
+                <li><a href="notice2" class="pr_link"><strong>&lt;어비 모바일&gt; 출간!!</strong><span class="pr_date verd">2011.10.03</span></a></li>
+                <li><a href="notice2" class="pr_link"><strong>함께 즐기는 공부 모임 탄생!</strong><span class="pr_date verd">2011.10.03</span></a></li>
+                <li><a href="notice2" class="pr_link"><strong>최고의 공부 공유자</strong><span class="pr_date verd">2011.10.03</span></a></li>
+                <li><a href="notice2" class="pr_link"><strong>웹표준과 모바일의 관계</strong><span class="pr_date verd">2011.10.03</span></a></li>
+                <li><a href="notice2" class="pr_link"><strong>어비와 송태민</strong><span class="pr_date verd">2011.10.03</span></a></li>
             </ul>
             <div class="page_nav helv">
                 <p class="numb">
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div w3-include-footer="footer.jsp"></div>
+    <div w3-include-footer="footer"></div>
 </section>
 
 </body>

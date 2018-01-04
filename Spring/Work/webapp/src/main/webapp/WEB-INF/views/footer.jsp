@@ -5,7 +5,7 @@
     <div id="footer">
         <div class="foot_box">
             <ul>
-                <li><a href="index.jsp">HOME</a></li>
+                <li><a href="index">HOME</a></li>
                 <li><a href="#">아이콘보기</a></li>
                 <li class="end"><a href="#">전체보기</a></li>
             </ul>

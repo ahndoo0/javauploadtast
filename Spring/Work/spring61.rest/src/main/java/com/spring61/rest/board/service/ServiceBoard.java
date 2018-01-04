@@ -2,8 +2,8 @@ package com.spring61.rest.board.service;
 
 import java.util.List;
 
-import javax.xml.ws.Action;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -14,357 +14,356 @@ import com.spring61.rest.board.model.ModelArticle;
 import com.spring61.rest.board.model.ModelAttachFile;
 import com.spring61.rest.board.model.ModelBoard;
 import com.spring61.rest.board.model.ModelComments;
-@Service("serviceboard")
-public class ServiceBoard implements IServiceBoard{
 
+@Service("serviceboard")
+public class ServiceBoard implements IServiceBoard {
+    // SLF4J Logging
+    private static Logger logger = LoggerFactory.getLogger(ServiceBoard.class);
+    
     @Autowired
     @Qualifier("daoboard")
-    private IBoard dao;
+    private IBoard daoboard;
+    
+    public ServiceBoard() {
+        super();
+    }
+
     @Override
-    public String getBoardName(String name) throws Exception {
-        String result=null;
+    public String getBoardName(String boardcd) {
+        
+        String result = null;
         try {
-            result = dao.getBoardName(name);
+            result = daoboard.getBoardName(boardcd);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("getBoardName " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public ModelBoard getBoardOne(String board) throws Exception {
-        ModelBoard result=null ;
+    public ModelBoard getBoardOne(String boardcd) {
+        ModelBoard result = null;
         try {
-            result = dao.getBoardOne(board);
+            result = daoboard.getBoardOne(boardcd);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("getBoardOne " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public List<ModelBoard> getBoardList() throws Exception {
-        List<ModelBoard> result=null;
-        try {
-            result = dao.getBoardList();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public int insertBoard(ModelBoard board) throws Exception {
+    public int getBoardTotalRecord(String searchWord) {
         int result = -1;
         try {
-            result = dao.insertBoard(board);
+            result = daoboard.getBoardTotalRecord(searchWord);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("getBoardTotalRecord " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public int updateBoard(ModelBoard updateValue, ModelBoard searchValue)
-            throws Exception {
-        int result=-1;
+    public List<ModelBoard> getBoardList(String searchWord) {
+        List<ModelBoard> result = null;
         try {
-            result = dao.updateBoard(updateValue, searchValue);
+            result = daoboard.getBoardList(searchWord);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("getBoardOne " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public int deleteBoard(ModelBoard board) throws Exception {
-       int result=-1;
-    try {
-        result = dao.deleteBoard(board);
-    } catch (Exception e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    }
-        return result;
-    }
-
-    @Override
-    public List<ModelBoard> getBoardSearch(ModelBoard board) throws Exception {
-        List<ModelBoard> result=null;
+    public int insertBoard(ModelBoard board) {
+        
+        int result = -1;
         try {
-            result = dao.getBoardSearch(board);
+            result = daoboard.insertBoard(board);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("insertBoard " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public int getBoardTotalRecord(String boardcd, String searchWord)
-            throws Exception {
-        int result=-1;
+    public int updateBoard(ModelBoard setValue, ModelBoard whereValue) {
+        
+        int result = -1;
         try {
-            result = dao.getBoardTotalRecord(boardcd, searchWord);
+            result = daoboard.updateBoard(setValue, whereValue);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("updateBoard" + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public List<ModelBoard> getBoardPaging(String boardcd, String searchWord,
-            int start, int end) throws Exception {
-        List<ModelBoard> result=null;
+    public int deleteBoard(ModelBoard board) {
+        int result = -1;
         try {
-            result = dao.getBoardPaging(boardcd, searchWord, start, end);
+            result = daoboard.deleteBoard(board);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("deleteBoard" + e.getMessage());
         }
+        
         return result;
     }
 
     @Override
-    public int insertBoardList(List<ModelBoard> board) throws Exception {
-        int reslut=-1;
+    public List<ModelBoard> getBoardPaging(String boardcd, String searchWord, int start, int end) {
+        
+        List<ModelBoard> result = null;
         try {
-            reslut = dao.insertBoardList(board);
+            result = daoboard.getBoardPaging(boardcd, searchWord, start, end);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("getBoardPaging  " + e.getMessage() );
         }
-        return reslut;
-    }
-
-    @Override
-    public int getArticleTotalRecord(String boardcd, String searchWord)
-            throws Exception {
-        int result=-1;
-        try {
-            result = dao.getArticleTotalRecord(boardcd, searchWord);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        
         return result;
     }
 
     @Override
-    public List<ModelArticle> getArticleList(String boardcd, String searchWord,
-            int start, int end) throws Exception {
+    public int insertBoardList(List<ModelBoard> list) {
+        int result = -1;
+        try {
+            result = daoboard.insertBoardList(list);
+            //session.commit();
+        } catch (Exception e) {
+            logger.error("insertBoardList" + e.getMessage() );
+            //session.rollback();
+        }
+        
+        return result;
+    }
+
+    @Override
+    public int getArticleTotalRecord(String boardcd, String searchWord) {
+        int result = 0;
+        try {
+            result = daoboard.getArticleTotalRecord(boardcd, searchWord);
+        } catch (Exception e) {
+            logger.error("getArticleTotalRecord  " + e.getMessage() );
+        }
+        
+        return result;
+    }
+
+    @Override
+    public List<ModelArticle> getArticleList(String boardcd, String searchWord, int start, int end) {
+        
         List<ModelArticle> result = null;
         try {
-            result = dao.getArticleList(boardcd, searchWord, start, end);
+            result = daoboard.getArticleList(boardcd, searchWord, start, end);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("getArticleList  " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public List<ModelArticle> getArticle(int articleno) throws Exception {
-        List<ModelArticle> result= null;
+    public ModelArticle getArticle(int articleno) {
+        ModelArticle result = null;
         try {
-            result = dao.getArticle(articleno);
+            // 상세보기를 할때마다 페이지 조회수를 1 증가 시키기 위해서.
+            // 하단에 목록에서 조회수를 제대로 보기위해서는
+            // 목록 레코드를 페치하기 전에 조회수를 먼저 증가시켜야 한다.
+            // 사용자 IP 와 시간을 고려해서 조회수를 증가하도록...            
+//                     daoboard.increaseHit( articleno );
+            result = daoboard.getArticle ( articleno );
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("getArticle  " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public int insertArticle(ModelArticle article) throws Exception {
-        int result=-1;
-        try {
-            result = dao.insertArticle(article);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public int updateArticle(ModelArticle updateValue, ModelArticle searchValue)
-            throws Exception {
-        int result =-1;
-        try {
-            result = dao.updateArticle(updateValue, searchValue);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public int deleteArticle(ModelArticle article) throws Exception {
-        int result=-1;
-        try {
-            result = dao.deleteArticle(article);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public int increaseHit(int articleno) throws Exception {
-        int result=-1;
-        try {
-            result = dao.increaseHit(articleno);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public List<ModelArticle> getNextArticle(String boardcd, int articleno,
-            String searchWord) throws Exception {
-        List<ModelArticle> result=null;
-        try {
-            result = dao.getNextArticle(boardcd, articleno, searchWord);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public List<ModelArticle> getPrevArticle(String boardcd, int articleno,
-            String searchWord) throws Exception {
-        List<ModelArticle> result=null;
-        try {
-            result = dao.getPrevArticle(boardcd, articleno, searchWord);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public List<ModelAttachFile> getAttachFile(int attachFileNo)
-            throws Exception {
-        List<ModelAttachFile> result= null;
-        try {
-            result = dao.getAttachFile(attachFileNo);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public List<ModelAttachFile> getAttachFileList(int articleno)
-            throws Exception {
-        List<ModelAttachFile> result = null;
-        try {
-            result = dao.getAttachFileList(articleno);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public int insertAttachFile(ModelAttachFile attachfile) throws Exception {
-        int result =-1;
-        try {
-            result = dao.insertAttachFile(attachfile);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public int deleteAttachFile(ModelAttachFile attachfile) throws Exception {
+    public int insertArticle(ModelArticle article) {
         int result = -1;
         try {
-            result = dao.deleteAttachFile(attachfile);
+            result = daoboard.insertArticle(article);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("insertArticle " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public ModelComments getComment(int commentNo) throws Exception {
-        ModelComments result = null;
+    public int updateArticle(ModelArticle setValue, ModelArticle whereValue) {
+        
+        int result = -1;
         try {
-            result = dao.getComment(commentNo);
+            result = daoboard.updateArticle(setValue, whereValue);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("updateArticle " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public List<ModelComments> getCommentList(int articleno) throws Exception {
-        List<ModelComments> result = null;
+    public int deleteArticle(ModelArticle article) {
+        int result = -1;
         try {
-            result = dao.getCommentList(articleno);
+            result = daoboard.deleteArticle(article);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("deleteArticle  " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public int insertComment(ModelComments comments) throws Exception {
-        int result=-1;
+    public int increaseHit(int articleno) {
+        int result = -1;
         try {
-            result = dao.insertComment(comments);
+            result = daoboard.increaseHit(articleno);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("increaseHit  " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public int updateComment(ModelComments updateValue,
-            ModelComments searchValue) throws Exception {
-        int result =-1;
+    public ModelArticle getNextArticle(int articleno, String boardcd, String searchWord) {
+        
+        ModelArticle result = null;
         try {
-            result = dao.updateComment(updateValue, searchValue);
+            result = daoboard.getNextArticle( articleno, boardcd, searchWord  );
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("getNextArticle  " + e.getMessage() );
         }
+        
         return result;
     }
 
     @Override
-    public int deleteComment(ModelComments comments) throws Exception {
-        int result=-1;
+    public ModelArticle getPrevArticle(int articleno, String boardcd, String searchWord) {
+        ModelArticle result = null;
         try {
-            result = dao.deleteComment(comments);
+            result = daoboard.getPrevArticle( articleno, boardcd, searchWord );
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("getPrevArticle  " + e.getMessage() );
         }
+        
+        return result;
+    }
+
+    @Override
+    public ModelAttachFile getAttachFile(int attachFileNo) {
+        ModelAttachFile result = null;
+        try {
+            result = daoboard.getAttachFile( attachFileNo );
+        } catch (Exception e) {
+            logger.error("getAttachFile  " + e.getMessage() );
+        }
+        
         return result;
     }
     
+    @Override
+    public List<ModelAttachFile> getAttachFileList(int articleno) {
+        List<ModelAttachFile> result = null;
+        try {
+            result = daoboard.getAttachFileList( articleno );
+        } catch (Exception e) {
+            logger.error("getAttachFileList  " + e.getMessage() );
+        }
+        
+        return result;
+    }
+
+    @Override
+    public int insertAttachFile(ModelAttachFile attachFile) {
+        int result = -1;
+        try {
+            result = daoboard.insertAttachFile(attachFile);
+        } catch (Exception e) {
+            logger.error("insertAttachFile " + e.getMessage() );
+        }
+        
+        return result;
+    }
+
+    @Override
+    public int deleteAttachFile(ModelAttachFile attachFile) {
+        int result = -1;
+        try {
+            result = daoboard.deleteAttachFile(attachFile);
+        } catch (Exception e) {
+            logger.error("deleteAttachFile " + e.getMessage() );
+        }
+        
+        return result;
+    }
+
+    @Override
+    public ModelComments getComment(int commentNo) {
+        ModelComments result = null;
+        try {
+            result = daoboard.getComment( commentNo );
+        } catch (Exception e) {
+            logger.error("getComment  " + e.getMessage() );
+        }
+        
+        return result;
+    }
+
+
+    @Override
+    public List<ModelComments> getCommentList(int articleno) {
+        List<ModelComments>  result = null;
+        try {
+            result = daoboard.getCommentList( articleno );
+        } catch (Exception e) {
+            logger.error("getCommentList  " + e.getMessage() );
+        }
+        
+        return result;
+    }
+    
+    @Override
+    public int insertComment(ModelComments comment) {
+        int result = -1;
+        try {
+            result = daoboard.insertComment(comment);
+        } catch (Exception e) {
+            logger.error("insertComment " + e.getMessage() );
+        }
+        
+        return result;
+    }
+
+    @Override
+    public int updateComment(ModelComments setValue, ModelComments whereValue) {
+        int result = -1;
+        try {
+            result = daoboard.updateComment( setValue, whereValue );
+        } catch (Exception e) {
+            logger.error("updateComment " + e.getMessage() );
+        }
+        
+        return result;
+    }
+
+    @Override
+    public int deleteComment(ModelComments comment) {
+        int result = -1;
+        try {
+            result = daoboard.deleteComment( comment );
+        } catch (Exception e) {
+            logger.error("deleteComment " + e.getMessage() );
+        }
+        
+        return result;
+    }
 }

@@ -35,11 +35,71 @@ public class HomeController {
 		
 		return "home";
 	}
-	  @RequestMapping(value = "/company1.jsp", method = RequestMethod.GET)
+	  @RequestMapping(value = "company1", method = RequestMethod.GET)
 	    public String company1(Model model) {
 	        logger.info("company1.jsp");
 	        
-	        return "company1.jsp";
+	        return "company1";
 	    }
-	
+	  @RequestMapping(value = "company2", method = RequestMethod.GET)
+      public String company2(Model model) {
+          logger.info("company2.jsp");
+          
+          return "company2";
+      }
+	  @RequestMapping(value = "company3", method = RequestMethod.GET)
+      public String company3(Model model) {
+          logger.info("company3.jsp");
+          
+          return "company3";
+      }
+	  @RequestMapping(value = "footer", method = RequestMethod.GET)
+      public String footer(Model model) {
+          logger.info("footer.jsp");
+          
+          return "footer";
+      }
+	  @RequestMapping(value = "header", method = RequestMethod.GET)
+      public String header(Model model) {
+          logger.info("header.jsp");
+          
+          return "header";
+      }
+	  @RequestMapping(value = "/", method = RequestMethod.GET)
+      public String home(Model model) {
+          logger.info("home.jsp");
+          
+          return "home";
+      }
+	  @RequestMapping(value = "notice1", method = RequestMethod.GET)
+      public String notice1(Model model) {
+          logger.info("notice1.jsp");
+          
+          return "notice1";
+      }
+	  @RequestMapping(value = "notice2", method = RequestMethod.GET)
+      public String notice2(Model model) {
+          logger.info("notice2.jsp");
+          
+          return "notice2";
+      }
+	  @RequestMapping(value = "project", method = RequestMethod.GET)
+      public String project(Model model) {
+          logger.info("project.jsp");
+          
+          return "project";
+      }
+	  
+	  @RequestMapping(value = "recruit", method = RequestMethod.GET)
+      public String recruit(Model model) {
+          logger.info("recruit.jsp");
+          
+          return "recruit";
+      }
+	  @RequestMapping(value = "request", method = RequestMethod.GET)
+      public String request(Model model) {
+          logger.info("request.jsp");
+          
+          return "request";
+      }
 }

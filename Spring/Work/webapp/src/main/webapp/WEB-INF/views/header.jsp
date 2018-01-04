@@ -27,16 +27,16 @@
     <!-- 내비게이션 영역 -->
     <nav>
         <ul class="main_menu bold verd">
-            <li><a href="company1.jsp" title="company" class="tab_m">COMPANY</a></li>
-            <li><a href="project.jsp" title="project" class="tab_m">PROJECT</a></li>
-            <li><a href="recruit.jsp" title="recruit" class="tab_m">RECRUIT</a></li>
-            <li><a href="request.jsp" title="request" class="tab_m">REQUEST</a></li>
-            <li><a href="notice1.jsp" title="notice ">NOTICE </a></li>
+            <li><a href="company1" title="company" class="tab_m">COMPANY</a></li>
+            <li><a href="project" title="project" class="tab_m">PROJECT</a></li>
+            <li><a href="recruit" title="recruit" class="tab_m">RECRUIT</a></li>
+            <li><a href="request" title="request" class="tab_m">REQUEST</a></li>
+            <li><a href="notice1" title="notice ">NOTICE </a></li>
         </ul>
         <ul class="sub_menu verd">
-            <li><a href="company1.jsp" category="company">ABOUT US</a></li>
-            <li><a href="company2.jsp" category="company">OUR STORY</a></li>
-            <li><a href="company3.jsp" category="company">LOCATION</a></li>
+            <li><a href="company1" category="company">ABOUT US</a></li>
+            <li><a href="company2" category="company">OUR STORY</a></li>
+            <li><a href="company3" category="company">LOCATION</a></li>
         </ul>
     </nav>
 </header>
