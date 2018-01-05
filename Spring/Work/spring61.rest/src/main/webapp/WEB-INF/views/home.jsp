@@ -60,12 +60,16 @@
     <p> <a href="./rest/checkuserid?userid=fadfad" target="_blank"> ./rest/checkuserid?userid=fadfad  </a></p>
     <p> <a href="./rest/updatepasswd?userid=userid&currentPasswd=password&newPasswd=newpw" target="_blank"> ./rest/updatepasswd?userid=userid&currentPasswd=password&newPasswd=newpw  </a></p>
     
-    <p> @RequesBody 실습 </p>
+    <p> @ModelAttribute 실습 </p>
     
     <p> <a href="./rest/insertone?id=3i&pw=3p&name=3n&email=3e" target="_blank"> /rest/insertone </a></p>
     <p> <a href="./rest/insertuser?userid=111&email=111" target="_blank"> ./rest/insertuser?userid=111&email=111 </a></p>
     <hr>
 
+    <p> @RequesBody 실습 </p>
+    <p> <a href="./rest/updateretire" target="_blank"> ./rest/updateretire </a></p>
+    <hr>
+    
     <h1>Board</h1>
         <p> <a href="/rest/getboardone?cd=free"   target="_blank">    /rest/getboardone?cd=free     </a> </p>
         <p> <a href="/rest/getboardone"           target="_blank">   "/rest"/getboardone"           </a> </p>
