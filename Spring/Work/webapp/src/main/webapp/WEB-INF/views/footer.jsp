@@ -13,7 +13,7 @@
             <input type="button" value="PC버전">
             <input type="button" value="고객센터">
             <p class="privacy">
-                <a href="#">개인정보취급방침</a>
+                <a href="#">개인정보취급방침</a>44455577888854777854544141122544
                 <span class="bar">|</span>
                 <a href="#" class="copyrights">이용약관</a>
             </p>

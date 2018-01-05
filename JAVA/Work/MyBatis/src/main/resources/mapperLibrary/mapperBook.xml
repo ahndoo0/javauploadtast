@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapperLibrary.mapperBook">
+    
+    <select id="getCount" parameterType="ModelBook" resultType="int">        
+        SELECT count(*)
+          FROM book
+         <if test="genre != null and genre !=''">
+         WHERE genre = #{genre}
+         </if>
+    </select>
+    
+    <select id="getMaxBookid" resultType="int">
+        SELECT max(bookid) 
+          FROM book 
+    </select>
+    
+    <select id="selectAll" resultType="ModelBook">
+        SELECT bookid,bookname,publisher,year,price,genre,dtm,use_yn
+          FROM book
+        ORDER BY bookid
+    </select>     
+    
+    <select id="selectLike" parameterType="hashmap" resultType="ModelBook">
+        SELECT *
+          FROM book
+        WhHERE 1=1
+        <if test="bookname != null and bookname !=''"> 
+             AND bookname LIKE CONCAT( '%' , #{searchWord} ,  '%' )
+        </if>
+        <if test="publisher != null and publisher !=''"> 
+            AND publisher LIKE CONCAT( '%' , #{searchWord} ,  '%' )
+        </if>
+        <if test="year != null and year !=''"> 
+            AND year LIKE CONCAT( '%' , #{searchWord} ,  '%' )
+        </if>
+        <if test="price != null"> 
+            AND price LIKE CONCAT( '%' , #{searchWord} ,  '%' )
+        </if>
+        <if test="genre != null and genre !=''"> 
+            AND genre LIKE CONCAT( '%' , #{searchWord} ,  '%' )
+        </if>
+        <if test="dtm != null and dtm !=''"> 
+             AND dtm LIKE CONCAT( '%' , #{searchWord} ,  '%' )
+        </if>
+        <if test="use_yn != null and use_yn !=''"> 
+             AND use_yn LIKE CONCAT( '%' , #{searchWord} ,  '%' )
+        </if>
+        <if test="authid != null"> 
+             AND authid LIKE CONCAT( '%' , #{searchWord} ,  '%' )
+        </if>
+    </select>
+    
+    <select id="selectJoin" parameterType="ModelBook" resultType="ModelBook">
+        SELECT b.bookid, b.bookname, b.publisher, b.genre,b.dtm ,b.authid, a.name, a.birth
+          FROM book b left join auth a 
+            ON b.authid=a.authid 
+         WHERE 1 =1 
+           <if  test="use_yn != null and use_yn != ''">
+           AND b.use_yn = 1
+           </if>
+    </select>
+    
+    <select id="selectJoin2" parameterType="ModelBook" resultType="ModelBook">
+        SELECT a.name, b.bookname, b.dtm
+          FROM book b left join auth a 
+            ON b.authid=a.authid 
+         WHERE 1 =1 
+           <if  test="use_yn != null and use_yn != ''">
+           AND b.use_yn = 1
+           </if>
+    </select>
+    
+    <insert id="insertBook" parameterType="ModelBook" useGeneratedKeys="true" keyProperty="bookid">
+        INSERT INTO book(bookid,bookname,publisher,year,price, genre)
+        VALUES (#{bookid}, #{bookname}, #{publisher}, #{year}, #{price}, #{genre} )
+    </insert>
+    
+    <update id="updateBook" parameterType="java.util.Map">
+        UPDATE book 
+           <set> 
+               <if test="bookname != null and bookname != '' "> bookname = #{setValue.bookname}, </if>
+               <if test="publisher != null and publisher != '' "> publisher   = #{setValue.publisher  } ,</if>
+               <if test="year != null and year !='' "> year     = #{setValue.year    } ,</if>
+               <if test="price != null "> price = #{setValue.price} ,</if>
+               <if test="genre != null and genre !='' "> genre = #{setValue.genre} ,</if>
+               <if test="dtm != null and dtm !='' "> dtm  = #{setValue.dtm }</if>
+               <if test="use_yn != null"> use_yn  = #{setValue.use_yn }</if>
+               <if test="authid != null"> authid  = #{setValue.authid }</if>
+           </set>
+         WHERE  1 = 1 
+              <if test="whereValue.bookid != null and whereValue.bookid != ''" >
+              AND bookid    = #{whereValue.bookid}
+              </if>
+              <if test="whereValue.bookname != null and whereValue.bookname != ''">
+              AND bookname  = #{whereValue.bookname}
+              </if>
+              <if test="whereValue.price != null and whereValue.price != ''">
+              AND price      = #{whereValue.price}
+              </if>
+              <if test="whereValue.genre != null and whereValue.genre != ''">
+              AND genre      = #{whereValue.genre}
+              </if>
+              <if test="whereValue.dtm != null and whereValue.dtm != ''">
+              AND dtm      = #{whereValue.dtm}
+              </if>
+              <if test="whereValue.use_yn != null and whereValue.use_yn != ''">
+              AND use_yn      = #{whereValue.use_yn}
+              </if>
+              <if test="whereValue.authid != null and whereValue.authid != ''">
+              AND authid      = #{whereValue.authid}
+              </if>
+    </update>
+    
+    <delete id="deleteBook" parameterType="ModelBook">
+        DELETE FROM book 
+         WHERE 1 = 1 
+          <if test="bookid != null and bookid != ''" >
+          AND bookid = #{bookid}
+          </if>
+          <if test="bookname != null and bookname != ''">
+          AND bookname  = #{bookname}
+          </if>
+          <if test="publisher != null and publisher != ''">
+          AND publisher    = #{publisher}
+          </if>
+          <if test="year != null and year != ''">
+          AND year    = #{year}
+          </if>
+          <if test="genre != null and genre != ''">
+          AND genre    = #{genre}
+          </if>
+    </delete>
+    
+    <update id="updateRentBook" parameterType="java.util.Map">
+        UPDATE book 
+           <set> 
+               <if test="dtm != null and dtm !='' "> dtm  = now()</if>
+               <if test="use_yn != null"> use_yn  = 1</if>
+               <if test="authid != null"> authid  = #{setValue.authid }</if>
+           </set>
+         WHERE  1 = 1 
+              <if test="whereValue.bookid != null and whereValue.bookid != ''" >
+              AND bookid    = #{whereValue.bookid}
+              </if>
+              <if test="whereValue.bookname != null and whereValue.bookname != ''">
+              AND bookname  = #{whereValue.bookname}
+              </if>
+    </update>
+    
+    <select id="selectEqual" parameterType="String" resultType="ModelBook">
+        SELECT bookname
+        FROM book
+        WHERE 1 = 1
+        <if test="genre != null and genre != ''">
+          AND genre    = #{genre}
+          </if>
+    </select>
+    
+ 
+ </mapper>

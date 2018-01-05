@@ -9,7 +9,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../resources/images/app_icon.png" />
     <link rel="apple-touch-icon-precomposed" href="../../resources/images/app_icon.png" />
 
-    <link rel="stylesheet" href="../../resources/common.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
 
     <script src="../../resources/js/jquery-3.1.1.js"></script>
     <script src="../../resources/js/main.js"></script>

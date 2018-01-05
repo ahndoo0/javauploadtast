@@ -1,0 +1,10 @@
+main> [2018-01-03 11:18:23] [ClassPathXmlApplicationContext] [510] [INFO] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35083305: startup date [Wed Jan 03 11:18:23 KST 2018]; root of context hierarchy 
+main> [2018-01-03 11:18:23] [XmlBeanDefinitionReader] [317] [INFO] Loading XML bean definitions from class path resource [ApplicationContext.xml] 
+main> [2018-01-03 11:20:31] [ClassPathXmlApplicationContext] [510] [INFO] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35083305: startup date [Wed Jan 03 11:20:31 KST 2018]; root of context hierarchy 
+main> [2018-01-03 11:20:31] [XmlBeanDefinitionReader] [317] [INFO] Loading XML bean definitions from class path resource [ApplicationContext.xml] 
+main> [2018-01-03 11:21:46] [ClassPathXmlApplicationContext] [510] [INFO] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35083305: startup date [Wed Jan 03 11:21:46 KST 2018]; root of context hierarchy 
+main> [2018-01-03 11:21:46] [XmlBeanDefinitionReader] [317] [INFO] Loading XML bean definitions from class path resource [ApplicationContext.xml] 
+main> [2018-01-03 11:22:42] [ClassPathXmlApplicationContext] [510] [INFO] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@534df152: startup date [Wed Jan 03 11:22:42 KST 2018]; root of context hierarchy 
+main> [2018-01-03 11:22:42] [XmlBeanDefinitionReader] [317] [INFO] Loading XML bean definitions from class path resource [ApplicationContext.xml] 
+main> [2018-01-03 11:23:38] [ClassPathXmlApplicationContext] [510] [INFO] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7d68ef40: startup date [Wed Jan 03 11:23:38 KST 2018]; root of context hierarchy 
+main> [2018-01-03 11:23:38] [XmlBeanDefinitionReader] [317] [INFO] Loading XML bean definitions from class path resource [ApplicationContext.xml] 

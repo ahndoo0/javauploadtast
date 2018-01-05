@@ -4,7 +4,7 @@
     <!-- 웹 로그와 검색 창영역 -->
     <div id="wrap_head">
         <!-- 웹 로그 영역 -->
-        <h1 class="main_logo bold helv"><a href="home.jsp" id="logo">Mobile Project</a></h1>
+        <h1 class="main_logo bold helv"><a href="home2" id="logo">Mobile Project</a></h1>
 
         <!-- 검색 창영역 -->
         <a href="#" id="btn1"><span class="search_icon"></span></a>

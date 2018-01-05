@@ -28,20 +28,22 @@
         <div class="s_main">
             <h2 class="sub_tit helv bold">NOTICE</h2>
             <span class="m_tit bold">모바일웹 공지사항입니다.</span>
-            <div id="pr_de">
-                <h3><strong>모바일</strong></h3>
-                <span class="detail_date verd">2012.09.25</span>
-            </div>
-            <div class="post_cont">
-                <p>누구나 쉽게 기초부터 다가갈 수 있도록 도와드립니다. 웹표준 코딩에 대한 두려움은 갖지 않도록 도와드립니다. 모바일 웹에 특화되어서 배우며 함께 만들어 가면서 같이 공부해봅시다.</p>
-                <p>아이폰, 안드로이드폰 등의 스마트폰에서의 필수인 모바일 웹 및 하이브리드 제작을 위한 HTML 마크업도 함께 배우시면 실무에 도움이 될 것입니다.</p>
-            </div>
-            <div class="page_btn helv">
+            <ul class="pr_list">
+                <li><a href="notice2" class="pr_link"><strong>&lt;어비 모바일&gt; 출간!!</strong><span class="pr_date verd">2011.10.03</span></a></li>
+                <li><a href="notice2" class="pr_link"><strong>함께 즐기는 공부 모임 탄생!</strong><span class="pr_date verd">2011.10.03</span></a></li>
+                <li><a href="notice2" class="pr_link"><strong>최고의 공부 공유자</strong><span class="pr_date verd">2011.10.03</span></a></li>
+                <li><a href="notice2" class="pr_link"><strong>웹표준과 모바일의 관계</strong><span class="pr_date verd">2011.10.03</span></a></li>
+                <li><a href="notice2" class="pr_link"><strong>어비와 송태민</strong><span class="pr_date verd">2011.10.03</span></a></li>
+            </ul>
+            <div class="page_nav helv">
                 <p class="numb">
-                    <a href="#">&lt;</a>
-                    <a href="#">LIST</a>
-                    <a href="#">&gt;</a>
+                    <span class="now_p">1</span>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
                 </p>
+                <a class="next_p" href="#"><em>다음</em></a>
             </div>
         </div>
     </div>
@@ -51,3 +53,4 @@
 
 </body>
 </html>
+

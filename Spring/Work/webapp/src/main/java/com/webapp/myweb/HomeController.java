@@ -24,15 +24,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+	    logger.info("home.jsp");
 		return "home";
 	}
 	  @RequestMapping(value = "company1", method = RequestMethod.GET)
@@ -65,11 +57,11 @@ public class HomeController {
           
           return "header";
       }
-	  @RequestMapping(value = "/", method = RequestMethod.GET)
+	  @RequestMapping(value = "home2", method = RequestMethod.GET)
       public String home(Model model) {
-          logger.info("home.jsp");
+          logger.info("home2.jsp");
           
-          return "home";
+          return "home2";
       }
 	  @RequestMapping(value = "notice1", method = RequestMethod.GET)
       public String notice1(Model model) {
