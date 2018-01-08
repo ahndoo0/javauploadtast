@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -111,6 +112,36 @@ public class HomeController {
         model.addAttribute("name", name);
         model.addAttribute("phone", phone);
         return "querypath2";
+    }
+    @RequestMapping(value = "/spring/login", method = RequestMethod.GET)
+    public String loginget(Model model ){
+        model.addAttribute("id","aaa");
+        return "spring/loginget";
+    }
+    @RequestMapping(value = "/spring/login", method = RequestMethod.POST)
+    public String loginpost(Model model  
+                                                                    ,@RequestParam(value="id") String id
+                                                                    ,@RequestParam(value="pw") String pw){
+        //DB 죄회.
+        
+        // 결과 리턴 : 성공여부 리턴
+        model.addAttribute("id",id);
+        model.addAttribute("pw", pw);
+        
+        return "spring/loginpost";
+    }
+    @RequestMapping(value = "/spring/loginmodel", method = RequestMethod.GET)
+    public String loginmodelget(Model model ){
+        
+        return "spring/loginmodel";
+    }
+    
+    @RequestMapping(value = "/spring/loginmodel", method = RequestMethod.POST)
+    public String loginmodelpost(Model model  
+                                                                    ,@ModelAttribute ModelLogin info ){
+        model.addAttribute("info",info);
+        
+        return "spring/loginmodelpost";
     }
     
     
