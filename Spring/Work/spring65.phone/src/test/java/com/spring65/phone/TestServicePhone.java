@@ -2,7 +2,9 @@ package com.spring65.phone;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.BeforeClass;
@@ -26,21 +28,47 @@ public class TestServicePhone {
     public static void setUpBeforeClass() throws Exception {
         
         context= new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml");
-        service=context.getBean("servicePhone", IServicePhone.class);
+        service=context.getBean("servicephone", IServicePhone.class);
     }    
  
     @Test
-    public void testinsertPhone() {
-                
-        ModelPhone phone= new ModelPhone();
-       
-        phone.setName("Sunny");
-        phone.setManufacturer("motorola");
-        phone.setPrice(19000);
-        
-        int result= service.insertPhone(phone);
-        
-        assertSame(result , 1);
+    public void test01_getPhoneOne() {      
+       ModelPhone result = service.getPhoneOne("이영규");
+       assertEquals("이영규", result.getName());
     }
-  
+    @Test
+    public void test02_getPhoneList() {      
+       List<ModelPhone> result = service.getPhoneList();
+       result = service.getPhoneList();
+       assertSame(result.size(), 2);
+    }
+    @Test
+    public void test03_insertPhone() {      
+        ModelPhone model = new ModelPhone();
+        model.setName("ㅁㄴㅇ");
+        model.setManufacturer("ㅇㅁㄴㅇ");
+        model.setPrice(123);
+        
+        int result = service.insertPhone(model);
+        assertEquals(result, 1);
+    }
+    
+    
+    @Test
+    public void test04_insertPhoneList() {      
+        ModelPhone model = new ModelPhone();
+        List<ModelPhone> list = new ArrayList<ModelPhone>();
+        
+        for( int i=0; i<10; i=i+1){            
+            model = new ModelPhone();
+            model.setName("ddd");
+            model.setManufacturer("sss");
+            model.setPrice(12003); 
+            
+            list.add( model );
+        }
+               
+        int result = service.insertPhoneList(list);
+        assertEquals(result, list.size());
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+
 import com.spring65.phone.inf.IPhone;
 import com.spring65.phone.inf.IServicePhone;
 import com.spring65.phone.model.ModelPhone;
@@ -23,22 +24,48 @@ public class ServicePhone implements IServicePhone{
     }
     @Override
     public ModelPhone getPhoneOne(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        ModelPhone result = null;
+        try {
+            result = daophone.getPhoneOne(name);
+        } catch (Exception e) {
+            logger.error("getPhoneOne " + e.getMessage() );
+        }
+        
+        return result;
     }
     @Override
     public List<ModelPhone> getPhoneList() {
-        // TODO Auto-generated method stub
-        return null;
+        List<ModelPhone> result = null;
+        try {
+            result = daophone.getPhoneList();
+        } catch (Exception e) {
+            logger.error("getPhoneList " + e.getMessage() );
+        }
+        
+        return result;
     }
     @Override
     public int insertPhone(ModelPhone phone) {
-        // TODO Auto-generated method stub
-        return 0;
+        int result = -1;
+        try {
+            result = daophone.insertPhone(phone);
+        } catch (Exception e) {
+            logger.error("insertPhone " + e.getMessage() );
+        }
+        
+        return result;
     }
     @Override
     public int insertPhoneList(List<ModelPhone> phones) {
-        // TODO Auto-generated method stub
-        return 0;
+        int result = -1;
+        try {
+            result = daophone.insertPhoneList(phones);
+            //session.commit();
+        } catch (Exception e) {
+            logger.error("insertPhoneList" + e.getMessage() );
+            //session.rollback();
+        }
+        
+        return result;
     }
 }

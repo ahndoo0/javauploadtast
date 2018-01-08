@@ -3,7 +3,7 @@
 <html>
 <body>
   
-        <form action="/spring/loginmodel" 
+        <form action="loginmodel" 
                 method="post"
                 enctype="application/x-www-form-urlencoded">
 

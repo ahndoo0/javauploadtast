@@ -11,13 +11,12 @@
     </select>
     
     <select id="getPhoneList"  resultType="ModelPhone">
-        SELECT name, manufacturer, price 
+        SELECT * 
           FROM TB_Phone
-         WHERE 1 =1 
+         
            
     </select>
         
-    
     <insert id="insertPhone" parameterType="ModelPhone">
         INSERT INTO 
         TB_Phone ( name   , manufacturer   , price     )
@@ -38,6 +37,4 @@
             </foreach>
     </insert>
     
-   
-
- </mapper>
+</mapper>
