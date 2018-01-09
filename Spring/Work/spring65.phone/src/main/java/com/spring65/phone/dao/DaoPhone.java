@@ -17,22 +17,22 @@ public class DaoPhone implements IPhone {
     
     @Override
     public ModelPhone getPhoneOne(String name) {
-        return  session.selectOne("mapper.mapperBoard.getPhoneOne", name);  
+        return  session.selectOne("mapper.mapperPhone.getPhoneOne", name);  
     }
 
     @Override
     public List<ModelPhone> getPhoneList() {
-        return  session.selectList("mapper.mapperBoard.getPhoneList");
+        return  session.selectList("mapper.mapperPhone.getPhoneList");
     }
 
     @Override
     public int insertPhone(ModelPhone phone) {
-        return  session.insert("mapper.mapperBoard.insertPhone", phone);
+        return  session.insert("mapper.mapperPhone.insertPhone", phone);
     }
 
     @Override
     public int insertPhoneList(List<ModelPhone> phones) {
-        return  session.insert("mapper.mapperBoard.insertPhoneList", phones);
+        return  session.insert("mapper.mapperPhone.insertPhoneList", phones);
     }
     
 }

@@ -33,8 +33,9 @@ public class TestServicePhone {
  
     @Test
     public void test01_getPhoneOne() {      
-       ModelPhone result = service.getPhoneOne("이영규");
-       assertEquals("이영규", result.getName());
+       ModelPhone result = service.getPhoneOne("a");
+       assertEquals("a", result.getName());
+       assertEquals("a", result.getManufacturer());
     }
     @Test
     public void test02_getPhoneList() {      

@@ -12,5 +12,8 @@
 <P>  The time on the server is ${serverTime}. </P>
 
 <a href="writeoneform" target="_blank">writeOneResult</a> <br />
+<a href="writelist" target="_blank">writeListForm</a> <br />
+<a href="writelistall" target="_blank">writeListForm</a> <br />
+
 </body>
 </html>
