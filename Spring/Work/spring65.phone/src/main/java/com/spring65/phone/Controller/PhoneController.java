@@ -42,12 +42,6 @@ public class PhoneController {
         return "writeOneForm";
     }
     
-    @RequestMapping(value = "/writeoneresult", method = RequestMethod.GET)
-    public String writeOneResult(Model model) {
-        
-        return "writeOneResult";
-    }
-    
     @RequestMapping(value = "/writeone1", method = RequestMethod.POST)
     public String writeOnePost1(Model model, HttpServletRequest request) {
         String name = request.getParameter("name");
@@ -91,7 +85,7 @@ public class PhoneController {
     
     @RequestMapping(value = "/writelist", method = RequestMethod.POST)
     public String writeListPost(Model model,
-            @ModelAttribute RepositoryPhone phone) {
+                                                                                    @ModelAttribute RepositoryPhone phone) {
         List<ModelPhone> phonelist = phone.getPhoneItems();
         // DB insert. 어떻게?
         psvr.insertPhoneList(phonelist);
