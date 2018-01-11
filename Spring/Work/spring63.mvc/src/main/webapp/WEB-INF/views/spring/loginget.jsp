@@ -12,10 +12,10 @@
         </label>
         <br> 
         <label for="pw">
-        pw: <input type="text" name="pw" />
+        pw: <input type="text" name="pw" required="required" />
         </label>
         <br>
-         <input type="submit"  value="전송" />
+         <input type="submit"  value="전송" required="required"/>
     </form>
     
   

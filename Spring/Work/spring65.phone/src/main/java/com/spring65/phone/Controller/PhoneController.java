@@ -22,30 +22,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring65.phone.inf.IServicePhone;
 import com.spring65.phone.model.ModelPhone;
 
-
 /**
  * Handles requests for the application home page.
  */
 @Controller
 @RequestMapping(value = "/")
 public class PhoneController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
     
-	// ServiceUser 인스턴스 만들기.
-	@Autowired 
-	IServicePhone psvr;
-	
-	@RequestMapping(value = "/writeoneform", method = RequestMethod.GET)
+    private static final Logger logger = LoggerFactory
+            .getLogger(PhoneController.class);
+    
+    // ServiceUser 인스턴스 만들기.
+    @Autowired
+    IServicePhone               psvr;
+    
+    @RequestMapping(value = "/writeoneform", method = RequestMethod.GET)
     public String writeoneform(Model model) {
         
         return "writeOneForm";
-    }
-    
-    @RequestMapping(value = "/writeoneresult", method = RequestMethod.GET)
-    public String writeOneResult(Model model) {
-        
-        return "writeOneResult";
     }
     
     @RequestMapping(value = "/writeone1", method = RequestMethod.POST)
@@ -57,7 +51,7 @@ public class PhoneController {
         phone.setName(name);
         phone.setManufacturer(manufacturer);
         phone.setPrice(Integer.valueOf(price));
-        model.addAttribute("phone", phone );
+        model.addAttribute("phone", phone);
         psvr.insertPhone(phone);
         return "writeOneResult";
     }
@@ -71,7 +65,7 @@ public class PhoneController {
         phone.setName(name);
         phone.setManufacturer(manufacturer);
         phone.setPrice(price);
-        model.addAttribute("phone",phone);
+        model.addAttribute("phone", phone);
         psvr.insertPhone(phone);
         return "writeOneResult";
     }
@@ -83,5 +77,28 @@ public class PhoneController {
         psvr.insertPhone(phone);
         return "writeOneResult";
     }
-	
+    
+    @RequestMapping(value = "/writelist", method = RequestMethod.GET)
+    public String writeListGet(Model model) {
+        return "writeListForm";
+    }
+    
+    @RequestMapping(value = "/writelist", method = RequestMethod.POST)
+    public String writeListPost(Model model,
+                                                                                    @ModelAttribute RepositoryPhone phone) {
+        List<ModelPhone> phonelist = phone.getPhoneItems();
+        // DB insert. 어떻게?
+        psvr.insertPhoneList(phonelist);
+        model.addAttribute("list", phonelist);
+        return "writeListResult";
+    }
+
+
+    @RequestMapping(value = "/writelistall", method = RequestMethod.GET)
+    public String writelistall(Model model) {
+        List<ModelPhone> phonelist = null ;
+        phonelist = psvr.getPhoneList();
+        model.addAttribute("list", phonelist);
+        return "writeListResult";
+    }
 }
