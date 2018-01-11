@@ -6,6 +6,8 @@ public class ModelUploadFile {
     private String fileNameTemp ;
     private Long fileSize ;
     private String contentType ;
+    
+    
     public Integer getUploadFileNo() {
         return uploadFileNo;
     }

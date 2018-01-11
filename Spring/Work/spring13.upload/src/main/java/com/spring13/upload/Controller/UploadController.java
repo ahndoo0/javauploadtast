@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -12,16 +13,23 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring13.upload.inf.IServiceUpload;
+import com.spring13.upload.inf.IServiceUploadImage;
 import com.spring13.upload.model.ModelUploadFile;
+import com.spring13.upload.model.ModelUploadImage;
 
 
 /**
@@ -141,5 +149,67 @@ public class UploadController {
         model.addAttribute("filenametemp", filenametemp);
         return "upload/download";
     }
-    
+    @Autowired
+    private IServiceUploadImage svcuploadimage;
+    /**
+     * 사진 업로드를 위한 화면
+     */
+    @RequestMapping(value="/upload/imageupload", method = RequestMethod.GET)
+    public String saveImage() {
+    return "upload/imageupload";
+    }
+    /**
+     * 사진 파일 업로드 후 DB 저장
+     */
+     @RequestMapping(value="/upload/imageupload", method = RequestMethod.POST)
+     public String saveImage(Model model
+     , @RequestParam String upDir
+     , @ModelAttribute ModelUploadImage vo ) {
+     logger.info("imageupload");
+
+     Integer attachfileno = null;
+
+     try {
+     vo.setFileName( vo.getImage().getOriginalFilename() );
+     vo.setFileSize( (Long)vo.getImage().getSize() );
+     vo.setContentType( vo.getImage().getContentType() ); // 확장자
+     vo.setImageBytes( vo.getImage().getBytes() );
+
+    vo.setImageBase64( Base64.getEncoder().encodeToString( vo.getImage().getBytes() ) );
+
+     attachfileno = svcuploadimage.insertPhoto(vo);
+
+     } catch (Exception e) {
+     e.printStackTrace();
+     }
+
+     return "redirect:/upload/imageview/"+ Integer.toString( attachfileno );
+     }
+     /**
+      * 임의의 뷰페이지
+      */
+      @RequestMapping(value="/upload/imageview/{attachfileno}", method = RequestMethod.GET)
+      public String imageview(Model model , @PathVariable int attachfileno) {
+      logger.info("imageview");
+      ModelUploadImage result = svcuploadimage.getImageByte(attachfileno);
+
+      model.addAttribute("attachfileno", attachfileno);
+      model.addAttribute("contentType", result.getContentType() );
+      model.addAttribute("imageBase64", result.getImageBase64() );
+
+      return "upload/imageview";
+      }
+      /** img 태그의 src 에 이미지를 출력하기 위한 메서드 */
+      @RequestMapping(value="/upload/getphoto/{attachfileno}", method = RequestMethod.GET)
+      public ResponseEntity<byte[]> getImageByte(@PathVariable int attachfileno) {
+      logger.info("getImageByte");
+      ModelUploadImage result = svcuploadimage.getImageByte(attachfileno);
+
+      byte[] imageContent = result.getImageBytes();
+      final HttpHeaders headers = new HttpHeaders();
+      headers.setContentType( MediaType.valueOf( result.getContentType() ) );
+
+      return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+      }
+
 }
