@@ -16,36 +16,39 @@ $(document).ready(function() {
     var fileIndex = $('#fileview tr').children().length;
     $('#fileview').append(
       '<tr><td>' +
+      '<span class="deletefile">x</span>'+
       ' <input type="file" name="files[' + fileIndex + ']" />' +
       '</td></tr>');
+  });
+  $('#fileview').on( 'click' , '.deletefile' , function(e){
+	  $(this).parent().remove();
   });
 });
 </script>
 </head>
 <body>
     <h3>Spring Single File Upload</h3>
-    <form method="post" action="./uploadfileone"
-        enctype="multipart/form-data">
-        Upload Directory : <input type="text" name="upDir"
-            value="c:/upload/" /> <br /> <br /> <input type="file"
-            name="file" /> <br /> <input type="submit" id="uploadone"
-            value="Upload One" />
+    <form method="post" action="./fileuploadone"  enctype="multipart/form-data">
+        Upload Directory : <input type="text"  name="upDir"  value="c:/upload/" />
+         <br /> 
+        <br /> <input type="file" name="file" /> 
+        <br /> 
+        <input type="submit" id="uploadone"  value="Upload One" />
     </form>
 
     <hr>
     <h3>Spring Multi File Upload</h3>
-    <form method="post" action="./uploadfilemulti"
-        enctype="multipart/form-data">
-        Upload Directory : <input type="text" name="upDir"
-            value="c:/upload/" /> <br /> <br /> <input type="button"
-            id="addFile" value="File Add" />
+    <form method="post" action="./fileuploadmulti" enctype="multipart/form-data">
+        Upload Directory : <input type="text" name="upDir" value="c:/upload/" />
+         <br /> 
+         <br /> <input type="button" id="addFile" value="File Add" />
         <table id="fileview">
             <tr>
-                <td><input type="file" name="files[0]" /></td>
+                <td><span class="deletefile">x</span>
+                <input type="file" name="files[0]" /></td>
             </tr>
         </table>
-        <br /> <input type="submit" id="uploadmulti"
-            value="Upload Multi" />
+        <br /> <input type="submit" id="uploadmulti"  value="Upload Multi" />
     </form>
 
     <hr>
