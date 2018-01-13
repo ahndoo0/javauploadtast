@@ -12,8 +12,9 @@
     <p>  The time on the server is ${serverTime}. </p>
       
     <h2> UploadController, DownloadController 만들기 </h2>
-    <a href="./upload/fileupload"    target="_blank">./upload/fileupload </a> <br> 
-    <a href="./upload/filedownload"  target="_blank">./upload/filedownload </a> <br>
+    <a href="./upload/fileupload"    target="_blank">./upload/fileupload = 업로드 </a> <br> 
+    <a href="./upload/fileuploadlist"  target="_blank">./upload/fileuploadlist = DB에 있는파일 목록출력 </a> <br>
+    
     <hr />
     
     <h2> 테이블의 BLOB,CLOB 컬럼에 이미지 저장하고 가져오기</h2>   

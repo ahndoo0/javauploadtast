@@ -31,12 +31,10 @@ import com.spring13.upload.inf.IServiceUploadImage;
 import com.spring13.upload.model.ModelUploadFile;
 import com.spring13.upload.model.ModelUploadImage;
 
-
 /**
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/upload")
 public class UploadController {
     
     private static final Logger logger = LoggerFactory
@@ -48,97 +46,114 @@ public class UploadController {
     /**
      * Simply selects the home view to render by returning its name.
      */
-    @RequestMapping(value = "/upload/uploadfile", method = RequestMethod.GET)
+    @RequestMapping(value = "/upload/fileupload", method = RequestMethod.GET)
     public String uploadfile(Model model) {
         logger.info("uploadfile");
         
-        return "upload/uploadfile";
+        return "upload/fileupload";
     }
     
-    @RequestMapping(value = "/upload/uploadfileone", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload/fileuploadone", method = RequestMethod.POST)
     public String uploadfileone(Model model,
-            @RequestParam(value = "file") MultipartFile file,
-            @RequestParam(value = "upDir") String upDir)
-            throws IllegalStateException, IOException {
-        logger.info("uploadfile");
-        // 폴더 존재 여부 검사
-        java.io.File dir = new java.io.File(upDir);
-        if (!dir.exists())
-            dir.mkdir();
-        // 로컬 파일을 서버로 올리기 위한 코드
-        String fileName = file.getOriginalFilename();
-        String tempName = LocalDateTime.now()
-                .format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-        String filepath = upDir + "/" + tempName;
-        java.io.File f = new java.io.File(filepath);
-        file.transferTo(f);
-        // DB insert 처리를 위한 코드
-        ModelUploadFile attachfile = new ModelUploadFile();
-        attachfile.setFileNameOrig(fileName);
-        attachfile.setFileNameTemp(f.getName());
-        attachfile.setFileSize((Long) f.length());
-        attachfile.setContentType(file.getContentType()); // 확장자
-        // DB insert
-        svcupload.insertUploadFile(attachfile);
-        // uploadsuccess.jsp 에 출력할 파일이름 저장
-        List<String> filelist = new ArrayList<String>();
-        filelist.add(fileName);
-        model.addAttribute("files", filelist);
-        model.addAttribute("upDir", upDir);
-        model.asMap().clear(); // Redirect without parameters being added to my url
-        return "redirect:uploadfilelist";
+                                                                    @RequestParam(value = "file") MultipartFile clinetfile,
+                                                                    @RequestParam(value = "upDir") String upDir     )
+                                                                                                                            throws IllegalStateException, IOException {
+        logger.info("fileuploadone");
+        //클라이언트의 파일을 서버로 복사
+        //Table insert 작업
+        // step2. 클라이언트의 첨부 파일을 서버로 올리기 위한 코드
+        if (!clinetfile.getOriginalFilename().isEmpty()) {
+            
+            // 서버의 업로드 폴더 존재 여부 체크. 없으면 폴더 생성.
+            java.io.File uploadDir = new java.io.File(upDir);
+            if (!uploadDir.exists())
+                uploadDir.mkdir();
+            
+            // 클라이언트의 첨부 파일을 서버로 복사
+            String fileName = clinetfile.getOriginalFilename();
+            String tempName = LocalDateTime.now()
+                    .format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+            String filepath = upDir + tempName;
+            java.io.File serverfile = new java.io.File(filepath);
+            clinetfile.transferTo(serverfile); // 파일 카피하는 메서드
+            
+            // DB insert 처리를 위한 코드
+            ModelUploadFile attachfile = new ModelUploadFile();
+            attachfile.setFileNameOrig(fileName);
+            attachfile.setFileNameTemp(tempName);
+            attachfile.setFileSize( serverfile.length());
+            attachfile.setContentType(clinetfile.getContentType()); // 파일 확장자
+            
+            // DB insert
+            svcupload.insertUploadFile(attachfile);
+        }
+        //결과 출력
+        List<ModelUploadFile> result = svcupload.getUploadFile(null);
+        model.addAttribute("files", result);
+
+        return "upload/fileuploadlist";
     }
     
-    @RequestMapping(value = "/upload/uploadfilemulti", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload/fileuploadmulti", method = RequestMethod.POST)
     public String uploadfilemulti(Model model,
-            @ModelAttribute RepositoryFiles uploadForm,
-            @RequestParam(value = "upDir") String upDir)
-            throws IllegalStateException, IOException {
+                                                                @ModelAttribute RepositoryFiles uploadForm,
+                                                                @RequestParam(value = "upDir") String upDir)
+                                                                                throws IllegalStateException, IOException {
         logger.info("uploadfilemulti");
-        
-        List<MultipartFile> files = uploadForm.getFiles();
-        if (files != null && files.size() > 0) {
-            for (MultipartFile file : files) {
+     
+            // 클라이언트의 파일을 서버로 복사 && table insert 작업 
+            // step2. 로컬 첨부 파일을 서버로 올리기 위한 코드
+            if (uploadForm != null && uploadForm.getFiles().size() > 0) {
+            
+            // 업로드 폴더 존재 여부 체크. 없으면 폴더 생성.
+            java.io.File uploadDir = new java.io.File(upDir);
+            if (!uploadDir.exists()) uploadDir.mkdir();
+            // DB 에 insert 할 데이터를 닫는 list
+            List<ModelUploadFile> listfile = new ArrayList<>();
+            
+            List<MultipartFile> files = uploadForm.getFiles();
+            if (files != null && files.size() > 0) {
                 
-                // 클라이언트의 첨부 파일을 서버로 복사
-                String fileName = file.getOriginalFilename();
-                String tempName = LocalDateTime.now()
-                        .format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-                String filepath = upDir + "/" + tempName;
-                java.io.File f = new java.io.File(filepath);
-                file.transferTo(f);
-                
-                // DB insert 처리를 위한 코드
-                ModelUploadFile attachfile = new ModelUploadFile();
-                attachfile.setFileNameOrig(fileName);
-                attachfile.setFileNameTemp(f.getName());
-                attachfile.setFileSize((Long) f.length());
-                attachfile.setContentType(file.getContentType()); // 확장자
-                // DB insert
-                svcupload.insertUploadFile(attachfile);
+                int index = 0;
+                for (MultipartFile file : files) {
+                    
+                    // 클라이언트의 첨부 파일을 서버로 복사
+                    String fileName = file.getOriginalFilename();
+                    String tempName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + String.format("%04d", ++index);
+                    String filepath = upDir + "/" + fileName;
+                    java.io.File serverfile = new java.io.File(filepath);
+                    file.transferTo(serverfile);
+                    
+                    // DB insert 처리를 위한 코드
+                    ModelUploadFile attachfile = new ModelUploadFile();
+                    attachfile.setFileNameOrig(serverfile.getName());
+                    attachfile.setFileNameTemp(tempName);
+                    attachfile.setFileSize( serverfile.length());
+                    attachfile.setContentType(file.getContentType()); // 확장자
+                    
+                    //
+                    listfile.add(attachfile);
+                }
             }
+            
+            // DB insert
+            svcupload.insertUploadFileList(listfile);
+            
         }
-        
-        // uploadsuccess.jsp 에 출력할 파일이름 저장
-        List<String> filelist = new ArrayList<String>();
-        for (MultipartFile file : files) {
-            filelist.add(file.getOriginalFilename());
-        }
-        model.addAttribute("files", filelist);
-        model.addAttribute("upDir", upDir);
-        
-        model.asMap().clear(); // Redirect without parameters being added to my url
-        return "redirect:uploadfilelist";
+            
+            List<ModelUploadFile> result =  svcupload.getUploadFile(null);
+            model.addAttribute("files", result);
+            
+        return "upload/fileuploadlist";
     }
-    
-    @RequestMapping(value = "/upload/uploadfilelist", method = RequestMethod.GET)
-    public String uploadfilelist(Model model) {
-        logger.info("uploadfilelist");
-        ModelUploadFile file = null;
-        List<ModelUploadFile> files = svcupload.getUploadFile(file);
-        model.addAttribute("files", files);
+    @RequestMapping(value = "/upload/fileuploadlist", method = RequestMethod.GET)
+    public String fileuploadlist(Model model) {
+        logger.info("fileuploadlist");
         
-        return "upload/uploadfilelist";
+        List<ModelUploadFile> result =  svcupload.getUploadFile(null);
+        model.addAttribute("files", result);
+        
+    return "upload/fileuploadlist";
     }
     
     @RequestMapping(value = "/download", method = RequestMethod.POST)
@@ -149,67 +164,6 @@ public class UploadController {
         model.addAttribute("filenametemp", filenametemp);
         return "upload/download";
     }
-    @Autowired
-    private IServiceUploadImage svcuploadimage;
-    /**
-     * 사진 업로드를 위한 화면
-     */
-    @RequestMapping(value="/upload/imageupload", method = RequestMethod.GET)
-    public String saveImage() {
-    return "upload/imageupload";
-    }
-    /**
-     * 사진 파일 업로드 후 DB 저장
-     */
-     @RequestMapping(value="/upload/imageupload", method = RequestMethod.POST)
-     public String saveImage(Model model
-     , @RequestParam String upDir
-     , @ModelAttribute ModelUploadImage vo ) {
-     logger.info("imageupload");
-
-     Integer attachfileno = null;
-
-     try {
-     vo.setFileName( vo.getImage().getOriginalFilename() );
-     vo.setFileSize( (Long)vo.getImage().getSize() );
-     vo.setContentType( vo.getImage().getContentType() ); // 확장자
-     vo.setImageBytes( vo.getImage().getBytes() );
-
-    vo.setImageBase64( Base64.getEncoder().encodeToString( vo.getImage().getBytes() ) );
-
-     attachfileno = svcuploadimage.insertPhoto(vo);
-
-     } catch (Exception e) {
-     e.printStackTrace();
-     }
-
-     return "redirect:/upload/imageview/"+ Integer.toString( attachfileno );
-     }
-     /**
-      * 임의의 뷰페이지
-      */
-      @RequestMapping(value="/upload/imageview/{attachfileno}", method = RequestMethod.GET)
-      public String imageview(Model model , @PathVariable int attachfileno) {
-      logger.info("imageview");
-      ModelUploadImage result = svcuploadimage.getImageByte(attachfileno);
-
-      model.addAttribute("attachfileno", attachfileno);
-      model.addAttribute("contentType", result.getContentType() );
-      model.addAttribute("imageBase64", result.getImageBase64() );
-
-      return "upload/imageview";
-      }
-      /** img 태그의 src 에 이미지를 출력하기 위한 메서드 */
-      @RequestMapping(value="/upload/getphoto/{attachfileno}", method = RequestMethod.GET)
-      public ResponseEntity<byte[]> getImageByte(@PathVariable int attachfileno) {
-      logger.info("getImageByte");
-      ModelUploadImage result = svcuploadimage.getImageByte(attachfileno);
-
-      byte[] imageContent = result.getImageBytes();
-      final HttpHeaders headers = new HttpHeaders();
-      headers.setContentType( MediaType.valueOf( result.getContentType() ) );
-
-      return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
-      }
-
+  
+    
 }
