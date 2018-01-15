@@ -16,6 +16,7 @@
     
     <h2> 로그인 처리 </h2>
     <ol>
+        <li> <a href="./user/"           target="_blank">./user/         </a> </li>
         <li> <a href="./user/login"           target="_blank">./user/login           </a> </li>
         <li> <a href="./user/logout"          target="_blank">./user/logout          </a> </li>
         <li> <a href="./user/register"        target="_blank">./user/register        </a> </li>

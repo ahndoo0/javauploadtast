@@ -8,7 +8,7 @@
     <meta name="Keywords" content="로그인" />
     <meta name="Description" content="로그인" />
     <title>로그인</title>
-    <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" />
+    <link rel="stylesheet" href="../../resources/css/screen.css" type="text/css" />
     <script type="text/javascript">
         function check() {
             //var form = document.getElementById("loginForm");
@@ -19,9 +19,16 @@
 </head>
 <body>
 
-<div id="wrap">
-
-    <div id="container">
+            <div id="wrap">
+    
+                        <div id="header"><%@ include file="../inc/header.jsp" %></div>
+                    
+                        <div id="main-menu"><%@ include file="../inc/main-menu.jsp" %></div> 
+                        
+                        <div id="container">
+                        
+                        
+              
         <div id="content" style="min-height: 800px;">
 
             <!-- 본문 시작 -->
@@ -31,7 +38,7 @@
             <p style="color: red;">로그인에 실패했습니다.</p>
             </c:if>      
             
-            <form id="loginForm" action="login" method="post" onsubmit="return check()">
+            <form id="loginForm" action="login" method="post" onsubmit="return check()" enctype="application/x-www-form-urlencoded">
                 <p style="margin: 0; padding: 0;">
                     <input type="hidden" name="url" value="${url }" />
                 </p>
@@ -52,10 +59,16 @@
             </form>
             <!--  본문 끝 -->
 
-        </div><!-- content 끝 -->
-    </div><!--  container 끝 -->
-   
-</div>
+        </div>
+        <!-- content 끝 -->
+    </div>
+    <!--  container 끝 -->
+             <div id="sidebar"><%@ include file="../inc/bbs-menu.jsp" %></div>
+                        
+              <div id="extra"><%@ include file="../inc/extra.jsp" %></div>
+                    
+               <div id="footer"><%@ include file="../inc/footer.jsp" %></div>
+        </div>
 
 </body>
 </html>
