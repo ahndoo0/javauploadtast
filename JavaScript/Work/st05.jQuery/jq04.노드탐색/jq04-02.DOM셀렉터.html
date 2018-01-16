@@ -6,8 +6,24 @@
         body { margin:10px; }
         div,span { background: #FFF; padding: 10px; margin: 10px; }
     </style>
-    
-    
+    <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#children').click(function(event) {
+            //$('#siteUrl').children() ==$('#siteUrl > li')
+
+            $('#siteUrl').children().css('border', '2px red solid');
+            $('#siteUrl > li').css('border', '2px red solid');
+        });
+        $('#descendant').click(function(event) {
+            $('#siteUrl').find('li').css('border', '2px blue dotted');
+
+        });
+
+        });
+    </script>
+
+
 </head>
 <body>
     <h2>DOM Selector</h2>

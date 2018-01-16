@@ -4,18 +4,38 @@
     <meta charset="UTF-8">
     <title>sample2</title>
     <style>
-        *{ margin:0; padding:0; border:0; }
-        body{ background:#252422; }
-        dl{ width:800px; margin:50px auto; }
-        dt{ line-height:35px; font-size:large; text-indent:3em; font-weight:bold; color:white; height:35px; background:url("images/background.jpg") }
-        dt.over{ background:url("images/background-over.jpg"); cursor:pointer; }
-        dt.selected{ background:url("images/background_selected.jpg"); cursor:default; color:black; }
-        dd{ height:300px; background:#D4D0C8; }
-        dd p{ text-indent:1em; padding:20px; }
-    </style>
+    *{ margin:0; padding:0; border:0; }
+    body{ background:#252422; }
+    dl{ width:800px; margin:50px auto; }
+    dt{ line-height:35px; font-size:large; text-indent:3em; font-weight:bold; color:white; height:35px; background:url("images/background.jpg") }
+    dt.over{ background:url("images/background-over.jpg"); cursor:pointer; }
+    dt.selected{ background:url("images/background_selected.jpg"); cursor:default; color:black; }
+    dd{ height:300px; background:#D4D0C8; }
+    dd p{ text-indent:1em; padding:20px; }
+</style>
+<script type="text/javascript" src="../jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var hides = $('dd').hide();
+        $('dt').click(function(event) {
 
-    
-    
+            $('dt').removeClass('selected');
+            $(this).addClass('selected');
+
+            if($(this).next().is(":visible")){
+                $(this).next().slideUp(1000);
+            } else {
+                $("dd").hide();
+                $(this).next().slideToggle(1000);
+            }
+        });
+    });
+
+</script>
+
+
+
 </head>
 <body>
     <dl>

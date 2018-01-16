@@ -4,14 +4,51 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        body { font-size: 9pt; }
-        button { margin-top: 5px; padding: 5px; }
-        .panel { width: 840px; height: 415px; border: 1px solid #ccc; }
-        .nav { width: 840px; text-align: center; }
-    </style>
+    body { font-size: 9pt; }
+    button { margin-top: 5px; padding: 5px; }
+    .panel { width: 840px; height: 415px; border: 1px solid #ccc; }
+    .nav { width: 840px; text-align: center; }
+</style>
+<script type="text/javascript" src="../jquery-3.2.1.js"></script>
+<script >
+    var time = null;
+    var index = 1;
+    $(document).ready(function() {
+        $('#play').click(function(event) {
+            time = setInterval(function(){
+                $('#view').attr('src', 'images/'+index+'.jpg');
+                index = index+1;
+                if (index >= 60 ) {
+                    index = 1;
+                }
 
-    
-    
+            },100);
+        });
+        $('#stop').click(function(event) {
+            if (time != null) {
+                clearInterval(time);
+            }
+        });
+        $('#prev').click(function(event) {
+            $('#view').attr('src', 'images/'+index+'.jpg');
+            index = index+1;
+            if (index === 60) {
+                index = 1;
+            }
+        });
+        $('#next').click(function(event) {
+            $('#view').attr('src', 'images/'+index+'.jpg');
+            index = index -1;
+            if (index === 0) {
+                index = 60;
+            }
+        });
+    });
+
+</script>
+
+
+
 
 </head>
 

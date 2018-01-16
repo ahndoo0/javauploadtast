@@ -9,8 +9,34 @@
 	        display:block; margin-top:10px;}
 	    div { border: 1px dashed red; }
 	</style>
-	
-	
+    <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('p').click(function(event) {
+                 $('#p').prepend('<p>p paragraphl!</p>');
+                 $('.menu').html("<p>append p.d paragraph!</p>");
+
+            });
+
+            $('span').click(function(event) {
+                 $('#span').prepend('<span>span paragraphl!</span>')
+                 $('.menu').html("<span>append span.p paragraph!</span>");
+            });
+
+            $('#p').on('click', 'p', function(event) {
+
+                $('.menu').html("<p>append p.d paragraph!</p>")  ;
+
+            });
+            $('#span').on('click', 'span', function(event) {
+
+                $('.menu').html("<span>append span.p paragraph!</span>")  ;
+
+            });
+        });
+    </script>
+
 </head>
 <body>
     <p>Click me! 클릭하면 id=p에 추가하시고 <br> 추가된 엘리먼트에 click이벤트를 거시오.</p>

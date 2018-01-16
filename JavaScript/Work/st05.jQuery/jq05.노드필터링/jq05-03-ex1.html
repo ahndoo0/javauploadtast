@@ -7,8 +7,72 @@
         td { border:1px solid #AAA; width:25px; height:25px; }
         div { background : #FFF; margin:5px; width:100%; }
     </style>
-    
-    
+    <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#filter').click(function(event) {
+                var td = $('td');
+                // for(var i =0 ; i < td.length; i++){
+                //     if(i%3 === 2){
+                //         $(td[i]).css('background', 'red');
+                //     }
+                // }
+                $('td').each(function(index, el) {
+                   if (index%3 ===2 ) {
+                    $(this).css('background', 'red');
+                   }
+
+                });
+            });
+            $('#not1').click(function(event) {
+                $('*').css('background', '');
+                var td = $('td');
+                $('td').each(function(index, el) {
+                    if(index%3 != 2){
+                        $(this).css('background', 'green ');
+                    }
+                });
+            });
+            $('#children').click(function(event) {
+                $('*').css('background', '');
+                var td = $('tr').children('td');
+                $('td').each(function(index, el) {
+                    if (index%3 === 2) {
+                        $(this).css('background', 'red');
+                    }
+                });
+            });
+            $('#not2').click(function(event) {
+                $('*').css('background', '');
+                var td = $('tr').children('td');
+                $('td').each(function(index, el) {
+                    if (index%3 != 2) {
+                        $(this).css('background', 'green');
+                    }
+                });
+            });
+            $('#find').click(function(event) {
+                $('*').css('background', '');
+                var td = $('div').find('td');
+                $('td').each(function(d, i) {
+                    if (d%3 === 2) {
+                        $(this).css('background', 'red');
+                    }
+                })
+            });
+            $('#not3').click(function(event) {
+                $('*').css('background', '');
+                var td = $('div').find('td');
+                $('td').each(function(d, i) {
+                    if (d%3 != 2) {
+                        $(this).css('background', 'green');
+                    }
+                })
+            });
+        });
+    </script>
+
+
 </head>
 <body>
     <div>

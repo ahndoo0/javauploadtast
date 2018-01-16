@@ -4,11 +4,28 @@
     <meta charset="UTF-8">
     <style>
    		pre   { font-size:13pt;	}
-        #panel { width: 600px; height: 400px; border: 1px solid #999; position: relative; }
+        #panel { width: 600px; height: 400px; border: 1px solid #999; position:     relative; }
         #fish { position: absolute; left: 250px; top: 150px; }
     </style>
-    
-    
+    <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+         $(document).ready(function() {
+            $('#btnStart').click(function(event) {
+                var wi = $('#fish').width();
+                var hi = $('#fish').height();
+
+                var l = String(Math.random()*(600-wi))+'px';
+                var t = String(Math.random()*(400-hi))+'px';
+                $('#fish').css({
+                    'left': l,
+                    'top': t
+                });
+
+            });
+        });
+    </script>
+
+
 </head>
 
 <body>

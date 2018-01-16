@@ -4,13 +4,53 @@
     <meta charset="utf-8">
     <title> DOM 탐색</title>
     <style>
-        #container div, .div { margin: 5px; border: 2px red solid;  background: #ccff0e; }
-        span { margin: 10px; border: 2px red solid;  background: #ffb42e; color: blue; }
-        .after { background: pink }
-        .selected {border: 4px blue solid !important; }
-    </style>
-    
-    
+    #container div, .div { margin: 5px; border: 2px red solid;  background: #ccff0e; }
+    span { margin: 10px; border: 2px red solid;  background: #ffb42e; color: blue; }
+    .after { background: pink }
+    .selected {border: 4px blue solid !important; }
+</style>
+<script type="text/javascript" src="../jquery-3.2.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.parents').click(function(event) {
+            $('#center').parents().css('border', '2px blue dotted');
+         });
+        $('.parent').click(function(event) {
+            $('#center').parent().css('border', '2px blue dotted');
+         });
+        $('.first').click(function(event) {
+            $('#center').parent().children().first().css('border', '2px blue dotted');
+         });
+        $('.prevAll').click(function(event) {
+            $('#center').prevAll().css('border', '2px blue dotted');
+         });
+        $('.prev').click(function(event) {
+            $('#center').prev().css('border', '2px blue dotted');
+         });
+        $('.next').click(function(event) {
+            $('#center').next().css('border', '2px blue dotted');
+            $('#center').nextAll().first().css('border', '2px blue dotted');
+         });
+        $('.nextAll').click(function(event) {
+            $('#center').nextAll().css('border', '2px blue dotted');
+         });
+        $('.last').click(function(event) {
+            $('#center').nextAll().last().css('border', '2px blue dotted');
+            $('#center').parent().children().last().css('border', '2px blue dotted');
+         });
+        $('.siblings').click(function(event) {
+            $('#center').siblings().css('border', '2px blue dotted');
+         });
+        $('.children').click(function(event) {
+            $('#center').children().css('border', '2px blue dotted');
+            $('#center').children('div').css('border', '2px gray dotted');
+
+         });
+
+    });
+
+</script>
+
 </head>
 <body>
     <p>부모, 형제, 자식 노드</p>
@@ -26,7 +66,7 @@
                 <span id="second" class="middle">
                     sibling <span id="child">child</span>
                 </span>
-                <span id="third" class="middle">third</span>
+                <div id="third" class="middle">third</div>
                 <span id="fourth" class="middle">fourth</span>
                 <span id="fifth" class="middle">fifth</span>
                 <span id="sixth">sixth</span>

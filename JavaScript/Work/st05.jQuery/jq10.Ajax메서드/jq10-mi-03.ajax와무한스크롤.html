@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style type="text/css">
-		* {
+	* {
 		margin:0;
 		padding:0;
 		word-break:keep-all;
@@ -22,26 +22,87 @@
 		#bbs_content{width:90%; height:150px; overflow:hidden; outline:1px #dad3d3 solid; margin:0 auto;}
 		.liner {position:absolute; bottom:0; height:35px; background-color:#efebdb; width:100%; border-top:1px black solid;}
 	</style>
-    
-    
-    
+	<script type="text/javascript" src="../jquery-3.2.1.js"></script>
+	<script type="text/javascript">
+		var getboard = function(s ,e){
+			$.ajax({
+			    url : 'http://localhost:3000/board',  //호출되는 서버 주소
+			    data: {'start':s,'end':e},        // 서버로 보내지는 데이터.사용하는 경우에는 { data1:'test1', data2:'test2' }
+			    type: 'get',       //request method : get, post
+			    timeout: 30000,    // 최대 대기 시간 : 30초 , 30초 이상이 되면 fail부분이 실행됨.
+			    dataType: 'json',  // response 데이터 형태 : text, html, xml, json, jsonp, script
+			    beforeSend : function() {
+			        // 통신이 시작되기 전에 이 함수를 타게 된다. 화면에 시계 표출.
+			    }
+				}).done( function(data, textStatus, xhr ){// 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+					console.log(data);
+
+					for(var i in data){
+						var tmp = $('xml>div.wrap').clone();
+						$(tmp).find('[data-content="no"]').text(data[i].no);
+						$(tmp).find('[data-content="writer"]').text(data[i].writer);
+						$(tmp).find('[data-content="title"]').text(data[i].title);
+						$(tmp).find('[data-content="content"]').text(data[i].content);
+						$('#posts-container').append(tmp);
+					}
+				}).fail( function(xhr, textStatus, error ) {
+				    // 통신이 실패했을 때 이 함수를 타게 된다.
+				}).always( function(data, textStatus, xhr ) {
+				    // 통신이 실패했어도 성공했어도 이 함수를 타게 된다. 화면에 표출죈 시계 감추기.
+				});
+			};
+			$(document).ready(function() {
+
+
+				getboard(0,20);
+
+				$(window).scroll(function(event) {
+					var diff =$(document).height() - $(window).scrollTop() - $(window).height();
+					var x =21;
+					var y =40;
+					if (diff <20) {
+						getboard(x,y);
+
+					}
+				});
+
+			});
+
+		</script>
 
 
 
-</head>
-<body>
-
-    <!-- 템플릿 생성 -->
-	
-
-    <!-- 템플릿이 들어갈 컨테이너 생성 -->
-	<div id="posts-container">
-	</div>
 
 
+	</head>
+	<body>
+		<xml style="display: none;">
+			<div class="wrap">
+				<div class="bbsbox">
+					<div class="box_top">
+						<div data-content="no"></div>
+						<div data-content="writer"></div>
+					</div>
+					<div class="box_btm">
+						<div data-content="title"></div>
+						<spna data-content="content"></spna>
+					</div>
+					<div class="liner"></div>
+				</div>
+			</div>
+		</xml>
+		<!-- 템플릿 생성 -->
 
-</body>
-</html>
+		<!-- 템플릿이 들어갈 컨테이너 생성 -->
+
+		<div id="posts-container">
+
+		</div>
+
+
+
+	</body>
+	</html>
 
 
 

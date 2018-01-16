@@ -105,6 +105,7 @@ public class PhoneBook {
                     String phoneNumber = rs.getString("phoneNumber");
                     System.out.println("이름: " + phonename);
                     System.out.println("전화번호: " + phoneNumber);
+                    
                     break;
                 }
             } else if (3 == 선택) {

@@ -2,29 +2,53 @@
 <html lang="ko">
 <head>
     <title>Infinity Scroll</title>
-	
-    
+    <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var count =1;
+            $('button').click(function(event) {
+                for(var i = 1; i < 21; i++){
+                  $('div').append('<h1>infinity scroll '+'#'+count+' </h1>');
+                  count++;
+              }
+          });
+            $(window).scroll(function(event) {
+                var diff =$(document).height() - $(window).scrollTop() - $(window).height();
+                    if (diff <20) {
+                       for(var i = 1; i < 21; i++){
+                          $('div').append('<h1>infinity scroll '+'#'+count+' </h1>');
+                          count++;
+                      }
+                  }
 
-</head>
-<body>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-    <h1>infinity scroll </h1>
-</body>
-</html>
+              });
+            });
+        </script>
+
+
+    </head>
+    <body>
+        <button>클릭하면 &lt;h1&gt;infinity scroll&lt;h1&gt; 를 20개 추가하시오.</button>
+        <div>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+            <h1>infinity scroll </h1>
+        </div>
+    </body>
+    </html>
 
 
 

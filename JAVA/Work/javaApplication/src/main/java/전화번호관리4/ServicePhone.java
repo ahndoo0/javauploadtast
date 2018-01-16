@@ -39,13 +39,9 @@ public class ServicePhone {
         
         if (rphone != null) {
             result.add(rphone);
-        } 
-        
-        if (runiv != null) {
+        }else if (runiv != null) {
             result.add(runiv);
-        } 
-        
-        if (rcompany != null) {
+        }else if (rcompany != null) {
             result.add(rcompany);
         }
         

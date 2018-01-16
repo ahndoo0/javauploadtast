@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.mapperUniv">
+    
+    <select id="selectAll" resultType="ModelUniv">
+        select * from univ
+    </select>
+     
+     <insert id="insertUniv" parameterType="ModelUniv">
+        insert into univ
+        (name , phoneNumber ,major ,year )
+        values
+        (#{name},#{phoneNumber},#{major},#{year})
+    </insert>
+
+    <delete id="deleteUniv" parameterType="ModelUniv">
+        delete from univ
+        where 1=1
+        <if test="name != null and name !='' ">and name = #{name}</if>
+    </delete>
+
+    <update id="updateUniv" parameterType="java.util.Map">
+        update univ
+        set name =#{setuniv.name}
+        ,phoneNumber =#{setuniv.phoneNumber}
+        where 1=1
+        <if test="whereuniv.name != null and whereuniv.name != '' ">and name = #{whereuniv.name}</if>
+        <if test="whereuniv.phoneNumber != null and whereuniv.phoneNumber !='' ">and phoneNumber = #{whereuniv.phoneNumber}</if>
+    </update>
+
+</mapper>

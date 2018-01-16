@@ -3,33 +3,106 @@
 <head>
     <meta charset="utf-8">
     <style>
-        div   { background: #FFF; }
-        table { border: 1px solid #AAA; width:98%; }
-        td    { border: 1px solid #AAA; width: 20px; height: 20px; }
-    </style>
-    
-    
+    div   { background: #FFF; }
+    table { border: 1px solid #AAA; width:98%; }
+    td    { border: 1px solid #AAA; width: 20px; height: 20px; }
+</style>
+<script type="text/javascript" src="../jquery-3.2.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#eq').click(function(event) {
+
+            $('tr td:eq(7)').css('background', 'red');
+        });
+        $('#gt').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('tr:eq(1)>td:gt(2)').css('background', 'yellow');
+
+        });
+        $('#lt').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('tr:eq(1)>td:lt(2)').css('background', 'orange');
+        });
+        $('#odd').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('tr:eq(2)>td:odd').css('background', 'blue');
+        });
+        $('#even').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('tr:eq(2)>td:even').css('background', 'green ');
+        });
+        $('#first').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('tr:eq(3)>td:first').css('background', 'pink');
+        });
+        $('#last').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('tr:eq(3)>td:last').css('background', 'green');
+        });
+        $('#ex1').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('tr:even').css('background', 'red');
+        });
+        $('#ex2').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('td:odd').css('background', 'green');
+        });
+        $('#ex3').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('tr:even>td:odd').css('background', 'pink');
+        });
+        $('#ex4').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('td:nth-child(3n+1)').css('background', 'pink');
+        });
+        $('#ex5').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('td:nth-child(1)').css('background', 'orange');
+
+        });
+        $('#ex6').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('td:first-child').css('background', 'red');
+            $('td:last-child').css('background', 'yellow');
+
+        });
+        $('#ex7').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('td:nth-child(3)').css('background', 'yellow');
+        });
+        $('#ex8').click(function(event) {
+            $('*').css({ 'border':'', 'background':'' }) ;
+            $('td:first-child').css('background', 'red');
+            $('td:last-child').css('background', 'yellow');
+            $('tr:eq(2)>td:gt(4)').remove();
+            $('tr:eq(2)>td:gt(3)').css('background', 'yellow').attr('colspan', '6');
+        });
+    });
+
+</script>
+
+
 </head>
 <body>
     <h2>Filter Selector</h2>
-        <table>
-            <tr>
-                <td>#1</td> <td>#2</td> <td>#3</td> <td>#4</td> <td>#5</td>
-                <td>#6</td> <td>#7</td> <td>#8</td> <td>#9</td> <td>#10</td>
-            </tr>
-            <tr>
-                <td>#11</td> <td>#12</td> <td>#13</td> <td>#14</td> <td>#15</td>
-                <td>#16</td> <td>#17</td> <td>#18</td> <td>#19</td> <td>#20</td>
-            </tr>
-            <tr>
-                <td>#21</td> <td>#22</td> <td>#23</td> <td>#24</td> <td>#25</td>
-                <td>#26</td> <td>#27</td> <td>#28</td> <td>#29</td> <td>#30</td>
-            </tr>
-            <tr>
-                <td>#31</td> <td>#32</td> <td>#33</td> <td>#34</td> <td>#35</td>
-                <td>#36</td> <td>#37</td> <td>#38</td> <td>#39</td> <td>#40</td>
-            </tr>
-        </table>
+    <table>
+        <tr>
+            <td>#1</td> <td>#2</td> <td>#3</td> <td>#4</td> <td>#5</td>
+            <td>#6</td> <td>#7</td> <td>#8</td> <td>#9</td> <td>#10</td>
+        </tr>
+        <tr>
+            <td>#11</td> <td>#12</td> <td>#13</td> <td>#14</td> <td>#15</td>
+            <td>#16</td> <td>#17</td> <td>#18</td> <td>#19</td> <td>#20</td>
+        </tr>
+        <tr>
+            <td>#21</td> <td>#22</td> <td>#23</td> <td>#24</td> <td>#25</td>
+            <td>#26</td> <td>#27</td> <td>#28</td> <td>#29</td> <td>#30</td>
+        </tr>
+        <tr>
+            <td>#31</td> <td>#32</td> <td>#33</td> <td>#34</td> <td>#35</td>
+            <td>#36</td> <td>#37</td> <td>#38</td> <td>#39</td> <td>#40</td>
+        </tr>
+    </table>
     <hr>
     <div>
         <input id='eq'      type='button' value=':eq'>
