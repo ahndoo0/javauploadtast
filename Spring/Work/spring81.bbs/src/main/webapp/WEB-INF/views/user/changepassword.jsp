@@ -8,12 +8,39 @@
     <meta name="Description" content="비빌번호 변경" />
     <title>비밀번호 변경</title>
     <link rel="stylesheet" href="/resources/css/screen.css" type="text/css"  />
+    <script src="/resources/js/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready( function(event){
+        	
+        	$('#changePasswordForm input[type="button"]').click( function(e){
+        		var newpw = $('input[name="newPasswd"]').val();
+        		var confirm = $('input[name="confirm"]').val();
+        		
+        		if( newpw === confirm ) {
+        			$('#changePasswordForm').submit();
+        		}
+        		else {
+        			$('#error_message').text('비밀번호가 다르다').show().delay( 8000 ).hide();
+        			
+        		    return false;
+        		}
+        	});
+        });
+    </script>
  
 </head>
 <body>
 
 <div id="wrap">
 
+    <div id="header">
+        <%@ include file="../inc/header.jsp" %>
+    </div>
+
+    <div id="main-menu">
+        <%@ include file="../inc/main-menu.jsp" %>
+    </div> 
+    
     <div id="container">
         <div id="content" style="min-height: 800px;">
 
@@ -24,6 +51,9 @@
                 ${user.mobile }<br />
                 
             <div id="error_message">
+                <c:if test="${not empty msg }">
+                <p style="color: red;">로그인에 실패했습니다.</p>
+                </c:if>    
             </div>
             
             <form id="changePasswordForm" action="./changepassword" method="post">
@@ -50,6 +80,17 @@
         </div><!-- content 끝 -->
     </div><!--  container 끝 -->
 
+    <div id="sidebar">
+        <%@ include file="../inc/bbs-menu.jsp" %>
+    </div>
+    
+    <div id="extra">
+        <%@ include file="../inc/extra.jsp" %>
+    </div>
+
+    <div id="footer">
+        <%@ include file="../inc/footer.jsp" %>
+    </div> 
 
 </div>
 

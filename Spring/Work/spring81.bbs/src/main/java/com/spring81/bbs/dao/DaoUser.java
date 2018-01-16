@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.print.DocFlavor.STRING;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -76,6 +78,14 @@ public class DaoUser implements IUser {
     @Override
     public int checkuserid(String userid) {
         return session.selectOne("mapper.mapperUser.checkuserid", userid);
+    }
+
+    @Override
+    public int checkpassword(String id, String curpw) {
+        Map<String, String> map = new HashMap<String,String>();
+        map.put("id", id);
+        map.put("pw", curpw);
+        return session.selectOne("mapper.mapperUser.checkpassword", map);
     }
     
 }
