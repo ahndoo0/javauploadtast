@@ -11,7 +11,7 @@
     <meta charset="utf-8" /> 
     <meta name="Keywords" content="새글쓰기" />
 
-    <title>${boardnm }</title>
+    <title>게시판추가</title>
 
     <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen" />
     <style>
@@ -19,41 +19,81 @@
         p { margin: 0; padding: 0; }
         form div {text-align: left; padding-bottom: 15px; }
     </style>    
-    
+         <script src="/resources/js/jquery-3.1.1.js"></script>
+     <script type="text/javascript">
+     $(document).ready(function(e) {
+         
+    	 $('form#writeForm input[type="submit"]').click(function(e) {
+             // 유효성 검사.
+             var list = $('#boardcd, #boardnm');
+             for (var i = 0; i < list.length; i++) {
+                 if ($(list[i]).val() === '') {
+                     list[i].focus();
+
+                     if ($(list[i]).next().length === 0) {
+                         $(list[i]).after('<label>입력하세요</label>');
+                     }
+
+                     return false;
+                 }
+             }
+
+             $('form#writeForm').submit();
+
+         });
+         $('#boardcd, #boardnm').keyup(function(e) {
+             if ($(this).val() !== '') {
+                 $(this).next('label').remove();
+             }
+         });
+     });
+     </script>
 </head>
 <body>
 
-    <div id="wrap">
+   <div id="wrap">
+    <div id="header">
+        <%@ include file="../inc/header.jsp" %>
+    </div>
+
+    <div id="main-menu">
+        <%@ include file="../inc/main-menu.jsp" %>
+    </div> 
     
-        <div id="container">
-            <div id="content" >
+    
+    <div id="container">
+        <div id="content" >
 
                 <!-- 본문 시작 -->
                 <div id="bbs">
                     <h2>글쓰기</h2>
+                    
+                    <c:if test="${not empty msg }">
+                     <p style="color: red;">정보 추가에 실패했습니다.</p>
+                     </c:if>
+                     
                     <form id="writeForm" action="boardwrite" method="post" enctype="application/x-www-form-urlencoded" >
                         <div>                        
                             <p> Borad Code :
-                                <input type="text" id="boardcd"  name="boardcd" value="${model.boardcd}" />
+                                <input type="text" id="boardcd"  name="boardcd"  value="${ board.boardcd}" />
                             </p>
                         </div>
                         
                         <div>
                             <p> Board Name : 
-                                <input type="text" id="boardnm" name="boardnm" value="${model.boardnm}" />
+                                <input type="text" id="boardnm" name="boardnm"   value="${ board.boardnm}"/>
                             </p>
                         </div>
                         
                         <div>
                             <p> Use YN : 
-                                <input type="checkbox" id="UseYN" name="UseYN" <c:if test="${model.useYN}">checked="checked"</c:if> />
+                                <input type="checkbox" id="UseYN" name="UseYN"  <c:if test="${board.useYN }">checked="checked"</c:if>/>
                             </p>
                         </div>
 
                         <div>
                             <input id="btnSubmit" type="submit" value="전송" /> 
-                            <input id="btnView"   type="button" value="상세보기" /> 
-                            <input id="btnList"   type="button" value="목록" />
+                            <input id="btnList"   type="button" value="목록" onclick="window.location='/board/boardlist'" />
                             <input id="btnReset"  type="reset" value="취소" />
                         </div>
                     </form>
@@ -63,6 +103,18 @@
             
         </div> <!--  container 끝 -->
 
+    <div id="sidebar">
+        <%@ include file="../inc/bbs-menu.jsp" %>
+    </div>
+    
+    <div id="extra">
+        <%@ include file="../inc/extra.jsp" %>
+    </div>
+
+    <div id="footer">
+        <%@ include file="../inc/footer.jsp" %>
+    </div>    
+   
     </div>
 
 </body>

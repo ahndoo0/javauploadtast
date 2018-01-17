@@ -10,18 +10,53 @@
     <meta name="Keywords" content="게시판 상세보기" />
     <meta name="Description" content="게시판 상세보기" />
     <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen" />
+    <script src="/resources/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript">
+    $(document).ready( function(e){ 
+            
+    	$('.boardlist').click( function(e){
+            	window.location='/board/boardlist';
+            })	;
+        	
+    	$('.boardwrite').click( function(e){
+        		window.location='/board/boardwrite';
+            })  ;
+           
+    	$('.boardmodify').click( function(e){
+        	   window.location='/board/boardmodify?boardcd=${board.boardcd }';
+            });
+           	
+    	$('.boarddelete').click( function(e){
+           		window.location='/board/boarddelete';
+            });
+    	
+    });         
+    </script>
     <title>${boardNm }</title>
    
 </head>
 <body>
 
 <div id="wrap">
+    <div id="header">
+        <%@ include file="../inc/header.jsp" %>
+    </div>
 
+    <div id="main-menu">
+        <%@ include file="../inc/main-menu.jsp" %>
+    </div> 
+    
+    
     <div id="container">
         <div id="content" style="min-height: 800px;">
             
             <!-- 본문 시작 -->
             <h1>Board View</h1>
+            
+                     <c:if test="${not empty msg }">
+                     <p style="color: red;">정보 삭제에 실패했습니다.</p>
+                     </c:if>
+                   
             <div id="bbs">
                 <table>
                     <tr>
@@ -52,7 +87,17 @@
         
     </div>
     <!--  container 끝 -->
+     <div id="sidebar">
+        <%@ include file="../inc/bbs-menu.jsp" %>
+    </div>
     
+    <div id="extra">
+        <%@ include file="../inc/extra.jsp" %>
+    </div>
+
+    <div id="footer">
+        <%@ include file="../inc/footer.jsp" %>
+    </div>    
 </div>
 
 

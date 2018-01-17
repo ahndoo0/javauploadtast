@@ -8,16 +8,35 @@
     <meta charset="utf-8" /> 
     <meta name="Keywords" content="게시판 목록" />
     <meta name="Description" content="게시판 목록" />
-    <title>${boardNm }</title>
+    <title>게시판 목록</title>
     <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen" />
-           
+      <script src="/resources/js/jquery-3.1.1.js"></script>
+    <script>    
+        $(document).ready( function(e){
+            
+            //boardlist에서 해당 게시글을 클릭하면 boardview 가 열리게 하시오
+            $('div#bbs > table > tbody > tr').click( function(e){
+                var boardcd = $(this).attr('boardcd');
+                //window.location='/board/boardview?boardcd=' + boardcd ;
+                window.location='/board/boardview/' + boardcd ;
+            });
+        });
+    </script>     
 </head>
 <body>
-
 <div id="wrap">
+    <div id="header">
+        <%@ include file="../inc/header.jsp" %>
+    </div>
 
+    <div id="main-menu">
+        <%@ include file="../inc/main-menu.jsp" %>
+    </div> 
+    
+    
     <div id="container">
         <div id="content" style="min-height: 800px;">
+
                 
                 <!-- 본문 시작 -->          
                 <h1>Board List</h1>
@@ -60,6 +79,18 @@
         </div><!-- content 끝 -->
     </div><!--  container 끝 -->
     
+    <div id="sidebar">
+        <%@ include file="../inc/bbs-menu.jsp" %>
+    </div>
+    
+    <div id="extra">
+        <%@ include file="../inc/extra.jsp" %>
+    </div>
+
+    <div id="footer">
+        <%@ include file="../inc/footer.jsp" %>
+    </div>    
+   
 </div>
 
 

@@ -7,4 +7,5 @@ public class ShapeTest {
         r.w =300; r.h=400;
         r.draw();
     }
+    
 }

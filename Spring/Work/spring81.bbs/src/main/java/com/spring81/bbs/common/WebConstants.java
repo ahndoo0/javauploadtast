@@ -7,5 +7,8 @@ public class WebConstants {
     public static final String ERROR_PASSWORD = "password 가 틀립니다.";
     public static final String UPDATE_FAIL = "DB 업데이트 실패";
     public static final String MSG_FAIL_CHANGE_PASSWORD = "패스워드 변경에 실패";
+    public static final String MSG_FAIT_UPDATE_TABLE = "업데이트 실패";
+    public static final String MSG_FAIT_INSERT_TABLE = "추가에 실패";
+    public static final String MSG_FAIT_DELETE_TABLE = "테이블 삭제실패";
     
 }

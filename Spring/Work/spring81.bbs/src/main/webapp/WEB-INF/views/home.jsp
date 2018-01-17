@@ -71,10 +71,12 @@
     <h2>board 게시판 만들기</h2>  
     
     <ol>
-        <li><a href="/board/boardlist"  target="_blank">/board/boardlist </a></li>
+    <li><a href="/board/boardlist"  target="_blank">/board/boardlist" </a></li>
+        <li><a href="/board/boardlist?searchWord="  target="_blank">/board/boardlist?searchWord=" </a></li>
+         <li><a href="/board/boardlist?searchWord=자유게시판"  target="_blank">/board/boardlist?searchWord=자유게시판"</a></li>
         <li><a href="/board/boardview?boardcd=qna" target="_blank">/board/boardview?boardcd=qna </a></li>
         <li><a href="/board/boardview" target="_blank">/board/boardview  == /board/boardview?boardcd=free</a></li>
-        <li><a href="/board/boardview/qna" target="_blank">/board/boardview/qna</a></li>
+        <li><a href="/board/boardview/qna" target="_blank">/board/boardview/qna</a> &nbs;&nbs; @Pathvarable 사용</li>
         <li><span> boardlist 에 boardview 연결하기 </span> </li>
         <li><span> boardlist의 tr을 클릭하면 boardview 가 열리게 하시오 </span>
             <xmp>
@@ -95,6 +97,7 @@
         <li><a href="/board/boardmodify?boardcd=qna" target="_blank">/board/boardmodify?boardcd=qna</a></li>
         <li><a href="/board/boardmodify/qna" target="_blank">/board/boardmodify/qna</a></li>
         <li><span> boardview 에 boardmodify 연결하기 </span></li>
+        
         <li><a href="/board/boardwrite" target="_blank">/board/boardwrite</a></li>
         <li><span> boardlist와 boardview 에 boardwrite 연결하기 </span></li>
         <li><span> boardview 에 boarddelete 연결하기 </span></li>
