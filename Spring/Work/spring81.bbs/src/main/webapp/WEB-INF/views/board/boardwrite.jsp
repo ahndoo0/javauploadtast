@@ -19,35 +19,7 @@
         p { margin: 0; padding: 0; }
         form div {text-align: left; padding-bottom: 15px; }
     </style>    
-         <script src="/resources/js/jquery-3.1.1.js"></script>
-     <script type="text/javascript">
-     $(document).ready(function(e) {
-         
-    	 $('form#writeForm input[type="submit"]').click(function(e) {
-             // 유효성 검사.
-             var list = $('#boardcd, #boardnm');
-             for (var i = 0; i < list.length; i++) {
-                 if ($(list[i]).val() === '') {
-                     list[i].focus();
-
-                     if ($(list[i]).next().length === 0) {
-                         $(list[i]).after('<label>입력하세요</label>');
-                     }
-
-                     return false;
-                 }
-             }
-
-             $('form#writeForm').submit();
-
-         });
-         $('#boardcd, #boardnm').keyup(function(e) {
-             if ($(this).val() !== '') {
-                 $(this).next('label').remove();
-             }
-         });
-     });
-     </script>
+    
 </head>
 <body>
 

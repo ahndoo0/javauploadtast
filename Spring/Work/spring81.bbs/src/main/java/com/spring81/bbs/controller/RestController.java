@@ -2,6 +2,7 @@ package com.spring81.bbs.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -110,15 +111,18 @@ public class RestController {
         return usersvr.updatePasswd( userid,currentPasswd, newPasswd );
     } 
     
-    @RequestMapping(value = "/updateuserinfo", method = {RequestMethod.GET, RequestMethod.POST} )
+    @RequestMapping(value = "/updateuserinfo", method = {RequestMethod.POST} )
     @ResponseBody
-    public int updateuserinfo( @RequestBody ModelUser setValue
-                             , @RequestBody ModelUser whereValue) {
+    public int updateuserinfo( @RequestBody Map<String, Object> maps) {
         logger.info("/rest/updateuserinfo");        
+        
+        ModelUser setValue   = (ModelUser) maps.get("setValue");
+        ModelUser whereValue = (ModelUser) maps.get("whereValue");
+        
         return usersvr.updateUserInfo( setValue, whereValue );
     } 
     
-    @RequestMapping(value = "/updateretire", method = {RequestMethod.GET, RequestMethod.POST} )
+    @RequestMapping(value = "/updateretire", method = {RequestMethod.POST} )
     @ResponseBody
     public int updateretire( @RequestBody ModelUser user) {
         logger.info("/rest/updateretire");        
@@ -157,7 +161,7 @@ public class RestController {
 
     @RequestMapping(value = "/getboardpaging", method = {RequestMethod.GET, RequestMethod.POST} )
     @ResponseBody
-    public List<ModelBoard> getBoardPaging( String boardcd
+    public List<ModelBoard> getBoardPaging(   String boardcd
                                             , String searchWord
                                             , @RequestParam(defaultValue="0" )  int start
                                             , @RequestParam(defaultValue="10")  int end  ) {

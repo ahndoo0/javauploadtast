@@ -138,9 +138,9 @@ public class UserController {
         //로그인이 되었다는 가정. 세션에 사용자 정보가 들어 있음.
         ModelUser user = (ModelUser) session.getAttribute(WebConstants.SESSION_NAME);
         
-        if( user == null){
+        if( user == null)
             throw new RuntimeException(WebConstants.NOT_LOGIN);
-        }
+        
         //입력된 패스워드와 현재의 패스워드가 같은지 확인
         //패스워드는 DB에 암호화 되어 저장되기 때문에.
         int r = svruser.checkpassword(setValue.getUserid(), setValue.getPasswd() );
@@ -210,17 +210,10 @@ public class UserController {
     }
     @RequestMapping(value = "/user/unregister", method = RequestMethod.GET)
     public String unregister(Model model 
-            , HttpSession session  ) {
+                                                            ) {
         logger.info("/user/unregister : get ");
-        //로그인이 되었다는 가정. 세션에 사용자 정보가 들어 있음.
-        ModelUser user = (ModelUser) session.getAttribute(WebConstants.SESSION_NAME);
         
-        if (user == null) {
-            return "redirect:/user/login";
-        }
-        else{
             return "user/unregister";
-        }
         }
     
     @RequestMapping(value = "/user/unregister", method = RequestMethod.POST)
@@ -241,7 +234,7 @@ public class UserController {
                 session.removeAttribute(WebConstants.SESSION_NAME);
                 return "user/unregister_post";
             }else{
-                return "redirect:/user/unregister";
+                return "user/unregister";
             }
             
         }
