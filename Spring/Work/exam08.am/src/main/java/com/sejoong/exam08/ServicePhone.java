@@ -28,10 +28,10 @@ public class ServicePhone implements IServicePhone {
     }
     
     @Override
-    public List<ModelPhone> getPhoneList() {
+    public List<ModelPhone> getPhoneList(int start, int end) {
         List<ModelPhone> result = null;
         try {
-            result = dao.getPhoneList();
+            result = dao.getPhoneList( start,  end);
         } catch (Exception e) {
             logger.error("getPhoneList" + e.getMessage() );
             throw e;
@@ -39,6 +39,18 @@ public class ServicePhone implements IServicePhone {
         return result;
     }
     
+     @Override
+    public int getPhoneTotalRecord() {
+        int result =  -1;
+        try {
+            result= dao.getPhoneTotalRecord();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return result;
+    }
+     
     @Override
     public int insertPhone(ModelPhone phone) {
         int result = -1;
@@ -50,4 +62,6 @@ public class ServicePhone implements IServicePhone {
         }
         return result;
     }
+
+   
 }

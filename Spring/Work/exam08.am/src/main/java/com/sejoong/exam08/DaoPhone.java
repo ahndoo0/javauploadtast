@@ -1,6 +1,8 @@
 package com.sejoong.exam08;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,12 +23,26 @@ public class DaoPhone implements IDaoPhone {
     }
     
     @Override
-    public List<ModelPhone> getPhoneList() {
-        return session.selectList("mapperPhone.getPhoneList");
+    public List<ModelPhone> getPhoneList(int start, int end) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("start", start);
+        map.put("end", end);
+        
+        return session.selectList("mapperPhone.getPhoneList",map);
     }
     
+      @Override
+    public int getPhoneTotalRecord() {
+
+        return session.selectOne("mapperPhone.getPhoneTotalRecord");
+    }
+      
     @Override
     public int insertPhone(ModelPhone phone) {
         return session.insert("mapperPhone.insertPhone", phone);
     }
+
+
+
+  
 }

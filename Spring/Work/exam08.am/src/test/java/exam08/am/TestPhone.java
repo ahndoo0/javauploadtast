@@ -28,20 +28,29 @@ public class TestPhone {
         service = context.getBean(IServicePhone.class);
     }
     @Test
-    public void test01_GetPhoneList() {
-        List<ModelPhone> result = service.getPhoneList();
+    public void test01_GetPhoneList(int start, int end) {
+        List<ModelPhone> result = service.getPhoneList( start,  end);
         assertNotNull(result);
         
         assertEquals("name", result.get(0).getName());
     }
     @Test
     public void test02_GetPhoneOne() {
-    
+        ModelPhone result = service.getPhoneOne("name");
+        assertNotNull(result);
+        
+        assertEquals("name", result.getName());
     }
     
     
     @Test
     public void test03_InsertPhone() {
-        fail("Not yet implemented");
+        ModelPhone phone = new ModelPhone();
+        phone.setManufacturer("test");
+        phone.setName("이영규");
+        phone.setPrice(10);
+        int result = service.insertPhone(phone);
+        
+        assertTrue(result == 1);
     }
 }
