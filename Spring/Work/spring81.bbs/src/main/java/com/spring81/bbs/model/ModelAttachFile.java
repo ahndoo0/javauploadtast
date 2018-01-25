@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class ModelAttachFile {
     Integer attachfileno   ;
-    String  filenameorig       ;
-    String  filenametemp       ;
+    String  filenameorig   ;
+    String  filenametemp   ;
     String  filetype       ;
     Long    filesize       ;
     Integer articleno      ;
@@ -14,6 +14,7 @@ public class ModelAttachFile {
     Date    InsertDT       ;
     String  UpdateUID      ;     
     Date    UpdateDT       ;
+    
     public Integer getAttachfileno() {
         return attachfileno;
     }
@@ -89,17 +90,19 @@ public class ModelAttachFile {
                 + ", InsertUID=" + InsertUID + ", InsertDT=" + InsertDT
                 + ", UpdateUID=" + UpdateUID + ", UpdateDT=" + UpdateDT + "]";
     }
+    
     public ModelAttachFile() {
         super();
     }
-    public ModelAttachFile(String filenameorig, String filetype, Long filesize,
-            Integer articleno) {
+    public ModelAttachFile(Integer attachfileno) {
+        super();
+        this.attachfileno = attachfileno;
+    }    
+    public ModelAttachFile(String filenameorig, String filetype, Long filesize, Integer articleno) {
         super();
         this.filenameorig = filenameorig;
         this.filetype = filetype;
         this.filesize = filesize;
         this.articleno = articleno;
     }
-    
-   
 }

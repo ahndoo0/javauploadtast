@@ -72,7 +72,7 @@ public class PagingHelper {
     public PagingHelper(int totalRecord, int curPage) {
         super();
         
-        this.rowsPerPage = 10;
+        this.rowsPerPage    = 10;
         this.pagesPerBlock  = 10; 
         
         setPagingValue(totalRecord, curPage, this.rowsPerPage, this.pagesPerBlock);

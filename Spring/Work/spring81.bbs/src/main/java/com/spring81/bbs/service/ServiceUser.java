@@ -129,7 +129,7 @@ public class ServiceUser implements IServiceUser {
     public int checkpassword(String id, String curpw) {
         int result = -1;
         try {
-            result = daouser.checkpassword(id, curpw);
+            result = daouser.checkpassword( id, curpw);
         } catch (Exception e) {
             logger.error("checkpassword " + e.getMessage() );
         }

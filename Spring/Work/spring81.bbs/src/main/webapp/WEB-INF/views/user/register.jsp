@@ -11,67 +11,67 @@
     <script src="/resources/js/jquery-3.1.1.js"></script>
     <script>
         $(document).ready( function(event){
-            $('#checkuserid').click( function(event){
-                
-                // ajax로 /rest/checkuserid REST 서비스 호출.
-                var userid  = $('#userid').val();
-                
-                if( userid === '' ) {
-                    alert("아이디를 입력하세요") ;
-                    return false;
-                }
-                
-                $.ajax({
-                    url : '/rest/checkuserid'
-                    , data: {'userid' :  userid }        // 사용하는 경우에는 { data1:'test1', data2:'test2' }
-                    , type: 'get'       // get, post
-                    , timeout: 30000    // 30초
-                    , dataType: 'json'  // text, html, xml, json, jsonp, script
-                    , beforeSend : function() {
-                        // 통신이 시작되기 전에 이 함수를 타게 된다. 이미지 표출
-                    }
-                }).done( function(data, textStatus, xhr ){
-                    // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
-                    if( data === 0 ) {
-                        alert('사용할수 있는 아이디');
+        	$('#checkuserid').click( function(event){
+        		
+        		// ajax로 /rest/checkuserid REST 서비스 호출.
+        		var userid  = $('#userid').val();
+        		
+        		if( userid === '' ) {
+        			alert("아이디를 입력하세요") ;
+        			return false;
+        		}
+        		
+        		$.ajax({
+        		    url : '/rest/checkuserid'
+        		    , data: {'userid' :  userid }        // 사용하는 경우에는 { data1:'test1', data2:'test2' }
+        		    , type: 'get'       // get, post
+        		    , timeout: 30000    // 30초
+        		    , dataType: 'json'  // text, html, xml, json, jsonp, script
+        		    , beforeSend : function() {
+        		        // 통신이 시작되기 전에 이 함수를 타게 된다. 이미지 표출
+        		    }
+        		}).done( function(data, textStatus, xhr ){
+        		    // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+        		    if( data === 0 ) {
+        		    	alert('사용할수 있는 아이디');
                         $('#signUpForm input').prop('disabled', false);
-                        return false;
-                    }
-                    else { 
+        		    	return false;
+        		    }
+        		    else { 
                         alert('사용할수 없는 아이디');
                         return false;
-                        
-                    }
-                }).fail( function(xhr, textStatus, error ) {
-                    // 통신이 실패했을 때 이 함수를 타게 된다.
-                }).always( function(data, textStatus, xhr ) {
-                    // 통신이 실패했어도 성공했어도 이 함수를 타게 된다.
-                });
-            });
-            
-            $('#signUpForm input[type="submit"]').click( function(e) { 
-                
-                var list = $('.req_input');
-                for( var i=0; i<list.length; i++) {
-                    if( $( list[i] ) .val() === '' ) {
-                        list[i].focus();
-                        $( list[i] ).after( '<label>입력하세요</label>' );
-                        return false;
-                    }
-                }
-                
-                // 패스워드 일치 여부 확인.
-                
-                
-                $('#signUpForm').submit();
-            });
-            
-            $('.req_input').keyup( function(event){
-                // 출력된 오류 메시지 삭제
-                if( $(this).val() !== '' ) {
-                    $(this).next('label').remove(); // label 태그 삭제.
-                } 
-            });
+        		    	
+        		    }
+        		}).fail( function(xhr, textStatus, error ) {
+        		    // 통신이 실패했을 때 이 함수를 타게 된다.
+        		}).always( function(data, textStatus, xhr ) {
+        		    // 통신이 실패했어도 성공했어도 이 함수를 타게 된다.
+        		});
+        	});
+        	
+        	$('#signUpForm input[type="submit"]').click( function(e) { 
+        		
+        		var list = $('.req_input');
+        		for( var i=0; i<list.length; i++) {
+        			if( $( list[i] ) .val() === '' ) {
+        				list[i].focus();
+        				$( list[i] ).after( '<label>입력하세요</label>' );
+        				return false;
+        			}
+        		}
+        		
+        		// 패스워드 일치 여부 확인.
+        		
+        		
+        		$('#signUpForm').submit();
+        	});
+        	
+        	$('.req_input').keyup( function(event){
+        		// 출력된 오류 메시지 삭제
+        		if( $(this).val() !== '' ) {
+        			$(this).next('label').remove(); // label 태그 삭제.
+        		} 
+        	});
         });
     
     </script>
@@ -136,7 +136,7 @@
     </div><!--  container 끝 -->
    
     <div id="sidebar">
-        <%@ include file="../inc/bbs-menu.jsp" %>
+        <%@ include file="user-menu.jsp" %>
     </div>
     
     <div id="extra">
