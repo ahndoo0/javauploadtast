@@ -171,7 +171,10 @@ public class DaoBoard implements IBoard {
 
     @Override
     public int insertComment(ModelComments comment) {
-        return  session.insert("mapper.mapperBoard.insertComment", comment );        
+        
+        // inserted 된 primary key 값 ,commentno 를 반환.
+        session.insert("mapper.mapperBoard.insertComment", comment );
+        return comment.getCommentno();
     }
 
     @Override

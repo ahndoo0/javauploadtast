@@ -276,7 +276,7 @@ public class BoardController {
     
 
     // /board/articleview/free/17
-    // /board/articleview/free/17?curPage=1&searchWord=         
+    // /board/articleview/free/17?curPage=1&searchWord= &msg=   
     @RequestMapping(value = "/board/articleview/{boardcd}/{articleno}", method = RequestMethod.GET)
     public String articleview( Model model
             , @PathVariable String boardcd
@@ -516,13 +516,24 @@ public class BoardController {
             , @PathVariable String  boardcd
             , @PathVariable Integer articleno
             , @RequestParam(defaultValue="1" ) Integer curPage
-            , @RequestParam(defaultValue=""  ) String searchWord ) {
+            , @RequestParam(defaultValue=""  ) String searchWord
+            ,RedirectAttributes rttr) {
         logger.info("/board/articledelete :: post");
         
-        srvboard.transDeleteArticle(articleno);
+        int result = srvboard.transDeleteArticle(articleno);
+        String url ="";
+        if(result == 1){
+            
         
-        String url = String.format("redirect:/board/articlelist/%s?curPage=%d&searchWord=%s"
+        url = String.format("redirect:/board/articlelist/%s?curPage=%d&searchWord=%s"
                                                           , boardcd, curPage, searchWord );
+        }else{
+         rttr.addFlashAttribute("msg", WebConstants.MSG_FAIL_DELETE_ARTICLE);
+         rttr.addAttribute("curPage", curPage);
+         rttr.addAttribute("searchWord", searchWord);
+         
+        url =  String.format("redirect:/board/articleview/%s/%d",boardcd,articleno);
+        }
         return url;
     }
     
