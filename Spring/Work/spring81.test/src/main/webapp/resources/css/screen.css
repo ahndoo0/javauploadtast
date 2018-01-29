@@ -92,7 +92,9 @@ ul#nav li a:hover {
 	background: none;
 	color: #FFF;
 }
-
+ul.icons li > * .label { /* footer */
+                        display: none;
+                    }
 #container {
 	float: left;
 	width: 100%;
@@ -465,4 +467,11 @@ ul#nav li a:hover {
 
 /*** error 관려 설정 ***/
 #error_message { font-size: 20px; color: red; padding: 20px;  }
+
+
+
+
+
+
+
 

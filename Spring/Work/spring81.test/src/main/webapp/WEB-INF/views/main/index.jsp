@@ -74,8 +74,6 @@
     </div>
     </div>
     
-  
-    
     <div id="extra">
         <%@ include file="../inc/extra.jsp" %>
     </div>

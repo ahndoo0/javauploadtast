@@ -23,7 +23,9 @@
     <div id="header">
         <%@ include file="../inc/header.jsp" %>
     </div>
-
+ <div id="header2">
+        <%@ include file="../inc/header2.jsp" %>
+    </div>
     <div id="main-menu">
         <%@ include file="../inc/main-menu.jsp" %>
     </div> 
@@ -53,9 +55,11 @@
                         <td><input type="password" name="passwd" style="width: 99%;" /></td>
                     </tr>
                 </table>
-                <div style="text-align: center;padding: 15px 0;">
+                <div style="text-align: right;padding: 15px 0;">
                     <input type="submit" value="확인" />
                     <input type="button" value="회원 가입" onclick="location.href='./register'" />
+                    <input type="button" value="아이디 찾기" onclick="location.href='#" />
+                    <input type="button" value="비밀번호찾기" onclick="location.href='#'" />
                 </div>
             </form>
             <!--  본문 끝 -->
