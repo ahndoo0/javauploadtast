@@ -1,5 +1,9 @@
 package com.spring81.test.controller;
 
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,10 +16,11 @@ public class MainController {
    
    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
    
-   @RequestMapping(value = "/index", method = RequestMethod.GET)
+   @RequestMapping(value = "/", method = RequestMethod.GET)
    public String index( Model model) {
-      logger.info("index");
-     
+      logger.info("Welcome home! The client locale is {}.");
+      
+      
       return "main/index";
    }
    

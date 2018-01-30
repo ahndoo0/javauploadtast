@@ -18,7 +18,7 @@ div, input, select, textarea, td {
 }
 
 img {
-	border: 0; 
+	border: 0; d
 }
 
 form { 
@@ -70,6 +70,7 @@ ul#nav {
 
 ul#nav li {
 	float: left;
+	list-style-type: none;
 	padding: 0 17px 0 8px;
 	background: url('/resources/images/bull_circle.gif') no-repeat 0 70%;
 }

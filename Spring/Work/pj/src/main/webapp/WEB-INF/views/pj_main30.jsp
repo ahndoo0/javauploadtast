@@ -68,7 +68,7 @@
         </div>
     </div>
     
-    <div class="section sub_section2">
+    <div class="sub_section2">
     <div class="section_con" >
         <ul class="allocation column4 tpl_list">
         <li>
@@ -87,6 +87,7 @@
                         </p>
                </div>
         </li>
+        
         <li>
                 <div class="allocation_inner">
                         <h3>3. IoT-LINK로 서버 접속</h3>
