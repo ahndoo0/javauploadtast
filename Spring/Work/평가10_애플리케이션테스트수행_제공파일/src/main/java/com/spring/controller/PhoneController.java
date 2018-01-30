@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.model.*;
 import com.spring.service.*;
-
+@Controller
 public class PhoneController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
@@ -23,8 +23,8 @@ public class PhoneController {
     @Autowired
     @Qualifier("phoneService")
     private IServicePhone phonesrv;
-
-    @RequestMapping(value = "phone/writeonelist", method = RequestMethod.GET)
+    
+    @RequestMapping(value = "/phone/writeonelist", method = RequestMethod.GET)
     public String writeone(Model model) {
         logger.info("writeonelist");
         
