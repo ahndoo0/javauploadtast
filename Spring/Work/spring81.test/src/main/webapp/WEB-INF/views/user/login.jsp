@@ -59,6 +59,7 @@
                     <input type="submit" value="확인" />
                     <input type="button" value="회원 가입" onclick="location.href='./register'" />
                     <br>
+                    <br>
                     <input type="button" value="아이디 찾기" onclick="location.href='#" />
                     <input type="button" value="비밀번호찾기" onclick="location.href='#'" />
                 </div>

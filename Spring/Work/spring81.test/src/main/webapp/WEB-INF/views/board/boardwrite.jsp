@@ -28,7 +28,9 @@
     <div id="header">
         <%@ include file="../inc/header.jsp" %>
     </div>
-
+ <div id="header2">
+        <%@ include file="../inc/header2.jsp" %>
+    </div>
     <div id="main-menu">
         <%@ include file="../inc/main-menu.jsp" %>
     </div> 

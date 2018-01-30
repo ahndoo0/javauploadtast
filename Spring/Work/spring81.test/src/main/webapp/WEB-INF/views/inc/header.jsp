@@ -24,5 +24,4 @@
     <li><a href="#" style="color: black;">CART</a></li>
     <li><a href="#" style="color: black;">ORDER</a></li>
     <li><a href="#" style="color: black;">MY PAGE</a></li>
-    <li><a href="#" style="color: black;">MY PAGE</a></li>
     </ul>
