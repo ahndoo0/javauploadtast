@@ -4,18 +4,18 @@
 
 <mapper namespace="mapper.mapperUser">
     
-	<insert id="insertUser" parameterType="ModelUser">
-	    INSERT INTO TB_USER (userid, email, passwd, name, mobile, retireYN, InsertUID, InsertDT, UpdateUID, UpdateDT)
-	    VALUES( #{userid}, #{email}, #{passwd}, #{name}, #{mobile} , 0 , #{InsertUID}, #{InsertDT}, #{UpdateUID}, #{UpdateDT})
-	</insert>
+    <insert id="insertUser" parameterType="ModelUser">
+        INSERT INTO TB_USER (userid, email, passwd, name, mobile, retireYN, InsertUID, InsertDT, UpdateUID, UpdateDT)
+        VALUES( #{userid}, #{email}, #{passwd}, #{name}, #{mobile} , 0 , #{InsertUID}, #{InsertDT}, #{UpdateUID}, #{UpdateDT})
+    </insert>
 
-	<select id="login" parameterType="java.util.Map" resultType="ModelUser">
-	        select userid, name, email, mobile, retireYN, userno 
-	          from TB_USER
-	         WHERE retireYN = 0
-	           AND userid = #{userid}
-	           AND passwd = #{passwd}
-	</select>
+    <select id="login" parameterType="java.util.Map" resultType="ModelUser">
+            select userid, name, email, mobile, retireYN, userno 
+              from TB_USER
+             WHERE retireYN = 0
+               AND userid = #{userid}
+               AND passwd = #{passwd}
+    </select>
 
     <!-- 회원 정보 수정  -->
     <select id="selectUserOne" parameterType="int" resultType="ModelUser">
@@ -52,48 +52,46 @@
             where userid = #{userid}
     </select>
 
-	<update id="logout" parameterType="String" >
-	</update>
+    <update id="logout" parameterType="String" >
+    </update>
 
-	<update id="updateUserInfo" parameterType="java.util.Map">
-	        UPDATE TB_USER 
-	           <set>
+    <update id="updateUserInfo" parameterType="java.util.Map">
+            UPDATE TB_USER 
+               <set>
                    <if test=" setValue.email     != null and setValue.email   !='' "> email     = #{setValue.email    } , </if>
-	               <if test=" setValue.passwd    != null and setValue.passwd  !='' "> passwd    = #{setValue.passwd   } , </if>
-	               <if test=" setValue.name      != null and setValue.name    !='' "> name      = #{setValue.name     } , </if>
-	               <if test=" setValue.mobile    != null and setValue.mobile  !='' "> mobile    = #{setValue.mobile   } , </if>
-	               <if test=" setValue.retireYN  != null                           "> retireYN  = #{setValue.retireYN } , </if>
-	               <if test=" setValue.UpdateUID != null                           "> UpdateUID = #{setValue.UpdateUID} , </if>
-	               <if test=" setValue.UpdateDT  != null                           "> UpdateDT  = #{setValue.UpdateDT } , </if>
+                   <if test=" setValue.passwd    != null and setValue.passwd  !='' "> passwd    = #{setValue.passwd   } , </if>
+                   <if test=" setValue.name      != null and setValue.name    !='' "> name      = #{setValue.name     } , </if>
+                   <if test=" setValue.mobile    != null and setValue.mobile  !='' "> mobile    = #{setValue.mobile   } , </if>
+                   <if test=" setValue.retireYN  != null                           "> retireYN  = #{setValue.retireYN } , </if>
+                   <if test=" setValue.UpdateUID != null                           "> UpdateUID = #{setValue.UpdateUID} , </if>
+                   <if test=" setValue.UpdateDT  != null                           "> UpdateDT  = #{setValue.UpdateDT } , </if>
                </set> 
-	        WHERE 1 = 1
-	        <if test="whereValue.userno != null">
-	            AND userno = #{whereValue.userno}
-	        </if>
+            WHERE 1 = 1
+            <if test="whereValue.userno != null">
+                AND userno = #{whereValue.userno}
+            </if>
             <if test="whereValue.userid != null">
                 AND userid = #{whereValue.userid}
             </if>
 
-	</update>
+    </update>
 
-	<update id="updatePasswd" parameterType="java.util.Map" >
-	        UPDATE TB_USER 
-	           SET passwd = #{newPasswd}            
-	         WHERE userid = #{userid}
+    <update id="updatePasswd" parameterType="java.util.Map" >
+            UPDATE TB_USER 
+               SET passwd = #{newPasswd}            
+             WHERE userid = #{userid}
                AND passwd = #{currentPasswd}
-	</update>
+    </update>
 
-	<update id="updateRetire" parameterType="ModelUser" >
-	        UPDATE TB_USER 
-	           SET retireYN=1            
-	        WHERE userid = #{userid}
-              AND email  = #{email }
-              AND passwd = #{passwd}
-	</update>
+    <update id="updateRetire" parameterType="ModelUser" >
+            UPDATE TB_USER 
+               SET retireYN=1            
+            WHERE userid = #{userid}
+    </update>
     
-    <select id="checkpassword" parameterType="java.util.Map"  resultType="int">
-        select count(*) from TB_USER  
-         where userid= #{id} and passwd = #{pw}  
+    <select id= "checkpassword" parameterType= "java.util.Map" resultType="int">
+            select count(*) from TB_USER 
+            where userid= #{id} and passwd = #{pw}  
     </select>
 
 </mapper>

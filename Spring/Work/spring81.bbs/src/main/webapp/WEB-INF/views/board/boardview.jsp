@@ -10,34 +10,50 @@
     <meta name="Keywords" content="게시판 상세보기" />
     <meta name="Description" content="게시판 상세보기" />
     <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen" />
+    <title>${ boardnm }</title>
     <script src="/resources/js/jquery-3.1.1.js"></script>
-    <script type="text/javascript">
-    $(document).ready( function(e){ 
-            
-    	$('.boardlist').click( function(e){
-            	window.location='/board/boardlist';
-            })	;
-        	
-    	$('.boardwrite').click( function(e){
-        		window.location='/board/boardwrite';
-            })  ;
-           
-    	$('.boardmodify').click( function(e){
-        	   window.location='/board/boardmodify?boardcd=${board.boardcd }';
-            });
-           	
-    	$('.boarddelete').click( function(e){
-           		window.location='/board/boarddelete';
-            });
-    	
-    });         
+    <script>
+        $(document).ready( function(event){
+        	$('.boardlist').click( function(event) { 
+        		window.location.href = '/board/boardlist';
+        	} );
+            $('.boardwrite').click( function(event) { 
+                window.location.href = '/board/boardwrite';
+            } );
+            $('.boardmodify').click( function(event) { 
+                window.location.href = '/board/boardmodify?boardcd=${board.boardcd }';
+            } );
+            $('.boarddelete').click( function(event) { 
+            	
+            	// form 태그 생성, 속성 설정
+            	var f = document.createElement( 'form' );             	
+            	f.setAttribute('method', 'post');
+            	f.setAttribute('action', '/board/boarddelete');
+            	f.setAttribute('enctype', 'application/x-www-form-urlencoded' );
+            	
+            	// input 태그 생성, 속성 설정
+            	var i = document.createElement( 'input' );            	
+            	i.setAttribute('type', 'text');
+            	i.setAttribute('name', 'boardcd');
+            	i.setAttribute('value', '${board.boardcd }')
+            	
+            	// input 태그를 form 태그에 속하게 한다.
+            	f.appendChild( i );
+            	   
+            	// form 을 body에 붙이기
+            	document.body.appendChild(f);
+
+                // form 태그 전송 
+            	f.submit();            	
+            } );  
+        });
     </script>
-    <title>${boardNm }</title>
    
 </head>
 <body>
 
 <div id="wrap">
+
     <div id="header">
         <%@ include file="../inc/header.jsp" %>
     </div>
@@ -46,17 +62,16 @@
         <%@ include file="../inc/main-menu.jsp" %>
     </div> 
     
-    
     <div id="container">
         <div id="content" style="min-height: 800px;">
             
             <!-- 본문 시작 -->
             <h1>Board View</h1>
-            
-                     <c:if test="${not empty msg }">
-                     <p style="color: red;">정보 삭제에 실패했습니다.</p>
-                     </c:if>
-                   
+                        
+            <c:if test="${not empty msg }">
+            <p style="color: red;">정보 삭제에 실패했습니다.</p>
+            </c:if> 
+                        
             <div id="bbs">
                 <table>
                     <tr>
@@ -87,8 +102,9 @@
         
     </div>
     <!--  container 끝 -->
-     <div id="sidebar">
-        <%@ include file="../inc/bbs-menu.jsp" %>
+  
+    <div id="sidebar">
+        <%@ include file="bbs-menu.jsp" %>
     </div>
     
     <div id="extra">
@@ -97,7 +113,8 @@
 
     <div id="footer">
         <%@ include file="../inc/footer.jsp" %>
-    </div>    
+    </div>  
+      
 </div>
 
 

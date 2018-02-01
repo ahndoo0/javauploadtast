@@ -65,7 +65,7 @@
 
 
     <div id="sidebar">
-        <%@ include file="../inc/bbs-menu.jsp" %>
+        <%@ include file="user-menu.jsp" %>
     </div>
     
     <div id="extra">
