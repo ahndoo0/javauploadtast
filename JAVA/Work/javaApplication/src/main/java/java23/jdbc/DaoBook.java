@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;//객체생성
 import java.sql.ResultSet;//쿼리결과
 import java.sql.SQLException;
 
-import org.apache.ibatis.session.SqlSessionException;
-
 public class DaoBook implements IBook {
     private java.sql.Connection conn = null;
     //생성자
