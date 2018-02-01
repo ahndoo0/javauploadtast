@@ -1,6 +1,6 @@
 package java16.st3다중상속;
 
-public class Rectangle extends java16.st3다중상속.Shape implements Drawable {
+public class Rectangle extends Shape implements Drawable {
     public int w,h;
     
     

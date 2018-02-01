@@ -25,6 +25,6 @@ public interface IUser {
     
     int updateRetire(ModelUser user);
     
-    // password 확인 .  왜냐하면 passwod는 암호화 되기 때문에...
-    int checkpassword (String id , String curpw);
+    // password 확인. 왜냐하면 패스워드는 암호화 되기 때문에...
+    int checkpassword( String id, String curpw);
 }
