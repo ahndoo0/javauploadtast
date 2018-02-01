@@ -11,23 +11,15 @@
     
     <!-- Model 클래스의 패키지명을 등록한다. -->
     <typeAliases>
-<<<<<<< HEAD
-        <package name="java23.mybatis.model" />
-=======
         <package name="java24.mybatis.pmodel" />
->>>>>>> c1e97f8524490883eadb784054c306bad4896765
     </typeAliases>
     
 
     <!-- sql 이 저장되는 xml 파일 등록: 주의 사항은 경로로 설정해야 한다. -->
     <mappers>
-<<<<<<< HEAD
-        <mapper resource="mapper/mapperBook.xml" />
-=======
         <mapper resource="mapper/mapperCompany.xml" />
         <mapper resource="mapper/mapperPhone.xml" />
         <mapper resource="mapper/mapperUniv.xml" />
->>>>>>> c1e97f8524490883eadb784054c306bad4896765
     </mappers>
     
 </configuration>
