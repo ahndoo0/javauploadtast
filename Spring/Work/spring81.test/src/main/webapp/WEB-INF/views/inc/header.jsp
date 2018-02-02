@@ -18,9 +18,17 @@
 </div>
 
 
-<ul id="nav" >
-    <li><a href="/user/login" style="color: black;">LOGIN</a></li>
-    <li><a href="#" style="color: black;">JOIN US</a></li>
+    <ul id="nav" >
+    <c:choose>
+        <c:when test="${empty user}"> 
+    <li><a style="color: black;" onclick="location.href='/user/login'">LOGIN</a></li>
+    <li><a style="color: black;"onclick="location.href='/user/register'">JOIN US</a></li>
+    </c:when>
+    <c:otherwise>
+    <li><a  style="color: black;"onclick="location.href='/user/logout'" >LOGOUT</a></li>
+    <li><a  style="color: black;"onclick="location.href='/user/usermodify'">내정보수정</a></li>
+    </c:otherwise>
+    </c:choose>
     <li><a href="#" style="color: black;">CART</a></li>
     <li><a href="#" style="color: black;">ORDER</a></li>
     <li><a href="#" style="color: black;">MY PAGE</a></li>
