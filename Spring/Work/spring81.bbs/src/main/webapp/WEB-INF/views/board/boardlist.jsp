@@ -62,8 +62,8 @@
                                 <td style="text-align: center;">${no - status.index}</td>
                                 <td style="text-align: center;"><span class="bbs-strong">${board.boardcd}</span></td>
                                 <td style="text-align: center;">${board.boardnm}</td>
-                                <td style="text-align: center;"><input type="checkbox" name="UseYN" disabled="disabled" 
-                                                                    <c:if test="${board.useYN}">
+                                <td style="text-align: center;">
+                                <input type="checkbox" name="UseYN" disabled="disabled" <c:if test="${board.useYN}">
                                                                         checked="checked"
                                                                     </c:if>  />
                                 </td>
