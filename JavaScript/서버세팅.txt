@@ -1,6 +1,6 @@
 {
-"D:\\DevTool\\workspace\\Lecture\\JavaScript\\Source": {
-"url_testing":"http://localhost",
-"url_production":"http://www.project.com"
-}
+  "G:\\workspace\\JavaScript\\Work\\Source": {
+    "url_testing":"http://localhost:80",
+    "url_production":"http://www.project.com"
+  }
 }
