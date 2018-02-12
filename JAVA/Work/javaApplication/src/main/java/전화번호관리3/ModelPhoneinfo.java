@@ -1,0 +1,66 @@
+package 전화번호관리3;
+
+public class ModelPhoneinfo {
+    private Integer phoneid =null;
+    private String name        = "";
+    private String phoneNumber = "";
+   
+    
+    public void 일반() {
+        System.out.println("이름: " + this.name);
+        System.out.println("전화번호: " + this.phoneNumber);
+    }
+    
+    
+    public ModelPhoneinfo() {
+        super();
+    }
+
+
+    public ModelPhoneinfo(Integer phoneid, String name, String phoneNumber) {
+        super();
+        this.phoneid = phoneid;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+
+
+    public Integer getPhoneid() {
+        return phoneid;
+    }
+
+
+    public void setPhoneid(Integer phoneid) {
+        this.phoneid = phoneid;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PhoneInfo [phoneid=" + phoneid + ", name=" + name
+                + ", phoneNumber=" + phoneNumber + "]";
+    }
+    
+   
+    
+}
